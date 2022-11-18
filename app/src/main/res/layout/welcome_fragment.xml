@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/auth_scroll_layout"
@@ -10,15 +11,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:id="@+id/auth_fragment_layout"
-        >
+        android:id="@+id/auth_fragment_layout">
 
         <TextView
             android:id="@+id/welcomeTextView"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="36dp"
             android:layout_marginEnd="91dp"
             android:fontFamily="@font/gteestiprotext_regular"
             android:lines="2"
@@ -28,6 +28,18 @@
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/adminAuthImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="31dp"
+            android:src="@drawable/admin_auth_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/welcomeTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView

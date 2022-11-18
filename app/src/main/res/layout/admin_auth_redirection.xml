@@ -133,47 +133,47 @@
 
 
     <!--    <EditText-->
-<!--        android:id="@+id/editTextConfirmAccountCode"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:backgroundTint="@color/mainColor"-->
-<!--        android:imeOptions="actionDone"-->
-<!--        android:inputType="phone"-->
-<!--        android:maxLength="10"-->
-<!--        android:minHeight="48dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/confirmationTextView"-->
-<!--        tools:ignore="SpeakableTextPresentCheck">-->
+    <!--        android:id="@+id/editTextConfirmAccountCode"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:backgroundTint="@color/mainColor"-->
+    <!--        android:imeOptions="actionDone"-->
+    <!--        android:inputType="phone"-->
+    <!--        android:maxLength="10"-->
+    <!--        android:minHeight="48dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/confirmationTextView"-->
+    <!--        tools:ignore="SpeakableTextPresentCheck">-->
 
-<!--    </EditText>-->
+    <!--    </EditText>-->
 
 
 
-<!--    <Button-->
-<!--        android:id="@+id/buttonSendConfirmAccountCode"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="48dp"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:layout_marginBottom="100dp"-->
-<!--        android:layout_weight="1"-->
-<!--        android:background="@drawable/rounded_button_shape"-->
-<!--        android:text="@string/Confirm"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="17sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewRepeatSendAccountCode">-->
+    <!--    <Button-->
+    <!--        android:id="@+id/buttonSendConfirmAccountCode"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="48dp"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:layout_marginBottom="100dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:background="@drawable/rounded_button_shape"-->
+    <!--        android:text="@string/Confirm"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="17sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="1.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textViewRepeatSendAccountCode">-->
 
-<!--    </Button>-->
+    <!--    </Button>-->
 
 
 

@@ -38,6 +38,7 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
                     }
                 })
         }
+
         buttonNextRegistration.setOnClickListener {
             findNavController().navigate(R.id.action_registrationFragment_to_createCodeFragment)
         }

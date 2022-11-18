@@ -1,18 +1,14 @@
-package com.example.sovkombank_team_challenge_it_amnezia.ui.profile
+package com.example.sovkombank_team_challenge_it_amnezia.ui.client.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.profile_fragment.*
 import javax.inject.Inject
 
 class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {

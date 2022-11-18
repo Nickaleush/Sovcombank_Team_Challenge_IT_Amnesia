@@ -35,6 +35,10 @@ class LogoFragment: BaseFragment<LogoPresenterImpl>(), LogoView {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
+    }
+
+    override fun onResume() {
+        super.onResume()
         CoroutineScope(Dispatchers.Main).launch  {
             delay(500)
             findNavController().navigate(R.id.action_logoFragment_to_welcomeFragment)

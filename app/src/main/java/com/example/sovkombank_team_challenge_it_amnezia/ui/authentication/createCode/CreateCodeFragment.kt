@@ -7,15 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
-import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import javax.inject.Inject
+import com.example.sovkombank_team_challenge_it_amnezia.widgets.pincodeLayout.PinCodeActions
+import kotlinx.android.synthetic.main.create_code_fragment.*
 
 class CreateCodeFragment: BaseFragment<CreateCodePresenterImpl>(), CreateCodeView {
-
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.create_code_fragment, container, false)
@@ -25,10 +21,29 @@ class CreateCodeFragment: BaseFragment<CreateCodePresenterImpl>(), CreateCodeVie
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
+
+        toolbarCreateCode.setNavigationOnClickListener {
+            onBackPressed()
+        }
+        pincodeLayout.setCallback(callback)
+    }
+
+    private val callback: PinCodeActions = object : PinCodeActions {
+        override fun onPinEntered(pin: String) {
+
+        }
+
+        override fun onPinCleared() {
+
+        }
+
+        override fun onPinFilled() {
+
+        }
     }
 
     override fun onBackPressed() {
-        requireActivity().finish()
+        requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
     override fun createComponent() {

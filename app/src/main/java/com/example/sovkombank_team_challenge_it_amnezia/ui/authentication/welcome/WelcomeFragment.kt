@@ -47,12 +47,16 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
+        AUTH_AS_ADMIN = false
         enterBank_cardView.setOnClickListener {
-            showRedirectDialog()
+            showRedirectDialogUser()
+        }
+        adminAuthImageView.setOnClickListener {
+            showRedirectDialogAdmin()
         }
     }
 
-    private fun showRedirectDialog() {
+    private fun showRedirectDialogUser() {
         sheetView = requireActivity().layoutInflater.inflate(R.layout.redirection_bottomsheet, null)
         mBottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
         mBottomSheetDialog.setContentView(sheetView)
@@ -71,6 +75,28 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         }
     }
 
+    private fun showRedirectDialogAdmin() {
+        AUTH_AS_ADMIN = true
+        sheetView = requireActivity().layoutInflater.inflate(R.layout.redirection_bottomsheet_admin, null)
+        mBottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
+        mBottomSheetDialog.setContentView(sheetView)
+        mBottomSheetDialog.show()
+        val mBehavior = BottomSheetBehavior.from(sheetView.parent as View)
+        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        logInView = sheetView.findViewById(R.id.liner_enter_bank_admin)
+        registrationView = sheetView.findViewById(R.id.linear_register_admin)
+
+        logInView.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
+        }
+
+        registrationView.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            findNavController().navigate(R.id.action_welcomeFragment_to_registrationFragment)
+        }
+    }
+
     override fun onBackPressed() {
         MaterialDialog.Builder(requireContext())
             .content(getString(R.string.ExitConfirm))
@@ -81,6 +107,7 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
             .negativeColor(resources.getColor(R.color.red, null))
             .onPositive { materialDialog, _ ->
                 materialDialog.dismiss()
+                AUTH_AS_ADMIN = false
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
@@ -90,4 +117,7 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
+    companion object {
+        var AUTH_AS_ADMIN = false
+    }
 }

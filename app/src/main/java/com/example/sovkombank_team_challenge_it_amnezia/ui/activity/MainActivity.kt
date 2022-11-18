@@ -1,5 +1,7 @@
 package com.example.sovkombank_team_challenge_it_amnezia.ui.activity
 
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -21,6 +23,9 @@ class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         presenter.view = this
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         val mainGraph = navController.navInflater.inflate(R.navigation.navigation_graph)
@@ -33,6 +38,7 @@ class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
                 R.id.welcomeFragment -> hideBotNav()
                 R.id.logoFragment -> hideBotNav()
                 R.id.loginFragment -> hideBotNav()
+                R.id.createCodeFragment -> hideBotNav()
                 R.id.registrationFragment -> hideBotNav()
                 else -> showBotNav()
             }

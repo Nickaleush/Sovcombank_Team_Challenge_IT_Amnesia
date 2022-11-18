@@ -8,6 +8,7 @@
     <string name="AuthByPhoneNumber">Open a deposit</string>
     <string name="Registration">Registration</string>
     <string name="Login">Login</string>
+    <string name="RegisterAdmin">Registration for Sovcombank admins</string>
     <string name="Register">Registration for Sovcombank customers</string>
     <string name="RegisterDescription">Registration by phone number </string>
     <string name="EnterBankDescription">For Sovcombank customers and Halva card holders</string>

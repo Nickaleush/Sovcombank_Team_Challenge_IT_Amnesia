@@ -8,6 +8,7 @@
     <string name="EnterBank">Войти в мобильный банк</string>
     <string name="Registration">Регистрация</string>
     <string name="Login">Вход</string>
+    <string name="RegisterAdmin">Регистрация для администраторов совкомбанка</string>
     <string name="AuthByPhoneNumber">Авторизация по номеру телефона</string>
     <string name="Register">Регистрация для клиентов совкомбанка</string>
     <string name="RegisterDescription">Регистрация по номеру телефона</string>

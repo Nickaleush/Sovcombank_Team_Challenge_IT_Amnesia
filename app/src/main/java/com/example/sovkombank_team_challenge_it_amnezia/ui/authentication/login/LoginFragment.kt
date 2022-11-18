@@ -41,7 +41,7 @@ class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
                 object : CountryPickerAdapter.OnCountrySelectedListener {
                     override fun onCountrySelected(country: Country?) {
                         val countryCode = country?.countryCode
-                        countryCodeTextView.setText(countryCode)
+                        countryCodeTextViewLogin.setText(countryCode)
                     }
                 })
         }

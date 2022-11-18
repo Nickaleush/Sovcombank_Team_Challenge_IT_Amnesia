@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/logoFragment">
 
     <fragment
         android:id="@+id/profileFragment2"
-        android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile_fragment"
+        />
 
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.auth.AuthFragment"
-        android:label="AuthFragment" >
+        android:label="AuthFragment"
+        tools:layout="@layout/auth_fragment"
+        >
         <action
             android:id="@+id/action_authFragment_to_profileFragment2"
             app:destination="@id/profileFragment2" />
@@ -20,7 +25,9 @@
     <fragment
         android:id="@+id/logoFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.logo.LogoFragment"
-        android:label="LogoFragment" >
+        android:label="LogoFragment"
+        tools:layout="@layout/logo_fragment"
+        >
         <action
             android:id="@+id/action_logoFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"
@@ -39,7 +46,9 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment"
-        android:label="WelcomeFragment" >
+        android:label="WelcomeFragment"
+        tools:layout="@layout/welcome_fragment"
+        >
         <action
             android:id="@+id/action_welcomeFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
@@ -50,7 +59,9 @@
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment"
-        android:label="RegistrationFragment" >
+        android:label="RegistrationFragment"
+        tools:layout="@layout/registration_fragment"
+        >
         <action
             android:id="@+id/action_registrationFragment_to_createCodeFragment"
             app:destination="@id/createCodeFragment" />
@@ -59,7 +70,9 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/login_fragment"
+        >
         <action
             android:id="@+id/action_loginFragment_to_profileFragment2"
             app:destination="@id/profileFragment2" />
@@ -67,5 +80,7 @@
     <fragment
         android:id="@+id/createCodeFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.createCode.CreateCodeFragment"
-        android:label="CreateCodeFragment" />
+        android:label="CreateCodeFragment"
+        tools:layout="@layout/create_code_fragment"
+        />
 </navigation>

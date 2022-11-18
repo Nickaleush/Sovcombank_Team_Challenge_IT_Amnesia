@@ -14,6 +14,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         buildConfigField("String", "BASE_URL", '"https://qiwi-hackathon.herokuapp.com/"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -91,5 +92,8 @@ dependencies {
 
     //Splash screen
     implementation 'androidx.core:core-splashscreen:1.0.0'
+
+    //Multidex
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }

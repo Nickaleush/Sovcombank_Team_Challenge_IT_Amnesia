@@ -2,11 +2,13 @@ package com.example.sovkombank_team_challenge_it_amnezia
 
 import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import com.example.sovkombank_team_challenge_it_amnezia.di.AppComponent
 import com.example.sovkombank_team_challenge_it_amnezia.di.AppModule
 import com.example.sovkombank_team_challenge_it_amnezia.di.DaggerAppComponent
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     private lateinit var appComponent: AppComponent
 
@@ -14,6 +16,11 @@ class App : Application() {
         super.onCreate()
         instance = this
         setUpDagger()
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     fun getAppComponent(): AppComponent = appComponent

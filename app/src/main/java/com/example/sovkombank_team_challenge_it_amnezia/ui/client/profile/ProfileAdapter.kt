@@ -1,4 +1,4 @@
-//package com.example.sovkombank_team_challenge_it_amnezia.ui.profile
+//package com.example.sovkombank_team_challenge_it_amnezia.ui.client.profile
 //
 //import android.content.Context
 //import android.view.LayoutInflater
