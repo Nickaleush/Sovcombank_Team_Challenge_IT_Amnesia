@@ -1,0 +1,1 @@
+# Sovcombank_Team_Challenge_IT_Amnesia
