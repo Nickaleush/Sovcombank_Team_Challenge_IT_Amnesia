@@ -1,0 +1,63 @@
+package com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.logo
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
+import com.example.sovkombank_team_challenge_it_amnezia.App
+import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.pager.AuthPagerAdapter
+import kotlinx.android.synthetic.main.auth_flow.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
+class LogoFragment: BaseFragment<LogoPresenterImpl>(), LogoView {
+
+    override fun createComponent() {
+        App.instance
+            .getAppComponent()
+            .createLogoFragment()
+            .inject(this)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.logo_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.start()
+        presenter.view = this
+        CoroutineScope(Dispatchers.Main).launch  {
+            delay(500)
+            findNavController().navigate(R.id.action_logoFragment_to_welcomeFragment)
+        }.start()
+    }
+
+    override fun onBackPressed() {
+        MaterialDialog.Builder(requireContext())
+            .content(getString(R.string.ExitConfirm))
+            .positiveText(R.string.Yes)
+            .contentColor(resources.getColor(R.color.black, null))
+            .positiveColor(resources.getColor(R.color.blue, null))
+            .negativeColor(resources.getColor(R.color.red, null))
+            .negativeText(R.string.No)
+            .onPositive { materialDialog, _ ->
+                materialDialog.dismiss()
+                requireActivity().finish()
+            }
+            .onNegative { materialDialog, _ ->
+                materialDialog.dismiss()
+            }.show()
+    }
+
+    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+}

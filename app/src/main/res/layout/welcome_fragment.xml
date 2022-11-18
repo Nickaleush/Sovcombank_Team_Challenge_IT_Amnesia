@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/auth_scroll_layout"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/auth_fragment_layout"
+        >
+
+        <TextView
+            android:id="@+id/welcomeTextView"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="91dp"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:lines="2"
+            android:text="@string/Welcome"
+            android:textAlignment="textStart"
+            android:textColor="@color/red"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+        android:id="@+id/enterBank_cardView"
+        android:layout_width="325dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView">
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="@drawable/welcome_cardview_background">
+
+         <ImageView
+             android:layout_width="24dp"
+             android:layout_height="24dp"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="38dp"
+             android:layout_marginBottom="38dp"
+             android:src="@drawable/check_mark_cardview" />
+
+         <LinearLayout
+             android:layout_width="263dp"
+             android:layout_height="68dp"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="16dp"
+             android:layout_marginEnd="56dp"
+             android:layout_marginBottom="16dp"
+             android:orientation="vertical">
+
+             <TextView
+                 android:id="@+id/enterBankTextview"
+                 android:layout_width="match_parent"
+                 android:layout_height="28dp"
+                 android:fontFamily="@font/gteestiprotext_regular"
+                 android:text="@string/EnterBank"
+                 android:textColor="@color/blue"
+                 android:textSize="16sp" />
+
+             <TextView
+                 android:id="@+id/enterBankDescriptionTextView"
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:fontFamily="@font/gteestiprotext_regular"
+                 android:text="@string/EnterBankDescription"
+                 android:textColor="@color/lightGrey" />
+         </LinearLayout>
+
+     </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/halva_cardView"
+        android:layout_width="325dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterBank_cardView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/welcome_cardview_background">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginBottom="38dp"
+            android:src="@drawable/check_mark_cardview" />
+
+        <LinearLayout
+            android:layout_width="263dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/halvaTextview"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/Halva"
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/halvaDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/HalvaDescription"
+                android:textColor="@color/lightGrey" />
+        </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/credit_cardView"
+        android:layout_width="325dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/halva_cardView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/welcome_cardview_background">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginBottom="38dp"
+            android:src="@drawable/check_mark_cardview" />
+
+        <LinearLayout
+            android:layout_width="263dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/creditTextview"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/GetCredit"
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/creditDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/GetCreditDescription"
+                android:textColor="@color/lightGrey" />
+        </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/openСontribution_cardView"
+            android:layout_width="325dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="56dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/credit_cardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/welcome_cardview_background">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="38dp"
+                    android:layout_marginBottom="38dp"
+                    android:src="@drawable/check_mark_cardview" />
+
+                <LinearLayout
+                    android:layout_width="263dp"
+                    android:layout_height="68dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="56dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/openСontributionTextview"
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:fontFamily="@font/gteestiprotext_regular"
+                        android:text="@string/OpenContribution"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/сontributionDescriptionTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/gteestiprotext_regular"
+                        android:text="@string/OpenContributionDescription"
+                        android:textColor="@color/lightGrey" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>

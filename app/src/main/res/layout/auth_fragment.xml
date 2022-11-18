@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/forgotCodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:text="@string/ForgotCode"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/helloTextView"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="52dp"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:text="@string/GoodMorning"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/enterCodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="102dp"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:text="@string/EnterCode"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helloTextView" />
+
+    <TextView
+        android:id="@+id/codeOne"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/One"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterCodeTextView"
+        />
+
+    <TextView
+        android:id="@+id/codeTwo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="36dp"
+        android:background="@color/transparent"
+        android:text="@string/Two"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@+id/codeThree"
+        app:layout_constraintStart_toEndOf="@+id/codeOne"
+        app:layout_constraintTop_toBottomOf="@+id/enterCodeTextView" />
+
+    <TextView
+        android:id="@+id/codeThree"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/transparent"
+        android:text="@string/Three"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterCodeTextView" />
+
+
+    <TextView
+        android:id="@+id/codeFour"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="56dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/transparent"
+        android:text="@string/Four"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeOne" />
+
+    <TextView
+        android:id="@+id/codeFive"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/transparent"
+        android:text="@string/Five"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@+id/codeSix"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toEndOf="@+id/codeFour"
+        app:layout_constraintTop_toBottomOf="@+id/codeTwo" />
+
+    <TextView
+        android:id="@+id/codeSix"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="56dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/transparent"
+        android:text="@string/Six"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeThree" />
+
+
+    <TextView
+        android:id="@+id/codeSeven"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/transparent"
+        android:text="@string/Seven"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeFour" />
+
+    <TextView
+        android:id="@+id/codeEight"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/transparent"
+        android:text="@string/Eight"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toStartOf="@+id/codeNine"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toEndOf="@+id/codeSeven"
+        app:layout_constraintTop_toBottomOf="@+id/codeFive" />
+
+    <TextView
+        android:id="@+id/codeNine"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="56dp"
+        android:background="@color/transparent"
+        android:text="@string/Nine"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeSix" />
+
+    <ImageView
+        android:id="@+id/fingerprintImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/fingerprint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeSeven" />
+
+    <TextView
+        android:id="@+id/codeZero"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/transparent"
+        android:text="@string/Zero"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="32sp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toStartOf="@+id/deleteCodeImageView"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toEndOf="@+id/fingerprintImageView"
+        app:layout_constraintTop_toBottomOf="@+id/codeEight" />
+
+    <ImageView
+        android:id="@+id/deleteCodeImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="56dp"
+        android:src="@drawable/delete_code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeNine" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

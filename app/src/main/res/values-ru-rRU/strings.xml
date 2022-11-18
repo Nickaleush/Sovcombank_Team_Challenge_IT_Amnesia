@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IT-Амнезия</string>
+    <string name="Profile">Профиль</string>
+    <string name="Welcome">Добро \nпожаловать!</string>
+    <string name="CreateCode">Придумайте  код доступа  для  входа</string>
+    <string name="EnterBankShort">Войти в банк</string>
+    <string name="EnterBank">Войти в мобильный банк</string>
+    <string name="Registration">Регистрация</string>
+    <string name="Login">Вход</string>
+    <string name="AuthByPhoneNumber">Авторизация по номеру телефона</string>
+    <string name="Register">Регистрация для клиентов совкомбанка</string>
+    <string name="RegisterDescription">Регистрация по номеру телефона</string>
+    <string name="EnterBankDescription">Для клиентов Совкомбанка и держателей карты Халва</string>
+    <string name="Halva">Оформить халву</string>
+    <string name="HalvaDescription">Подать заявку и завершить оформление карты рассрочки</string>
+    <string name="GetCredit">Оформить денежный кредит</string>
+    <string name="GetCreditDescription">Денежный кредит с возвратом процентов</string>
+    <string name="OpenContribution">Открыть вклад</string>
+    <string name="OpenContributionDescription">Ваша выгода до 8,7% годовых</string>
+    <string name="One">1</string>
+    <string name="Two">2</string>
+    <string name="Three">3</string>
+    <string name="Four">4</string>
+    <string name="Five">5</string>
+    <string name="Six">6</string>
+    <string name="Seven">7</string>
+    <string name="PlusSeven">+7</string>
+    <string name="Eight">8</string>
+    <string name="Nine">9</string>
+    <string name="Zero">0</string>
+    <string name="Next">Далее</string>
+    <string name="Support">Поддержка</string>
+    <string name="ForgotCode">Забыл код</string>
+    <string name="EnterCode">Введите код доступа</string>
+    <string name="EnterNumber">Введите номер телефона</string>
+    <string name="EnterCredentials">Введите данные</string>
+    <string name="Password">Пароль</string>
+    <string name="ExitConfirm">Вы действительно хотите выйти из приложения?</string>
+    <string name="GoodMorning">Доброе утро, Мария!</string>
+    <string name="Yes">Да</string>
+    <string name="No">Нет</string>
+    <string name="Home">Главная</string>
+</resources>

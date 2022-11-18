@@ -1,0 +1,72 @@
+package com.example.sovkombank_team_challenge_it_amnezia.ui.activity
+
+import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.example.sovkombank_team_challenge_it_amnezia.App
+import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseActivity
+import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
+
+    private lateinit var bottomNavigationView: BottomNavigationView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        presenter.view = this
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+        val mainGraph = navController.navInflater.inflate(R.navigation.navigation_graph)
+        navController.graph = mainGraph
+        bottomNavigationView = findViewById(R.id.mainBottomNavigationView)
+        bottomNavigationView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.welcomeFragment -> hideBotNav()
+                R.id.logoFragment -> hideBotNav()
+                R.id.loginFragment -> hideBotNav()
+                R.id.registrationFragment -> hideBotNav()
+                else -> showBotNav()
+            }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (BaseFragment.backPressedListener != null) {
+            BaseFragment.backPressedListener!!.onBackPressed()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    private fun hideBotNav() {
+        bottomNavigationView.animate().alpha(0.0f).duration = 300
+        bottomNavigationView.visibility = View.GONE
+    }
+
+    private fun showBotNav() {
+        bottomNavigationView.animate()
+            .alpha(1.0f).duration = 1000
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    interface OnBackPressedListener {
+        fun onBackPressed()
+    }
+
+    override fun createComponent() {
+        App.instance
+            .getAppComponent()
+            .createMainActivity()
+            .inject(this)
+    }
+}

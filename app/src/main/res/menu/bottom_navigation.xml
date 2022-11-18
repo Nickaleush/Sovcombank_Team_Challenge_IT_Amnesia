@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/QRFragment"
+        android:title="@string/Home"
+        android:icon="@drawable/fingerprint"
+        />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="@string/Profile"
+        android:icon="@drawable/person_foreground"
+        />
+</menu>

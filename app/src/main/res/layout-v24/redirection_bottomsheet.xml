@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_round_corners_top_white">
+
+    <TextView
+        android:id="@+id/enterMobileBank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:lineSpacingExtra="6sp"
+        android:text="@string/EnterBank"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/liner_enter_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/upper_line_edit_text"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/enterMobileBank">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/login_foreground" />
+
+        <LinearLayout
+            android:layout_width="263dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/enterBankShortTextView"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/EnterBankShort"
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/сontributionDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/AuthByPhoneNumber"
+                android:textColor="@color/lightGrey" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/arrow_forward_foreground" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/upper_line_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/liner_enter_bank">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/registration_foreground" />
+
+        <LinearLayout
+            android:layout_width="263dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/registerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/Register"
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/registerDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="@string/RegisterDescription"
+                android:textColor="@color/lightGrey" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/arrow_forward_foreground" />
+
+    </LinearLayout>
+
+
+    <!--    <EditText-->
+<!--        android:id="@+id/editTextConfirmAccountCode"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:backgroundTint="@color/mainColor"-->
+<!--        android:imeOptions="actionDone"-->
+<!--        android:inputType="phone"-->
+<!--        android:maxLength="10"-->
+<!--        android:minHeight="48dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/confirmationTextView"-->
+<!--        tools:ignore="SpeakableTextPresentCheck">-->
+
+<!--    </EditText>-->
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/buttonSendConfirmAccountCode"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginBottom="100dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@drawable/rounded_button_shape"-->
+<!--        android:text="@string/Confirm"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="17sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textViewRepeatSendAccountCode">-->
+
+<!--    </Button>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
