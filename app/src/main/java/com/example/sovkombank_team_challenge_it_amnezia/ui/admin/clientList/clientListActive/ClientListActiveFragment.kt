@@ -19,7 +19,13 @@ import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.utils.SwipeRightCallback
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.client_list_active_fragment.*
-import java.util.ArrayList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
     ClientListActiveView {
@@ -41,23 +47,29 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
-        presenter.getActiveClients()
+        getActiveClients()
     }
 
-
+    private fun getActiveClients(){
+        presenter.getActiveClients()
+    }
     override fun initRecyclerViewActiveClient(activeClientsList: MutableList<ClientDTO>) {
         listActiveClients = activeClientsList
-        if (activeClientsList.isEmpty()) {
+        checkEmptyClientList()
+        activeClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        val adapter = ClientListActiveAdapter(listActiveClients)
+        activeClientRecyclerView.adapter = adapter
+        setupItemSwipe()
+    }
+
+    private fun checkEmptyClientList(){
+        if (listActiveClients.isEmpty()) {
             emptyActiveClientListTextView.visibility = View.VISIBLE
             emptyActiveClientListImageView.visibility = View.VISIBLE
         } else {
             emptyActiveClientListTextView.visibility = View.GONE
             emptyActiveClientListImageView.visibility = View.GONE
         }
-        activeClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClientListActiveAdapter(listActiveClients)
-        activeClientRecyclerView.adapter = adapter
-        setupItemSwipe()
     }
 
     override fun onResume() {
@@ -76,6 +88,7 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
                         val position = viewHolder.adapterPosition
                         presenter.setDisableClient(listActiveClients[position].id)
                         listActiveClients.removeAt(position)
+                        checkEmptyClientList()
                         activeClientRecyclerView.adapter?.notifyItemRemoved(position) }
                     .negativeText(R.string.Cancel)
                     .negativeColorRes(R.color.blue)

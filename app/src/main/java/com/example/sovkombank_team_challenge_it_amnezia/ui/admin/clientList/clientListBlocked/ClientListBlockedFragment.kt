@@ -51,17 +51,21 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
     }
     override fun initRecyclerViewBlockedClient(blockedClientsList: MutableList<ClientDTO>) {
         listBlockedClients = blockedClientsList
-        if (blockedClientsList.isEmpty()) {
-            emptyBlockedClientListTextView.visibility = View.VISIBLE
-            emptyBlockedClientListImageView.visibility = View.VISIBLE
-        } else {
-            emptyBlockedClientListTextView.visibility = View.GONE
-            emptyBlockedClientListImageView.visibility = View.GONE
-        }
+        checkEmptyClientList()
         blockedClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         val adapter = ClientListBlockedAdapter(listBlockedClients)
         blockedClientRecyclerView.adapter = adapter
         setupItemSwipe()
+    }
+
+    private fun checkEmptyClientList(){
+        if (listBlockedClients.isEmpty()) {
+            emptyActiveClientListTextView.visibility = View.VISIBLE
+            emptyActiveClientListImageView.visibility = View.VISIBLE
+        } else {
+            emptyActiveClientListTextView.visibility = View.GONE
+            emptyActiveClientListImageView.visibility = View.GONE
+        }
     }
 
     private fun setupItemSwipe(){
@@ -75,6 +79,7 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
                         val position = viewHolder.adapterPosition
                         presenter.setEnableClient(listBlockedClients[position].id)
                         listBlockedClients.removeAt(position)
+                        checkEmptyClientList()
                         blockedClientRecyclerView.adapter?.notifyItemRemoved(position) }
                     .negativeText(R.string.Cancel)
                     .negativeColorRes(R.color.blue)

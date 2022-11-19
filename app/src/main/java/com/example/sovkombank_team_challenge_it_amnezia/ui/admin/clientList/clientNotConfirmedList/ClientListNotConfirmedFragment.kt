@@ -13,6 +13,7 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Client
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.admin.clientList.clientListBlocked.ClientListBlockedAdapter
+import kotlinx.android.synthetic.main.client_list_active_fragment.*
 import kotlinx.android.synthetic.main.client_list_blocked_fragment.*
 import kotlinx.android.synthetic.main.client_list_not_confirmed_fragment.*
 import java.util.ArrayList
@@ -44,16 +45,20 @@ class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresent
 
     override fun initRecyclerViewNotConfirmedClient(notConfirmedClientsList: ArrayList<ClientDTO>) {
         listNotConfirmedClients = notConfirmedClientsList
-        if (notConfirmedClientsList.isEmpty()) {
-            emptyNotConfirmedClientListTextView.visibility = View.VISIBLE
-            emptyNotConfirmedClientListImageView.visibility = View.VISIBLE
-        } else {
-            emptyNotConfirmedClientListTextView.visibility = View.GONE
-            emptyNotConfirmedClientListImageView.visibility = View.GONE
-        }
+        checkEmptyClientList()
         notConfirmedClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         val adapter = ClientListNotConfirmedAdapter(listNotConfirmedClients, this)
         notConfirmedClientRecyclerView.adapter = adapter
+    }
+
+    private fun checkEmptyClientList(){
+        if (listNotConfirmedClients.isEmpty()) {
+            emptyActiveClientListTextView.visibility = View.VISIBLE
+            emptyActiveClientListImageView.visibility = View.VISIBLE
+        } else {
+            emptyActiveClientListTextView.visibility = View.GONE
+            emptyActiveClientListImageView.visibility = View.GONE
+        }
     }
 
     override fun onResume() {
@@ -64,6 +69,7 @@ class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresent
     override fun endConfirmClient() {
         listNotConfirmedClients.removeAt(clickedItemPosition)
         notConfirmedClientRecyclerView.adapter?.notifyItemRemoved(clickedItemPosition)
+        checkEmptyClientList()
     }
 
     fun startConfirmClient(id: String, position: Int){
