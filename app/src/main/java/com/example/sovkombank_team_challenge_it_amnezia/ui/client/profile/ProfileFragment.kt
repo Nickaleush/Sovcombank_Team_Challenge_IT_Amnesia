@@ -16,7 +16,6 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.profile_fragment, container, false)
     }

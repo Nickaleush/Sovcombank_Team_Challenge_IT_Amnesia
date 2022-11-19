@@ -82,5 +82,9 @@
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.createCode.CreateCodeFragment"
         android:label="CreateCodeFragment"
         tools:layout="@layout/create_code_fragment"
-        />
+        >
+        <action
+            android:id="@+id/action_createCodeFragment_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
+    </fragment>
 </navigation>
