@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Account
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.HomeButtonType
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemButton
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
@@ -58,7 +59,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
         skeleton.showSkeleton()
         getData()
-        if(!accessDenied) waitAccess()
+        if(accessDenied) waitAccess()
     }
 
     private fun getData() {
@@ -71,8 +72,14 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         recyclerViewCurrency.adapter = adapter
     }
 
+    override fun initAccountsRecyclerView(currencyList: ArrayList<Account>) {
+        recyclerViewHomeAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        val adapter = HomeAccountsAdapter(currencyList)
+        recyclerViewHomeAccounts.adapter = adapter
+    }
+
     override fun hideSkeleton() {
-        //skeleton.showOriginal()
+        skeleton.showOriginal()
     }
 
 
@@ -129,7 +136,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         CoroutineScope(Dispatchers.IO).launch {
             delay(5000)
             CoroutineScope(Dispatchers.Main).launch {
-                if(accessDenied){
+                if(accessDenied) {
                     waitAccess()
                     // добавить заглушку
                 }

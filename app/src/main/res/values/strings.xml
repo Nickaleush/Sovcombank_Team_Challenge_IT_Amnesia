@@ -88,6 +88,8 @@
     <string name="Dollar">$</string>
     <string name="Ruble">₽</string>
     <string name="RubleBill">ruble bill</string>
+    <string name="Account">Account</string>
+    <string name="TypeTransaction">Transaction type</string>
     <string name="EmptyActiveClientList"> The list of active clients is empty</string>
     <string name="EmptyNotConfirmedClientList"> The waiting client list is empty</string>
     <string name="QuestionUnlockMessage">Are you sure that you want to unlock the client?</string>
