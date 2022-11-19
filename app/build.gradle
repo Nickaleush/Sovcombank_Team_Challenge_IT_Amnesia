@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        buildConfigField("String", "BASE_URL", '"https://qiwi-hackathon.herokuapp.com/"')
+        buildConfigField("String", "BASE_URL", '"https://itamnesia.pad4pets.com/"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

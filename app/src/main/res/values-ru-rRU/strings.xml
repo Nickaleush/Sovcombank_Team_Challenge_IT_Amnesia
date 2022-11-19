@@ -50,7 +50,16 @@
     <string name="EnterPassword">Введите пароль</string>
     <string name="ConfirmPasswordEmpty">Подтвердите пароль</string>
     <string name="PasswordsDontMatch">Пароли не совпадают!</string>
+    <string name="CheckCredentials">Пожалуйста, проверьте все данные</string>
+    <string name="resend_two_min">Отправить код через:</string>
+    <string name="ConfirmCodeAccountSent">Для подтверждения аккаунта введите код подтверждения, отправленный на ваш номер телефона</string>
     <string name="EnterPhone">Введите телефон</string>
+    <string name="Confirm">Подтвердить</string>
+    <string name="LogOut">Выйти из аккаунта</string>
+    <string name="RegistrationSuccess">Регистрация успешно завершена!</string>
+    <string name="INVALID_CODE">Неправильный код</string>
+    <string name="AuthenticationSuccess">Вы успешно авторизированы!</string>
+    <string name="RESEND_CODE">Отправить код заново</string>
     <string name="ConfirmPassword">Подтвердите пароль</string>
     <string name="ExitConfirm">Вы действительно хотите выйти из приложения?</string>
     <string name="GoodMorning">Доброе утро, Мария!</string>

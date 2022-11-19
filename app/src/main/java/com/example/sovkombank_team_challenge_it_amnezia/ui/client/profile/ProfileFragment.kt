@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
+import com.example.sovkombank_team_challenge_it_amnezia.utils.navigateTo
+import kotlinx.android.synthetic.main.profile_fragment.*
 import javax.inject.Inject
 
 class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
@@ -24,6 +27,11 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
+        buttonLogOut.setOnClickListener {
+            sharedPreferences.accessToken = null
+            sharedPreferences.pinCode = null
+            findNavController().navigateTo(findNavController(),R.id.action_profileFragment2_to_welcomeFragment, true)
+        }
     }
 
     override fun onBackPressed() {

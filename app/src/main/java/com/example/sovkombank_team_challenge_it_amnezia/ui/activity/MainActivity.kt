@@ -37,6 +37,7 @@ class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
             when (destination.id) {
                 R.id.welcomeFragment -> hideBotNav()
                 R.id.logoFragment -> hideBotNav()
+                R.id.authFragment -> hideBotNav()
                 R.id.loginFragment -> hideBotNav()
                 R.id.createCodeFragment -> hideBotNav()
                 R.id.registrationFragment -> hideBotNav()

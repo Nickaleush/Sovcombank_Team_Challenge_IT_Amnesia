@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/enterCredentialsTextView" />
 
     <EditText
-        android:id="@+id/birthDayTextView"
+        android:id="@+id/passwordEditTextLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"

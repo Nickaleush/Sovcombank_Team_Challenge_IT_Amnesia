@@ -10,7 +10,11 @@
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/profile_fragment"
-        />
+        >
+        <action
+            android:id="@+id/action_profileFragment2_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/authFragment"
