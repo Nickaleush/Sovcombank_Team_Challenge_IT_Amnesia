@@ -13,11 +13,14 @@ import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment
 import com.example.sovkombank_team_challenge_it_amnezia.utils.navigateTo
 import com.multidots.fingerprintauth.FingerPrintAuthCallback
 import com.multidots.fingerprintauth.FingerPrintAuthHelper
 import kotlinx.android.synthetic.main.auth_flow.*
 import kotlinx.android.synthetic.main.auth_fragment.*
+import kotlinx.android.synthetic.main.auth_fragment.pinView
+import kotlinx.android.synthetic.main.pin_view.*
 import javax.inject.Inject
 
 class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuthCallback {
@@ -43,6 +46,7 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
         presenter.start()
         presenter.view = this
         fingerprintHelper = FingerPrintAuthHelper.getHelper(requireContext(), this)
+        helloTextView.text = resources.getString(R.string.GoodMorning, sharedPreferences.userName)
         setUpClickListeners()
     }
 

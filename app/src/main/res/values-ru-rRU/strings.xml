@@ -63,7 +63,7 @@
     <string name="RESEND_CODE">Отправить код заново</string>
     <string name="ConfirmPassword">Подтвердите пароль</string>
     <string name="ExitConfirm">Вы действительно хотите выйти из приложения?</string>
-    <string name="GoodMorning">Доброе утро, Мария!</string>
+    <string name="GoodMorning">Доброе утро, %1$s!</string>
     <string name="Yes">Да</string>
     <string name="No">Нет</string>
     <string name="Home">Главная</string>

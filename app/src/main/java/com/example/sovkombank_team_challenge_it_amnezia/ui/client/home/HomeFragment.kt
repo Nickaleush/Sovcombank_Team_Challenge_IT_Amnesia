@@ -5,19 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Currency
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.HomeButtonType
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemButton
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import kotlinx.android.synthetic.main.home_fragment.*
@@ -49,6 +46,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
+        nameTextView.text = sharedPreferences.userName
         recyclerViewHomeButtons.layoutManager =  LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         homeButtonsAdapter = HomeButtonsAdapter(homeButtonItems, this@HomeFragment,requireContext())
         recyclerViewHomeButtons.adapter = homeButtonsAdapter
