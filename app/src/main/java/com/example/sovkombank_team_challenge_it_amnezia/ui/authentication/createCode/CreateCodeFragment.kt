@@ -50,7 +50,9 @@ class CreateCodeFragment: BaseFragment<CreateCodePresenterImpl>(), CreateCodeVie
         override fun onPinEntered(pin: String) {
             buttonNextCreateCode.setOnClickListener {
                 sharedPreferences.pinCode = pin
-                findNavController().navigate(R.id.action_createCodeFragment_to_profileFragment2)
+                //findNavController().navigate(R.id.action_createCodeFragment_to_profileFragment2)
+                findNavController().navigate(R.id.action_createCodeFragment_to_clientListTabLayoutFragment)
+
             }
         }
 

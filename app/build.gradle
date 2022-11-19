@@ -96,4 +96,7 @@ dependencies {
     //Multidex
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    //swipe helper
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
+
 }

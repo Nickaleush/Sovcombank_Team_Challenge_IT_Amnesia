@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_loginFragment_to_profileFragment2"
             app:destination="@id/profileFragment2" />
+        <action
+            android:id="@+id/action_loginFragment_to_clientListTabLayoutFragment"
+            app:destination="@id/clientListTabLayoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/createCodeFragment"
@@ -86,5 +89,12 @@
         <action
             android:id="@+id/action_createCodeFragment_to_profileFragment2"
             app:destination="@id/profileFragment2" />
+        <action
+            android:id="@+id/action_createCodeFragment_to_clientListTabLayoutFragment"
+            app:destination="@id/clientListTabLayoutFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/clientListTabLayoutFragment"
+        android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.admin.clientList.clientListTabLayout.ClientListTabLayoutFragment"
+        android:label="ClientListTabLayoutFragment" />
 </navigation>
