@@ -125,8 +125,6 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                sharedPreferences.adminMode = false
-                sharedPreferences.pinCode = null
             }.show()
     }
 

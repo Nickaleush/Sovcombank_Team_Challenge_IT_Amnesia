@@ -88,8 +88,8 @@ class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
         if (sharedPreferences.pinCode == null) {
             findNavController().navigate(R.id.action_loginFragment_to_createCodeFragment)
         } else {
-            if (!sharedPreferences.adminMode) findNavController().navigate(R.id.action_loginFragment_to_clientListTabLayoutFragment)
-            else findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+            if (sharedPreferences.adminMode) findNavController().navigate(R.id.action_loginFragment_to_clientListTabLayoutFragment)
+            else findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
     }
 

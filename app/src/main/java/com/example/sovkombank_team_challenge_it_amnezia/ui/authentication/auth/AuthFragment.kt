@@ -15,6 +15,7 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment
 import com.example.sovkombank_team_challenge_it_amnezia.utils.navigateTo
+import com.example.sovkombank_team_challenge_it_amnezia.utils.safeNavigate
 import com.multidots.fingerprintauth.FingerPrintAuthCallback
 import com.multidots.fingerprintauth.FingerPrintAuthHelper
 import kotlinx.android.synthetic.main.auth_flow.*
@@ -29,6 +30,8 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
     lateinit var sharedPreferences: SharedPreferences
 
     lateinit var fingerprintHelper: FingerPrintAuthHelper
+
+    var isNavigating = false
 
     override fun createComponent() {
             App.instance
@@ -55,12 +58,14 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
             if (keyPressed == "fingerprint") fingerprintHelper.startAuth()
         }
         pinView.setOnCompletedListener = { pinCode ->
-            when{
+            when {
                 (pinCode == sharedPreferences.pinCode && sharedPreferences.adminMode) -> {
+                    isNavigating = true
                     findNavController().navigateTo(findNavController(),
                         R.id.action_authFragment_to_clientListTabLayoutFragment, true)
                 }
                 (pinCode == sharedPreferences.pinCode && !sharedPreferences.adminMode) -> {
+                    isNavigating = true
                 findNavController().navigateTo(findNavController(),
                     R.id.action_authFragment_to_profileFragment, true)
                 }
@@ -71,6 +76,7 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
 
     override fun onResume() {
         super.onResume()
+        isNavigating = false
         fingerprintHelper.startAuth()
     }
 
@@ -81,21 +87,21 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
 
     @SuppressLint("SetTextI18n")
     override fun onNoFingerPrintHardwareFound() {
-        Toast.makeText(requireContext(), "Fingerprint authentication not supported on the device", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), "Fingerprint authentication not supported on the device", Toast.LENGTH_SHORT).show()
     }
 
     override fun onAuthFailed(errorCode: Int, errorMessage: String?) {
-        Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")
     override fun onNoFingerPrintRegistered() {
-        Toast.makeText(requireContext(), "No Fingerprint registered", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), "No Fingerprint registered", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBelowMarshmallow() {
-        Toast.makeText(requireContext(), "Fingerprint feature is not available on this OS", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), "Fingerprint feature is not available on this OS", Toast.LENGTH_SHORT).show()
     }
 
     override fun onAuthSuccess(cryptoObject: FingerprintManager.CryptoObject?) {

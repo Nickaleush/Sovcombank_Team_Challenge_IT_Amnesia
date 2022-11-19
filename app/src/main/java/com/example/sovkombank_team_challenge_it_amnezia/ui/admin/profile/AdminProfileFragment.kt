@@ -40,6 +40,7 @@ class AdminProfileFragment: BaseFragment<AdminProfilePresenterImpl>(),
         buttonAdminLogOut.setOnClickListener {
             sharedPreferences.accessToken = null
             sharedPreferences.pinCode = null
+            sharedPreferences.userName = null
             findNavController().navigateTo(findNavController(),R.id.action_adminProfileFragment_to_welcomeFragment, true)
         }
     }
@@ -56,12 +57,11 @@ class AdminProfileFragment: BaseFragment<AdminProfilePresenterImpl>(),
                 materialDialog.dismiss()
                 sharedPreferences.adminMode = false
                 sharedPreferences.pinCode = null
+                sharedPreferences.userName = null
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                sharedPreferences.adminMode = false
-                sharedPreferences.pinCode = null
             }.show()
     }
 

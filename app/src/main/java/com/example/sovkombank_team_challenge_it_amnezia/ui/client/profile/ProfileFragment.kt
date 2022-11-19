@@ -44,7 +44,7 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
             accessDenied = false
             findNavController().navigateTo(findNavController(),R.id.action_profileFragment_to_welcomeFragment, true)
         }
-        if(accessDenied) waitAccess()
+        if(!accessDenied) waitAccess()
     }
 
     private fun getData(){

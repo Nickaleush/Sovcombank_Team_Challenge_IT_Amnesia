@@ -57,12 +57,11 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.maskCornerRadius = 30F
         skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
         skeleton.showSkeleton()
-        if(accessDenied) waitAccess()
-
-
+        getData()
+        if(!accessDenied) waitAccess()
     }
 
-    private fun getData(){
+    private fun getData() {
         presenter.getAllCurrencies()
     }
 
