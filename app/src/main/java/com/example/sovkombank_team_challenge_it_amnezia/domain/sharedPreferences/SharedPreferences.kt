@@ -31,9 +31,18 @@ class SharedPreferences @Inject constructor(
             commit()
         }
 
+    var adminMode: Boolean
+        get() = sharedPreferences.getBoolean(ADMIN_MODE, false)
+        set(value) = sharedPreferences.edit {
+            putBoolean(ADMIN_MODE, value)
+            apply()
+            commit()
+        }
+
     companion object {
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
         const val PIN_CODE = "PIN_CODE"
         const val USER_NAME = "USER_NAME"
+        const val ADMIN_MODE = "ADMIN_MODE"
     }
 }

@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.client_list_tablayout_fragment.*
+import javax.inject.Inject
 
 class ClientListTabLayoutFragment: BaseFragment<ClientListTabLayoutPresenterImpl>(), ClientListTabLayoutView {
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun createComponent() {
         App.instance
@@ -53,12 +55,14 @@ class ClientListTabLayoutFragment: BaseFragment<ClientListTabLayoutPresenterImpl
             .negativeColor(resources.getColor(R.color.red, null))
             .onPositive { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
             }.show()
     }
 

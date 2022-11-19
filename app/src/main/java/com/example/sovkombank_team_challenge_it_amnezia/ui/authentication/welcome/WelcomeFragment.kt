@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.pager.AuthPagerAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -20,9 +21,12 @@ import kotlinx.android.synthetic.main.auth_flow.*
 import kotlinx.android.synthetic.main.welcome_fragment.*
 import rx.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var sheetView: View
 
@@ -47,7 +51,7 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
-        AUTH_AS_ADMIN = false
+        sharedPreferences.adminMode = false
         enterBank_cardView.setOnClickListener {
             showRedirectDialogUser()
         }
@@ -58,7 +62,7 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
 
     override fun onResume() {
         super.onResume()
-        AUTH_AS_ADMIN = false
+        sharedPreferences.adminMode = false
     }
 
     private fun showRedirectDialogUser() {
@@ -71,12 +75,12 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         logInView = sheetView.findViewById(R.id.liner_enter_bank)
         registrationView = sheetView.findViewById(R.id.linear_register)
         logInView.setOnClickListener {
-            AUTH_AS_ADMIN = false
+            sharedPreferences.adminMode = false
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
         registrationView.setOnClickListener {
-            AUTH_AS_ADMIN = false
+            sharedPreferences.adminMode = false
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_registrationFragment)
         }
@@ -93,13 +97,13 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         registrationView = sheetView.findViewById(R.id.linear_register_admin)
 
         logInView.setOnClickListener {
-            AUTH_AS_ADMIN = true
+            sharedPreferences.adminMode = true
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
 
         registrationView.setOnClickListener {
-            AUTH_AS_ADMIN = true
+            sharedPreferences.adminMode = true
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_registrationFragment)
         }
@@ -115,18 +119,17 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
             .negativeColor(resources.getColor(R.color.red, null))
             .onPositive { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
             }.show()
     }
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
-    companion object {
-        var AUTH_AS_ADMIN = false
-    }
 }

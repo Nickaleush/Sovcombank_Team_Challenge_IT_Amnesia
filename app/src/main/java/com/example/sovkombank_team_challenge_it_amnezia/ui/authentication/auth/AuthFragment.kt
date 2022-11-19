@@ -51,13 +51,17 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
             if (keyPressed == "fingerprint") fingerprintHelper.startAuth()
         }
         pinView.setOnCompletedListener = { pinCode ->
-
-            if(pinCode == sharedPreferences.pinCode) findNavController().navigateTo(findNavController(),
-                R.id.action_authFragment_to_profileFragment, true)
-            else
-                pinView.showError(true)
-
-            pinView.clearPin()
+            when{
+                (pinCode == sharedPreferences.pinCode && sharedPreferences.adminMode) -> {
+                    findNavController().navigateTo(findNavController(),
+                        R.id.action_authFragment_to_clientListTabLayoutFragment, true)
+                }
+                (pinCode == sharedPreferences.pinCode && !sharedPreferences.adminMode) -> {
+                findNavController().navigateTo(findNavController(),
+                    R.id.action_authFragment_to_profileFragment, true)
+                }
+                else ->   pinView.showError(true)
+            }
         }
     }
 
