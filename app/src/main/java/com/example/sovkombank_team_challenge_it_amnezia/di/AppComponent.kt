@@ -44,4 +44,11 @@ interface AppComponent {
 
     fun createCreateCodeFragment(): CreateCodeComponent
 
+    fun createClientListTabLayoutFragment(): ClientListTabLayoutComponent
+
+    fun createClientListActiveFragment(): ClientListActiveComponent
+
+    fun createClientListBlockedFragment(): ClientListBlockedComponent
+
+    fun createAdminProfileFragment(): AdminProfileComponent
 }

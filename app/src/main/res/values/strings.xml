@@ -41,4 +41,10 @@
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="Home">Home</string>
+    <string name="Clients">Clients</string>
+    <string name="Active">Active</string>
+    <string name="Blocked">Blocked</string>
+    <string name="LogOut">Log out</string>
+    <string name="EmptyActiveClientList"> The list of active clients is empty</string>
+    <string name="EmptyBlockedClientList">The list of blocked clients is empty</string>
 </resources>
