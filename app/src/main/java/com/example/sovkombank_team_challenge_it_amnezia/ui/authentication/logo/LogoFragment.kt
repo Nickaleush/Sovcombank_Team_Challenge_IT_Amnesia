@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.pager.AuthPagerAdapter
 import kotlinx.android.synthetic.main.auth_flow.*
@@ -17,8 +18,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class LogoFragment: BaseFragment<LogoPresenterImpl>(), LogoView {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun createComponent() {
         App.instance
@@ -41,7 +46,8 @@ class LogoFragment: BaseFragment<LogoPresenterImpl>(), LogoView {
         super.onResume()
         CoroutineScope(Dispatchers.Main).launch  {
             delay(500)
-            findNavController().navigate(R.id.action_logoFragment_to_welcomeFragment)
+            if (sharedPreferences.pinCode != null) findNavController().navigate(R.id.action_logoFragment_to_authFragment)
+            else findNavController().navigate(R.id.action_logoFragment_to_welcomeFragment)
         }.start()
     }
 

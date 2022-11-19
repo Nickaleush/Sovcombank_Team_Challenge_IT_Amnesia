@@ -49,6 +49,15 @@
     <string name="EnterCode">Enter code</string>
     <string name="EnterPassword">Enter password</string>
     <string name="PasswordsDontMatch">Passwords don\'t match!</string>
+    <string name="resend_two_min">Resend confirmation code in:</string>
+    <string name="ConfirmCodeAccountSent">Enter the code that was sent to your phone number to confirm your account</string>
+    <string name="CheckCredentials">Please, check your credentials</string>
+    <string name="Confirm">Confirm</string>
+    <string name="INVALID_CODE">Wrong code</string>
+    <string name="RESEND_CODE">Resend sms-code</string>
+    <string name="LogOut">Log out</string>
+    <string name="RegistrationSuccess">You have successfully registered in!</string>
+    <string name="AuthenticationSuccess">You have successfully authenticated!</string>
     <string name="ConfirmPasswordEmpty">Confirm password is empty!</string>
     <string name="GoodMorning">Good morning, Maria!</string>
     <string name="ExitConfirm">Do you want to exit the app?</string>

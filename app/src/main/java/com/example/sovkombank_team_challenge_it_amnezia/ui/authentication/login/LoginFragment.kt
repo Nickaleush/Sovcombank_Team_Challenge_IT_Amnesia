@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.ViewCompat
+import androidx.navigation.fragment.findNavController
 import com.example.sovkombank_team_challenge_it_amnezia.widgets.countryPicker.CCPicker
 import com.example.sovkombank_team_challenge_it_amnezia.widgets.countryPicker.adapter.CountryPickerAdapter
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToLogin
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.utils.InsetsWithKeyboardAnimationCallback
@@ -46,6 +48,15 @@ class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
                 })
         }
 
+        buttonNextLogin.setOnClickListener {
+            val phoneNumber = phoneEditTextLogin.text.toString().replace("-", "")
+            val finalPhoneNumber = phoneNumber.replace(" ", "")
+            presenter.loginClient(
+                UserToLogin(
+                    (countryCodeTextViewLogin.text.toString() + finalPhoneNumber),   passwordEditTextLogin.text.toString()                )
+            )
+        }
+
         val insetsWithKeyboardCallback = InsetsWithKeyboardCallback(requireActivity().window)
         ViewCompat.setOnApplyWindowInsetsListener(login_constraint_layout, insetsWithKeyboardCallback)
         ViewCompat.setWindowInsetsAnimationCallback(login_constraint_layout, insetsWithKeyboardCallback)
@@ -66,5 +77,14 @@ class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
     }
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+    override fun navToMainFlow() {
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.AuthenticationSuccess),
+            Toast.LENGTH_SHORT
+        ).show()
+        findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+    }
 
 }
