@@ -6,8 +6,8 @@
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
@@ -33,14 +33,26 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/accountTextview"
+            android:id="@+id/accountSrcTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
             android:fontFamily="@font/gteestiprotext_regular"
-            android:text="@string/Account"
+            android:text="@string/From"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/accountDestTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:text="@string/To"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -55,7 +67,7 @@
             android:scaleType="centerCrop"
             android:text="@string/TypeTransaction"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
