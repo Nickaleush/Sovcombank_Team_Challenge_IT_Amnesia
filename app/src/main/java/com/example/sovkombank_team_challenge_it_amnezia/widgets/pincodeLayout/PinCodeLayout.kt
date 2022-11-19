@@ -230,7 +230,6 @@ class PinCodeLayout @JvmOverloads constructor(
 
 		isFocusableInTouchMode = false
 		isFocusable = true
-
 	}
 
 	private fun setUpBottomBar() {

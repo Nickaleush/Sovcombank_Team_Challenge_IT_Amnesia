@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/custom_ripple"
+    android:adjustViewBounds="true"
+    android:layout_width="110dp"
+    android:layout_height="110dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/numberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gteestiprotext_regular"
+        tools:text="0"
+        android:visibility="visible"
+        tools:textSize="80sp" />
+
+    <ImageView
+        android:id="@+id/fingerprintImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:src="@drawable/fingerprint"
+        />
+
+    <ImageView
+        android:id="@+id/deleteImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/delete_code"
+        android:visibility="gone" />
+</LinearLayout>

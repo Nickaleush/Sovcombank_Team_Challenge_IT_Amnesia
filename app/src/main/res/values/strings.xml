@@ -69,6 +69,7 @@
     <string name="Active">Active</string>
     <string name="Blocked">Blocked</string>
     <string name="BlockUser">Block</string>
+    <string name="EnterPicode">Enter Pin Code</string>
     <string name="Cancel">Cancel</string>
     <string name="EmptyActiveClientList"> The list of active clients is empty</string>
     <string name="EmptyBlockedClientList">The list of blocked clients is empty</string>

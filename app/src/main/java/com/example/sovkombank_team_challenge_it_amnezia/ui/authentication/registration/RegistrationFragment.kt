@@ -21,6 +21,8 @@ import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToSignUp
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jakewharton.rxbinding.widget.RxTextView
@@ -85,7 +87,7 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
 
     private fun signUp(phone: String, birthDay:String, name: String, surname:String, lastName:String, password: String) {
         USER_PHONE = phone
-        USER_NAME = name
+        sharedPreferences.userName = name
 
         val confirmPassword = editTextConfirmPassword.text.toString().trim()
         val user = UserToSignUp(birthDay, phone,name, surname , lastName, password)
@@ -116,7 +118,8 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
 
         if (password == confirmPassword &&  phone.isNotEmpty() && name.isNotEmpty()
             && surname.isNotEmpty()  && lastName.isNotEmpty()  && password.isNotEmpty()) {
-            presenter.signUpClient(user)
+             if (AUTH_AS_ADMIN) presenter.signUpAdmin(user)
+            else presenter.signUpClient(user)
         } else {
             Toast.makeText(requireContext(), resources.getText(R.string.CheckCredentials), Toast.LENGTH_LONG).show()
         }
@@ -149,7 +152,8 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
         buttonSendConfirmAccountCode = sheetView.findViewById(R.id.buttonSendConfirmAccountCode)
         setupTimer()
         buttonSendConfirmAccountCode.setOnClickListener {
-            presenter.confirmAccount(Code(confirmCodeAccount))
+            if (AUTH_AS_ADMIN) presenter.confirmAdminAccount(Code(confirmCodeAccount))
+            else presenter.confirmClientAccount(Code(confirmCodeAccount))
         }
 
         RxTextView.textChanges(etTextConfirmCode)
@@ -165,7 +169,7 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
             }, Throwable::printStackTrace)
     }
 
-    override fun navToMainFlow() {
+    override fun navToCreateCode() {
         if (dialogOpened) {
             mBottomSheetDialog.dismiss()
         }

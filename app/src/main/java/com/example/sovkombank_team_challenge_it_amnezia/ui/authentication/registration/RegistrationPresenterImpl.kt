@@ -35,13 +35,41 @@ class RegistrationPresenterImpl @Inject constructor(private val authorizationApi
     }
 
     @SuppressLint("CheckResult")
-    override fun confirmAccount(code: Code) {
+    override fun confirmClientAccount(code: Code) {
         mainApi.confirmClientAccount(code)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 sharedPreferences.accessToken = it.accessToken
-                view.navToMainFlow()
+                view.navToCreateCode()
+            }, {
+                view.showError(it.message)
+            })
+    }
+
+    @SuppressLint("CheckResult")
+    override fun confirmAdminAccount(code: Code) {
+        mainApi.confirmAdminAccount(code)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                sharedPreferences.accessToken = it.accessToken
+                view.navToCreateCode()
+            }, {
+                view.showError(it.message)
+            })
+    }
+
+    @SuppressLint("CheckResult")
+    override fun signUpAdmin(userToSignUp: UserToSignUp) {
+        authorizationApi.signUpAdmin(userToSignUp)
+            .subscribeOn(Schedulers.io())
+            .observeOn(
+                AndroidSchedulers.mainThread()
+            )
+            .subscribe({
+                sharedPreferences.accessToken = it.accessToken
+                view.showConfirmationDialog()
             }, {
                 view.showError(it.message)
             })

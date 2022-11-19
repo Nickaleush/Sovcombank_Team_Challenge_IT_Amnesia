@@ -50,7 +50,7 @@
     <string name="EnterPassword">Введите пароль</string>
     <string name="ConfirmPasswordEmpty">Подтвердите пароль</string>
     <string name="PasswordsDontMatch">Пароли не совпадают!</string>
-    <string name="CheckCredentials">Пожалуйста, проверьте все данные</string>
+    <string name="CheckCredentials">Пожалуйста, проверьте ваши данные</string>
     <string name="resend_two_min">Отправить код через:</string>
     <string name="ConfirmCodeAccountSent">Для подтверждения аккаунта введите код подтверждения, отправленный на ваш номер телефона</string>
     <string name="EnterPhone">Введите телефон</string>
@@ -71,6 +71,7 @@
     <string name="Blocked">Заблокированные</string>
     <string name="Cancel">Отменить</string>
     <string name="BlockUser">Заблокировать</string>
+    <string name="EnterPicode">Введите код доступа</string>
     <string name="EmptyActiveClientList">Список активных клиентов пуст</string>
     <string name="EmptyBlockedClientList">Список заблокированных клиентов пуст</string>
     <string name="QuestionBlockedMessage">Вы уверены что хотите заблокировать клиента?</string>

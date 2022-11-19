@@ -51,4 +51,6 @@ interface AppComponent {
     fun createClientListBlockedFragment(): ClientListBlockedComponent
 
     fun createAdminProfileFragment(): AdminProfileComponent
+
+    fun createHomeFragment(): HomeComponent
 }

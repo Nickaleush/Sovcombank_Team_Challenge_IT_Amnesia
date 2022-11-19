@@ -23,8 +23,17 @@ class SharedPreferences @Inject constructor(
             commit()
         }
 
+    var userName: String?
+        get() = sharedPreferences.getString(USER_NAME, null)
+        set(value) = sharedPreferences.edit {
+            putString(USER_NAME, value)
+            apply()
+            commit()
+        }
+
     companion object {
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
         const val PIN_CODE = "PIN_CODE"
+        const val USER_NAME = "PIN_CODE"
     }
 }

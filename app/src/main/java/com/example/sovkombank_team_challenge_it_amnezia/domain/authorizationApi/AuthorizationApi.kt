@@ -17,9 +17,9 @@ interface AuthorizationApi {
     fun signUpClient(@Body user: UserToSignUp): Single<AccessToken>
 
     @POST("api/auth/admin/logIn")
-    fun loginAdmin(@Body user: UserToSignUp): Single<AccessToken>
+    fun loginAdmin(@Body user: UserToLogin): Single<AccessToken>
 
     @POST("api/auth/admin/signUp")
-    fun signUpAdmin(@Body user: UserToLogin): Single<AccessToken>
+    fun signUpAdmin(@Body user: UserToSignUp): Single<AccessToken>
 
 }
