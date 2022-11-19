@@ -90,6 +90,8 @@
     <string name="Ruble">₽</string>
     <string name="DefaultShortName">RUB</string>
     <string name="RubleBill">рублевый счет</string>
+    <string name="Account">Счёт</string>
+    <string name="TypeTransaction">Тип транзакции</string>
     <string name="EmptyActiveClientList">Список активных клиентов пуст</string>
     <string name="EmptyBlockedClientList">Список заблокированных клиентов пуст</string>
     <string name="QuestionBlockedMessage">Вы уверены что хотите заблокировать клиента?</string>

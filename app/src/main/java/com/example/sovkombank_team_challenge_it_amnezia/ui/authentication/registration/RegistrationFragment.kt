@@ -21,6 +21,7 @@ import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToSignUp
+import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaService.Companion.accessDenied
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -178,6 +179,7 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
     }
 
     override fun navToCreateCode() {
+        accessDenied = true
         if (dialogOpened) {
             mBottomSheetDialog.dismiss()
         }

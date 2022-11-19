@@ -32,6 +32,7 @@ class FirebaseMessagingItAmnesiaService: FirebaseMessagingItAmnesiaView, Firebas
         super.onMessageReceived(message)
         Log.d("4323", "Пришло")
         val content =message.data["message"]
+
         sharedPreference.accessToken?.let { Code(it) }?.let { presenter.sendUpdateAccessToken(it) }
     }
 
@@ -52,7 +53,7 @@ class FirebaseMessagingItAmnesiaService: FirebaseMessagingItAmnesiaView, Firebas
         }
     }
     companion object{
-        var accessDenied = true
+        var accessDenied = false
         private const val MYFCM = "MyFirebaseMessagingService"
     }
 }

@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Currency
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.HomeButtonType
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemButton
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
@@ -58,6 +56,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.maskCornerRadius = 30F
         skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
         skeleton.showSkeleton()
+        getData()
         if(accessDenied) waitAccess()
 
 
@@ -136,7 +135,6 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
                 }
                 else {
                     getData()
-                    accessDenied = false
                     // убрать заглушку
                     coroutineContext.cancel()
                 }

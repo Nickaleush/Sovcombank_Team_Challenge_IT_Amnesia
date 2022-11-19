@@ -57,4 +57,6 @@ interface AppComponent {
     fun createHomeFragment(): HomeComponent
 
     fun createFirebaseMessagingItAmnesiaService(): FirebaseMessagingItAmnesiaComponent
+
+    fun createTransactionHistoryFragment(): TransactionHistoryComponent
 }
