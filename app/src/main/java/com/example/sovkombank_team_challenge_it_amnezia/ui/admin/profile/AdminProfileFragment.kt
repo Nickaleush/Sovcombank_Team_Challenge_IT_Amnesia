@@ -11,11 +11,8 @@ import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserDTO
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.example.sovkombank_team_challenge_it_amnezia.utils.navigateTo
 import kotlinx.android.synthetic.main.admin_profile_fragment.*
-import kotlinx.android.synthetic.main.client_list_blocked_fragment.*
 import javax.inject.Inject
 
 class AdminProfileFragment: BaseFragment<AdminProfilePresenterImpl>(),
@@ -57,12 +54,14 @@ class AdminProfileFragment: BaseFragment<AdminProfilePresenterImpl>(),
             .negativeColor(resources.getColor(R.color.red, null))
             .onPositive { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
             }.show()
     }
 

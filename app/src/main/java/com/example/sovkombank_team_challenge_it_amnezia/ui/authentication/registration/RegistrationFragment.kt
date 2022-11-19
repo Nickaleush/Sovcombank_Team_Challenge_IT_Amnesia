@@ -21,8 +21,6 @@ import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToSignUp
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -120,7 +118,7 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
 
         if (password == confirmPassword &&  phone.isNotEmpty() && name.isNotEmpty()
             && surname.isNotEmpty()  && lastName.isNotEmpty()  && password.isNotEmpty()) {
-             if (AUTH_AS_ADMIN) presenter.signUpAdmin(user)
+             if (sharedPreferences.adminMode) presenter.signUpAdmin(user)
             else presenter.signUpClient(user)
         } else {
             Toast.makeText(requireContext(), resources.getText(R.string.CheckCredentials), Toast.LENGTH_LONG).show()
@@ -154,7 +152,7 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
         buttonSendConfirmAccountCode = sheetView.findViewById(R.id.buttonSendConfirmAccountCode)
         setupTimer()
         buttonSendConfirmAccountCode.setOnClickListener {
-            if (AUTH_AS_ADMIN) presenter.confirmAdminAccount(Code(confirmCodeAccount))
+            if (sharedPreferences.adminMode) presenter.confirmAdminAccount(Code(confirmCodeAccount))
             else presenter.confirmClientAccount(Code(confirmCodeAccount))
         }
 
@@ -246,6 +244,12 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
             tvRepeatSendCode.visibility = View.GONE
             tvResendCode.visibility = View.VISIBLE
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancelTimer()
+        if (dialogOpened) mBottomSheetDialog.dismiss()
     }
 
     private fun setOnClickListeners() {

@@ -110,12 +110,14 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             .negativeColor(resources.getColor(R.color.red, null))
             .onPositive { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                AUTH_AS_ADMIN = false
+                sharedPreferences.adminMode = false
+                sharedPreferences.pinCode = null
             }.show()
     }
 

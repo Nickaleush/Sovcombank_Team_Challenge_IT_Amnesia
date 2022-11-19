@@ -14,13 +14,10 @@ import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToLogin
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.example.sovkombank_team_challenge_it_amnezia.utils.InsetsWithKeyboardAnimationCallback
 import com.example.sovkombank_team_challenge_it_amnezia.utils.InsetsWithKeyboardCallback
 import com.example.sovkombank_team_challenge_it_amnezia.widgets.countryPicker.model.Country
 import kotlinx.android.synthetic.main.login_fragment.*
-import kotlinx.android.synthetic.main.registration_fragment.*
 import javax.inject.Inject
 
 class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
@@ -52,7 +49,7 @@ class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
         buttonNextLogin.setOnClickListener {
             val phoneNumber = phoneEditTextLogin.text.toString().replace("-", "")
             val finalPhoneNumber = phoneNumber.replace(" ", "")
-            if (AUTH_AS_ADMIN) {
+            if (sharedPreferences.adminMode) {
                 presenter.loginAdmin(UserToLogin(
                         (countryCodeTextViewLogin.text.toString() + finalPhoneNumber),   passwordEditTextLogin.text.toString()))
             } else {
@@ -91,7 +88,7 @@ class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
         if (sharedPreferences.pinCode == null) {
             findNavController().navigate(R.id.action_loginFragment_to_createCodeFragment)
         } else {
-            if (AUTH_AS_ADMIN) findNavController().navigate(R.id.action_loginFragment_to_clientListTabLayoutFragment)
+            if (!sharedPreferences.adminMode) findNavController().navigate(R.id.action_loginFragment_to_clientListTabLayoutFragment)
             else findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
         }
     }

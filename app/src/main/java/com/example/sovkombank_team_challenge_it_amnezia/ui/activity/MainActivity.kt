@@ -12,8 +12,6 @@ import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseActivity
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
