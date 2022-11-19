@@ -3,15 +3,14 @@ package com.example.sovkombank_team_challenge_it_amnezia.domain.mainApi
 import com.example.sovkombank_team_challenge_it_amnezia.di.modules.AccessToken
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.PushTokenModel
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToSignUp
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface MainApi {
 
-    @POST("api/confirmation/client")
+    @POST("api/confirmation/phone")
     fun confirmClientAccount(@Body code: Code): Single<AccessToken>
 
     @POST("api/confirmation/admin")
@@ -34,4 +33,7 @@ interface MainApi {
 
     @GET("api/admin/user/{userId}/enable")
     fun enableClient(@Path(value = "userId", encoded = true) userId: String): Single<Unit>
+
+    @PATCH("api/user/pushToken")
+    fun setPushToken(@Body pushToken: PushTokenModel): Single<UserToSignUp>
 }

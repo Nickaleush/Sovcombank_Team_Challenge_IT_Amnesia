@@ -6,6 +6,7 @@
     <string name="CreateCode">Enter access code</string>
     <string name="RepeatCode">Repeat access code</string>
     <string name="EnterBank">Log in to mobile bank</string>
+    <string name="EnterBankAsAdmin">Log in to mobile bank as Admin</string>
     <string name="EnterBankShort">Log in to bank</string>
     <string name="AuthByPhoneNumber">Open a deposit</string>
     <string name="Registration">Registration</string>

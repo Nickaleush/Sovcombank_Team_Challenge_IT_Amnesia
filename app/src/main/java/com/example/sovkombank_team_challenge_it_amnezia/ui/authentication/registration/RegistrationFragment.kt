@@ -23,8 +23,10 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToSignUp
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.messaging.FirebaseMessaging
 import com.jakewharton.rxbinding.widget.RxTextView
 import rx.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
@@ -167,6 +169,14 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
                     etTextConfirmCode.setBackgroundResource(R.drawable.bottom_line_edit_text)
                 }
             }, Throwable::printStackTrace)
+    }
+
+    override fun setupPushToken() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (task.isSuccessful.not()) return@OnCompleteListener
+                presenter.setupPushToken(task.result)
+            })
     }
 
     override fun navToCreateCode() {

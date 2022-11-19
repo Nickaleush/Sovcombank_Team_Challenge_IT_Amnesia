@@ -6,6 +6,7 @@
     <string name="CodeNoMatch">Коды не совпадают!</string>
     <string name="CreateCode">Придумайте  код доступа  для  входа</string>
     <string name="RepeatCode">Повторите код доступа</string>
+    <string name="EnterBankAsAdmin">Log in to mobile bank as Admin</string>
     <string name="EnterBankShort">Войти в банк</string>
     <string name="EnterBank">Войти в мобильный банк</string>
     <string name="Registration">Регистрация</string>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.example.sovkombank_team_challenge_it_amnezia.domain.authorizationApi.AuthorizationApi
 import com.example.sovkombank_team_challenge_it_amnezia.domain.mainApi.MainApi
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.PushTokenModel
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToSignUp
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BasePresenterImpl
@@ -35,6 +36,21 @@ class RegistrationPresenterImpl @Inject constructor(private val authorizationApi
     }
 
     @SuppressLint("CheckResult")
+    override fun signUpAdmin(userToSignUp: UserToSignUp) {
+        authorizationApi.signUpAdmin(userToSignUp)
+            .subscribeOn(Schedulers.io())
+            .observeOn(
+                AndroidSchedulers.mainThread()
+            )
+            .subscribe({
+                sharedPreferences.accessToken = it.accessToken
+                view.showConfirmationDialog()
+            }, {
+                view.showError(it.message)
+            })
+    }
+
+    @SuppressLint("CheckResult")
     override fun confirmClientAccount(code: Code) {
         mainApi.confirmClientAccount(code)
             .subscribeOn(Schedulers.io())
@@ -42,6 +58,7 @@ class RegistrationPresenterImpl @Inject constructor(private val authorizationApi
             .subscribe({
                 sharedPreferences.accessToken = it.accessToken
                 view.navToCreateCode()
+                view.setupPushToken()
             }, {
                 view.showError(it.message)
             })
@@ -61,18 +78,12 @@ class RegistrationPresenterImpl @Inject constructor(private val authorizationApi
     }
 
     @SuppressLint("CheckResult")
-    override fun signUpAdmin(userToSignUp: UserToSignUp) {
-        authorizationApi.signUpAdmin(userToSignUp)
+    override fun setupPushToken(pushToken: String) {
+        mainApi.setPushToken(PushTokenModel(pushToken))
             .subscribeOn(Schedulers.io())
-            .observeOn(
-                AndroidSchedulers.mainThread()
-            )
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                sharedPreferences.accessToken = it.accessToken
-                view.showConfirmationDialog()
-            }, {
-                view.showError(it.message)
-            })
+            },{})
     }
 
     override fun start() = Unit

@@ -11,4 +11,5 @@ interface RegistrationPresenter: BasePresenter {
     fun confirmClientAccount(code: Code)
     fun confirmAdminAccount(code: Code)
     fun signUpAdmin(userToSignUp: UserToSignUp)
+    fun setupPushToken(pushToken: String)
 }

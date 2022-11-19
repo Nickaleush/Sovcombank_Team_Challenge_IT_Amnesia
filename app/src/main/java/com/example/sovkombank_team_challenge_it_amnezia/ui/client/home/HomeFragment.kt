@@ -27,7 +27,6 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
-
     }
 
     override fun onBackPressed() {

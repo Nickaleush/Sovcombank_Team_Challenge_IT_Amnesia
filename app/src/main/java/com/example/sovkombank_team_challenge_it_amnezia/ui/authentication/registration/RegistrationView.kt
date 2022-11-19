@@ -6,4 +6,5 @@ interface RegistrationView : BaseView {
     fun showError(message: String?)
     fun showConfirmationDialog()
     fun navToCreateCode()
+    fun setupPushToken()
 }
