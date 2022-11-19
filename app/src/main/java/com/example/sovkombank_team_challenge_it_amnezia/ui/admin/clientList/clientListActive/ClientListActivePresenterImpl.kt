@@ -15,18 +15,18 @@ class ClientListActivePresenterImpl @Inject constructor(private val mainApi: Mai
 
     override lateinit var view: ClientListActiveView
     override fun getActiveClients() {
-//        mainApi.getActiveClients()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(
-//                AndroidSchedulers.mainThread()
-//            )
-//            .subscribe({
-//                view.hideSkeleton()
-//                view.initRecyclerViewActiveClient(it)
-//                // Log.d("01333", it.toString())
-//            },{
-//                view.showError(it.message)
-//            })
+        mainApi.getActiveClients()
+            .subscribeOn(Schedulers.io())
+            .observeOn(
+                AndroidSchedulers.mainThread()
+            )
+            .subscribe({
+                //view.hideSkeleton()
+                view.initRecyclerViewActiveClient(it)
+                // Log.d("01333", it.toString())
+            },{
+                view.showError(it.message)
+            })
     }
 
     override fun start() = Unit

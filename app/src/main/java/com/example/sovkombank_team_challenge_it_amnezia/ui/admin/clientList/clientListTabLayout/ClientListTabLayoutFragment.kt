@@ -38,7 +38,7 @@ class ClientListTabLayoutFragment: BaseFragment<ClientListTabLayoutPresenterImpl
             tab_layout,
             viewpager2ClientList,
         ) { tab, position ->
-            val tabNames = listOf(getString(R.string.Active), getString(R.string.Blocked))
+            val tabNames = listOf(getString(R.string.Active),getString(R.string.Wait), getString(R.string.Blocked))
             tab.text = tabNames[position]
         }.attach()
     }

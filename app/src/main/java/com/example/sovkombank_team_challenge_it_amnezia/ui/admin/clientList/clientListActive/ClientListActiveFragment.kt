@@ -14,8 +14,9 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Client
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.utils.SwipeCallback
+import com.example.sovkombank_team_challenge_it_amnezia.utils.SwipeRightCallback
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.client_list_active_fragment.*
 import java.util.ArrayList
@@ -39,26 +40,26 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
-
-        val list = arrayListOf<Client>(Client("Гайдук Д.А.","+79184463344",""), Client("Ушаков Н.А.","+79184343333",""))
-        initRecyclerView(list)
+        presenter.getActiveClients()
+        //val list = arrayListOf<Client>(Client("Гайдук Д.А.","+79184463344","", 1), Client("Ушаков Н.А.","+79184343333","", 2))
+        //initRecyclerView(list)
     }
 
-    private fun initRecyclerView(activeClientsList: ArrayList<Client>) {
-        if (activeClientsList.isEmpty()) {
-            emptyActiveClientListTextView.visibility = View.VISIBLE
-            emptyActiveClientListImageView.visibility = View.VISIBLE
-        } else {
-            emptyActiveClientListTextView.visibility = View.GONE
-            emptyActiveClientListImageView.visibility = View.GONE
-        }
-        activeClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClientListActiveAdapter(activeClientsList)
-        activeClientRecyclerView.adapter = adapter
-        setupItemSwipe()
-    }
+//    private fun initRecyclerView(activeClientsList: ArrayList<ClientDTO>) {
+//        if (activeClientsList.isEmpty()) {
+//            emptyActiveClientListTextView.visibility = View.VISIBLE
+//            emptyActiveClientListImageView.visibility = View.VISIBLE
+//        } else {
+//            emptyActiveClientListTextView.visibility = View.GONE
+//            emptyActiveClientListImageView.visibility = View.GONE
+//        }
+//        activeClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//        val adapter = ClientListActiveAdapter(activeClientsList)
+//        activeClientRecyclerView.adapter = adapter
+//        setupItemSwipe()
+//    }
 
-    override fun initRecyclerViewActiveClient(activeClientsList: ArrayList<Client>) {
+    override fun initRecyclerViewActiveClient(activeClientsList: ArrayList<ClientDTO>) {
         if (activeClientsList.isEmpty()) {
             emptyActiveClientListTextView.visibility = View.VISIBLE
             emptyActiveClientListImageView.visibility = View.VISIBLE
@@ -73,7 +74,7 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
     }
 
     private fun setupItemSwipe(){
-        val swipeCallback = object : SwipeCallback() {
+        val swipeCallback = object : SwipeRightCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 MaterialDialog.Builder(requireContext())
                     .content(R.string.QuestionBlockedMessage)

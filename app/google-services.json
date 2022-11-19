@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "987125879724",
+    "project_id": "itamnesiasovcombank",
+    "storage_bucket": "itamnesiasovcombank.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987125879724:android:e18d275857fcd2208b2009",
+        "android_client_info": {
+          "package_name": "com.example.sovkombank_team_challenge_it_amnezia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987125879724-chl304g5mi51t3i184e7hesg3lfs3qp7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sovkombank_team_challenge_it_amnezia",
+            "certificate_hash": "75d8245f61b551a3da7e04dbae2b1575b064fef2"
+          }
+        },
+        {
+          "client_id": "987125879724-v2av17cllsapv1orkjlstdjb3d5hp90m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4TEk3fkhjk4tDjVc9HKTpQIUqS67Ued4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987125879724-v2av17cllsapv1orkjlstdjb3d5hp90m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

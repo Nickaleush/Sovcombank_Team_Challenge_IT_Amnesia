@@ -1,0 +1,12 @@
+package com.example.sovkombank_team_challenge_it_amnezia.di.modules
+
+import com.example.sovkombank_team_challenge_it_amnezia.di.scopes.ClientListNotConfirmedScope
+import com.example.sovkombank_team_challenge_it_amnezia.ui.admin.clientList.clientNotConfirmedList.ClientListNotConfirmedPresenter
+import com.example.sovkombank_team_challenge_it_amnezia.ui.admin.clientList.clientNotConfirmedList.ClientListNotConfirmedPresenterImpl
+import dagger.Module
+
+@Module
+interface ClientListNotConfirmedModule {
+    @ClientListNotConfirmedScope
+    fun presenter(presenter: ClientListNotConfirmedPresenterImpl): ClientListNotConfirmedPresenter
+}

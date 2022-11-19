@@ -4,4 +4,5 @@ data class Client(
     var firstName: String,
     var credentials: String,
     var avatarUrl: String,
+    var id: Long,
 )
