@@ -36,4 +36,6 @@ interface MainApi {
 
     @PATCH("api/user/pushToken")
     fun setPushToken(@Body pushToken: PushTokenModel): Single<UserToSignUp>
+
+
 }

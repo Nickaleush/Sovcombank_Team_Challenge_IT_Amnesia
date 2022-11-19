@@ -22,4 +22,7 @@ interface AuthorizationApi {
     @POST("api/auth/admin/signUp")
     fun signUpAdmin(@Body user: UserToSignUp): Single<AccessToken>
 
+    @POST("api/confirmation/client")
+    fun sendUpdateAccessToken(@Body code: Code): Single<AccessToken>
+
 }

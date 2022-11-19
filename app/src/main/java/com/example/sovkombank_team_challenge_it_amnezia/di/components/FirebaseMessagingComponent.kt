@@ -1,0 +1,13 @@
+package com.example.sovkombank_team_challenge_it_amnezia.di.components
+
+
+import com.example.sovkombank_team_challenge_it_amnezia.di.modules.FirebaseMessagingItAmnesiaModule
+import com.example.sovkombank_team_challenge_it_amnezia.di.scopes.FirebaseMessagingItAmnesiaScope
+import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaService
+import dagger.Subcomponent
+
+@FirebaseMessagingItAmnesiaScope
+@Subcomponent(modules = [FirebaseMessagingItAmnesiaModule::class])
+interface FirebaseMessagingItAmnesiaComponent {
+    fun inject(pad4PetsService: FirebaseMessagingItAmnesiaService)
+}

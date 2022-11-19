@@ -6,5 +6,6 @@ import java.util.ArrayList
 
 interface ClientListActiveView: BaseView {
     fun showError(message: String?)
-    fun initRecyclerViewActiveClient(activeClientsList: ArrayList<ClientDTO>)
+    fun initRecyclerViewActiveClient(activeClientsList: MutableList<ClientDTO>)
+
 }

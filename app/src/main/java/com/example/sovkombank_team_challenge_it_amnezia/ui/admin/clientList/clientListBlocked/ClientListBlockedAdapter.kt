@@ -10,7 +10,7 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
 import kotlinx.android.synthetic.main.client_item.view.*
 import java.util.ArrayList
 
-class ClientListBlockedAdapter (private val blockedClientsList: ArrayList<ClientDTO>) : RecyclerView.Adapter<ClientListBlockedAdapter.ViewHolder>() {
+class ClientListBlockedAdapter (private val blockedClientsList: MutableList<ClientDTO>) : RecyclerView.Adapter<ClientListBlockedAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 

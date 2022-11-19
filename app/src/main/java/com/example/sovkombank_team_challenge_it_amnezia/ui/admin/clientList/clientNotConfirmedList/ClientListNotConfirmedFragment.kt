@@ -21,7 +21,7 @@ import java.util.ArrayList
 class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresenterImpl>(),
     ClientListNotConfirmedView {
 
-    var listNotConfirmedClients: MutableList<ClientDTO> = ArrayList()
+    var listNotConfirmedClients: MutableList<ClientDTO> = mutableListOf()
 
     override fun createComponent() {
         App.instance
@@ -38,24 +38,9 @@ class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresent
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
-
         presenter.getNotConfirmedClients()
-//        val list = arrayListOf<Client>(Client("Гайдук Д.А.","+79184463344","", 0), Client("Ушаков Н.А.","+79184343333","", 1), Client("Гайдук Д.А.","+79184463344","", 2))
-//        initRecyclerView(list)
-    }
 
-//    private fun initRecyclerView(notConfirmedClientsList: ArrayList<ClientDTO>) {
-//        if (notConfirmedClientsList.isEmpty()) {
-//            emptyNotConfirmedClientListTextView.visibility = View.VISIBLE
-//            emptyNotConfirmedClientListImageView.visibility = View.VISIBLE
-//        } else {
-//            emptyNotConfirmedClientListTextView.visibility = View.GONE
-//            emptyNotConfirmedClientListImageView.visibility = View.GONE
-//        }
-//        notConfirmedClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-//        val adapter = ClientListNotConfirmedAdapter(notConfirmedClientsList, this)
-//        notConfirmedClientRecyclerView.adapter = adapter
-//    }
+    }
 
     override fun initRecyclerViewNotConfirmedClient(notConfirmedClientsList: ArrayList<ClientDTO>) {
         listNotConfirmedClients = notConfirmedClientsList
@@ -67,7 +52,7 @@ class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresent
             emptyNotConfirmedClientListImageView.visibility = View.GONE
         }
         notConfirmedClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClientListNotConfirmedAdapter(notConfirmedClientsList, this)
+        val adapter = ClientListNotConfirmedAdapter(listNotConfirmedClients, this)
         notConfirmedClientRecyclerView.adapter = adapter
     }
 

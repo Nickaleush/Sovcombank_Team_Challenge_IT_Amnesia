@@ -35,4 +35,19 @@ class ClientListBlockedPresenterImpl @Inject constructor(private val mainApi: Ma
             })
     }
 
+    @SuppressLint("CheckResult")
+    override fun setEnableClient(userId: String) {
+        mainApi.enableClient(userId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(
+                AndroidSchedulers.mainThread()
+            )
+            .subscribe({
+                //view.hideSkeleton()
+                // Log.d("01333", it.toString())
+            },{
+                view.showError(it.message)
+            })
+    }
+
 }

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.client_item.view.firstNameTextview
 import kotlinx.android.synthetic.main.client_not_confirmed_item.view.*
 import java.util.ArrayList
 
-class ClientListNotConfirmedAdapter(private val notConfirmedClientsList: ArrayList<ClientDTO>, val fragment: ClientListNotConfirmedFragment) : RecyclerView.Adapter<ClientListNotConfirmedAdapter.ViewHolder>() {
+class ClientListNotConfirmedAdapter(private val notConfirmedClientsList: MutableList<ClientDTO>, val fragment: ClientListNotConfirmedFragment) : RecyclerView.Adapter<ClientListNotConfirmedAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 

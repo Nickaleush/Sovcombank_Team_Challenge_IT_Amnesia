@@ -1,0 +1,13 @@
+package com.example.sovkombank_team_challenge_it_amnezia.di.modules
+
+import com.example.sovkombank_team_challenge_it_amnezia.di.scopes.FirebaseMessagingItAmnesiaScope
+import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaPresenter
+import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaPresenterImpl
+
+import dagger.Module
+
+@Module
+interface FirebaseMessagingItAmnesiaModule {
+    @FirebaseMessagingItAmnesiaScope
+    fun presenter(presenter: FirebaseMessagingItAmnesiaPresenterImpl): FirebaseMessagingItAmnesiaPresenter
+}

@@ -7,4 +7,6 @@ interface ClientListBlockedPresenter : BasePresenter {
     var view: ClientListBlockedView
 
     fun getBlockedClients()
+
+    fun setEnableClient(userId: String)
 }

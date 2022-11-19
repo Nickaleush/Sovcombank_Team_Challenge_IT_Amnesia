@@ -7,4 +7,6 @@ interface ClientListActivePresenter : BasePresenter {
     var view: ClientListActiveView
 
     fun getActiveClients()
+
+    fun setDisableClient(userId: String)
 }

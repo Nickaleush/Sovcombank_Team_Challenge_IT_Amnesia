@@ -25,6 +25,7 @@ import java.util.ArrayList
 class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
     ClientListBlockedView {
 
+    var listBlockedClients: MutableList<ClientDTO> = mutableListOf()
 
     override fun createComponent() {
         App.instance
@@ -41,29 +42,11 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
-
-        //val list = arrayListOf<Client>(Client("Гайдук Д.А.","+79184463344","", 0), Client("Ушаков Н.А.","+79184343333","", 1), Client("Гайдук Д.А.","+79184463344","", 2))
-        //initRecyclerView(list)
-
         presenter.getBlockedClients()
-
     }
 
-//    private fun initRecyclerView(blockedClientsList: ArrayList<Client>) {
-//        if (blockedClientsList.isEmpty()) {
-//            emptyBlockedClientListTextView.visibility = View.VISIBLE
-//            emptyBlockedClientListImageView.visibility = View.VISIBLE
-//        } else {
-//            emptyBlockedClientListTextView.visibility = View.GONE
-//            emptyBlockedClientListImageView.visibility = View.GONE
-//        }
-//        blockedClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-//        val adapter = ClientListBlockedAdapter(blockedClientsList)
-//        blockedClientRecyclerView.adapter = adapter
-//        setupItemSwipe()
-//    }
-
-    override fun initRecyclerViewBlockedClient(blockedClientsList: ArrayList<ClientDTO>) {
+    override fun initRecyclerViewBlockedClient(blockedClientsList: MutableList<ClientDTO>) {
+        listBlockedClients = blockedClientsList
         if (blockedClientsList.isEmpty()) {
             emptyBlockedClientListTextView.visibility = View.VISIBLE
             emptyBlockedClientListImageView.visibility = View.VISIBLE
@@ -72,7 +55,7 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
             emptyBlockedClientListImageView.visibility = View.GONE
         }
         blockedClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClientListBlockedAdapter(blockedClientsList)
+        val adapter = ClientListBlockedAdapter(listBlockedClients)
         blockedClientRecyclerView.adapter = adapter
         setupItemSwipe()
     }
@@ -86,6 +69,8 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
                     .positiveColorRes(R.color.red)
                     .onPositive { _, _ ->
                         val position = viewHolder.adapterPosition
+                        presenter.setEnableClient(listBlockedClients[position].id)
+                        listBlockedClients.removeAt(position)
                         blockedClientRecyclerView.adapter?.notifyItemRemoved(position) }
                     .negativeText(R.string.Cancel)
                     .negativeColorRes(R.color.blue)

@@ -55,4 +55,6 @@ interface AppComponent {
     fun createClientListNotConfirmedFragment(): ClientListNotConfirmedComponent
 
     fun createHomeFragment(): HomeComponent
+
+    fun createFirebaseMessagingItAmnesiaService(): FirebaseMessagingItAmnesiaComponent
 }
