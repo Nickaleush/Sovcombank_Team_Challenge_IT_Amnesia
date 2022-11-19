@@ -7,5 +7,5 @@ import com.example.sovkombank_team_challenge_it_amnezia.ui.client.profile.Profil
 interface HomePresenter: BasePresenter {
     var view: HomeView
     fun getAllCurrencies()
-    fun getUserInfo()
+    fun getAllUserAccount()
 }

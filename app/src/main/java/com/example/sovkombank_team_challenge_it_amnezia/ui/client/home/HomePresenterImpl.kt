@@ -35,8 +35,19 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
             })
     }
 
-    override fun getUserInfo() {
-        TODO("Not yet implemented")
+    @SuppressLint("CheckResult")
+    override fun getAllUserAccount() {
+        mainApi.getAllUserAccounts()
+            .subscribeOn(Schedulers.io())
+            .observeOn(
+                AndroidSchedulers.mainThread()
+            )
+            .subscribe({
+                view.hideSkeleton()
+                view.initAccountsRecyclerView(it)
+            }, {
+                view.showError(it.message)
+            })
     }
 
     override fun start() = Unit

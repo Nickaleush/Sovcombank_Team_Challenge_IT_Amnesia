@@ -28,9 +28,7 @@ class HomeCurrencyAdapter(private val purchaseList: ArrayList<Quotation> ) : Rec
         v.rubleTextView.visibility = View.VISIBLE
         v.shortNameTextView.text = item.currencyDto.name
         v.currencyNameTextView.text = item.currencyDto.fullName
-//        val value = item.value
-//        val nominal = item.nominal
-//        val bigDecimalObject = BigDecimal(value)
+        v.nominalTextView.text = item.nominal.toString()
         v.currencyCostTextView.text = item.value
         v.rubleTextView.text = v.context.getText(R.string.Ruble)
     }

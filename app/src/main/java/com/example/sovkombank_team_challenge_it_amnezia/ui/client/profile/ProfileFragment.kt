@@ -42,11 +42,12 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
         }
     }
 
-    private fun getData(){
+    private fun getData() {
         presenter.getUserInfo()
     }
+
     override fun onBackPressed() {
-      //TODO переопредели
+      requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
 

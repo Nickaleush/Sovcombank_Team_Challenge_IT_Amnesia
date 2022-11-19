@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Account
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.HomeButtonType
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemButton
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
@@ -48,6 +49,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
+        nameTextView.text = sharedPreferences.userName
         recyclerViewHomeButtons.layoutManager =  LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         homeButtonsAdapter = HomeButtonsAdapter(homeButtonItems, this@HomeFragment,requireContext())
         recyclerViewHomeButtons.adapter = homeButtonsAdapter
@@ -58,21 +60,26 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.showSkeleton()
         getData()
         if(accessDenied) waitAccess()
-
-
     }
 
-    private fun getData(){
+    private fun getData() {
         presenter.getAllCurrencies()
     }
+
     override fun initCurrenciesRecyclerView(currencyList: ArrayList<Quotation>) {
         recyclerViewCurrency.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         val adapter = HomeCurrencyAdapter(currencyList)
         recyclerViewCurrency.adapter = adapter
     }
 
+    override fun initAccountsRecyclerView(currencyList: ArrayList<Account>) {
+        recyclerViewHomeAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        val adapter = HomeAccountsAdapter(currencyList)
+        recyclerViewHomeAccounts.adapter = adapter
+    }
+
     override fun hideSkeleton() {
-        //skeleton.showOriginal()
+        skeleton.showOriginal()
     }
 
 
@@ -129,12 +136,13 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         CoroutineScope(Dispatchers.IO).launch {
             delay(5000)
             CoroutineScope(Dispatchers.Main).launch {
-                if(accessDenied){
+                if(accessDenied) {
                     waitAccess()
                     // добавить заглушку
                 }
                 else {
                     getData()
+                    accessDenied = false
                     // убрать заглушку
                     coroutineContext.cancel()
                 }

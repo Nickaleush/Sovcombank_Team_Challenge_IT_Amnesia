@@ -23,6 +23,10 @@
         <item name="android:fontFamily">@font/gteestiprotext_regular</item>
     </style>
 
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/gteestiprotext_regular</item>
+    </style>
     <style name="CustomProgressBarTheme">
 
         <item name="android:windowTranslucentStatus">true</item>

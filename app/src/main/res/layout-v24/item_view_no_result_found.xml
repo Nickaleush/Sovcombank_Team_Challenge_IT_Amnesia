@@ -7,6 +7,7 @@
         android:id="@+id/tvNoResultFound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/gteestiprotext_regular"
         android:layout_centerInParent="true"
         android:textColor="#000000" />
 

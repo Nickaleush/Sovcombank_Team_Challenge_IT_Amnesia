@@ -46,7 +46,7 @@ class LogoFragment: BaseFragment<LogoPresenterImpl>(), LogoView {
         super.onResume()
         CoroutineScope(Dispatchers.Main).launch  {
             delay(500)
-            if (sharedPreferences.pinCode != null) findNavController().navigate(R.id.action_logoFragment_to_authFragment)
+            if (sharedPreferences.pinCode != null && sharedPreferences.userName != null) findNavController().navigate(R.id.action_logoFragment_to_authFragment)
             else findNavController().navigate(R.id.action_logoFragment_to_welcomeFragment)
         }.start()
     }

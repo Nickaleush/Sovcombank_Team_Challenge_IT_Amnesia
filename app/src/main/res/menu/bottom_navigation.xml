@@ -4,7 +4,7 @@
     <item
         android:id="@+id/homeFragment"
         android:title="@string/Home"
-        android:icon="@drawable/fingerprint"
+        android:icon="@drawable/home_icon_foreground"
         />
     <item
         android:id="@+id/profileFragment"

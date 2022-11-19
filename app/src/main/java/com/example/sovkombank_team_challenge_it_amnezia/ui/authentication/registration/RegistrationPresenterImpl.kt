@@ -42,7 +42,7 @@ class RegistrationPresenterImpl @Inject constructor(private val authorizationApi
             .observeOn(
                 AndroidSchedulers.mainThread()
             )
-            .subscribe({
+            .subscribe( {
                 sharedPreferences.accessToken = it.accessToken
                 view.showConfirmationDialog()
             }, {
@@ -83,6 +83,7 @@ class RegistrationPresenterImpl @Inject constructor(private val authorizationApi
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                sharedPreferences.userName = it.firstName
             },{})
     }
 

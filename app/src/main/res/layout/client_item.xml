@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-
         android:orientation="horizontal">
 
         <ImageView
@@ -37,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:scaleType="centerCrop"
+                android:fontFamily="@font/gteestiprotext_regular"
                 android:text="@string/Profile"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -49,6 +49,7 @@
                 android:layout_marginTop="5dp"
                 android:scaleType="centerCrop"
                 android:text="@string/PlusSeven"
+                android:fontFamily="@font/gteestiprotext_regular"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

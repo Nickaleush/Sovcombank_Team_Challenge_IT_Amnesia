@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="125dp"
@@ -45,6 +48,7 @@
             >
 
             <TextView
+                android:id="@+id/accountBalanceTextView"
                 android:text="@string/Default4Digits"
                 android:layout_width="wrap_content"
                 android:textSize="24sp"
@@ -63,9 +67,10 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/accountTypeTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/RubleBill"
+            android:text="@string/Currency"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textColor="@color/black"

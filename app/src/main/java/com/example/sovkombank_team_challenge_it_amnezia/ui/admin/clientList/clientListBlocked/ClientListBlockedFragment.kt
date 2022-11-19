@@ -49,6 +49,7 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
         super.onResume()
         presenter.getBlockedClients()
     }
+
     override fun initRecyclerViewBlockedClient(blockedClientsList: MutableList<ClientDTO>) {
         listBlockedClients = blockedClientsList
         checkEmptyClientList()
@@ -60,11 +61,11 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
 
     private fun checkEmptyClientList(){
         if (listBlockedClients.isEmpty()) {
-            emptyActiveClientListTextView.visibility = View.VISIBLE
-            emptyActiveClientListImageView.visibility = View.VISIBLE
+            emptyBlockedClientListTextView.visibility = View.VISIBLE
+            emptyBlockedClientListImageView.visibility = View.VISIBLE
         } else {
-            emptyActiveClientListTextView.visibility = View.GONE
-            emptyActiveClientListImageView.visibility = View.GONE
+            emptyBlockedClientListTextView.visibility = View.GONE
+            emptyBlockedClientListImageView.visibility = View.GONE
         }
     }
 

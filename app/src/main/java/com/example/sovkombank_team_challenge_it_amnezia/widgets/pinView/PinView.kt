@@ -3,6 +3,7 @@ package com.example.sovkombank_team_challenge_it_amnezia.widgets.pinView
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.provider.Settings.Global.getString
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -15,9 +16,12 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment.Companion.USER_NAME
 import com.multidots.fingerprintauth.FingerPrintAuthHelper
 import kotlinx.android.synthetic.main.item_number.view.*
 import kotlinx.android.synthetic.main.pin_view.view.*
+import javax.inject.Inject
 import kotlin.properties.Delegates
 
 

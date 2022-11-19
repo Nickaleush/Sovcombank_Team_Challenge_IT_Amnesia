@@ -60,7 +60,7 @@
     <string name="RegistrationSuccess">You have successfully registered in!</string>
     <string name="AuthenticationSuccess">You have successfully authenticated!</string>
     <string name="ConfirmPasswordEmpty">Confirm password is empty!</string>
-    <string name="GoodMorning">Good morning, Maria!</string>
+    <string name="GoodMorning">Good morning, %1$s!</string>
     <string name="ExitConfirm">Do you want to exit the app?</string>
     <string name="Next">Next</string>
     <string name="Yes">Yes</string>

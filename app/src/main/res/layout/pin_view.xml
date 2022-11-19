@@ -22,30 +22,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/helloTextView"
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="52dp"
-        android:fontFamily="@font/gteestiprotext_regular"
-        android:text="@string/GoodMorning"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotCodeTextView" />
-
-    <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="@font/gteestiprotext_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helloTextView"
+        app:layout_constraintTop_toBottomOf="@+id/forgotCodeTextView"
         tools:text="Enter pin code"
         tools:textColor="@color/black"
         tools:textSize="24sp" />

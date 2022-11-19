@@ -15,5 +15,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleName="@string/EnterCode"/>
 
+    <TextView
+        android:id="@+id/helloTextView"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="52dp"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

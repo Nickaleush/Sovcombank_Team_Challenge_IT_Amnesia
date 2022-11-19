@@ -40,7 +40,6 @@ class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresent
         presenter.start()
         presenter.view = this
         presenter.getNotConfirmedClients()
-
     }
 
     override fun initRecyclerViewNotConfirmedClient(notConfirmedClientsList: ArrayList<ClientDTO>) {
@@ -51,13 +50,13 @@ class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresent
         notConfirmedClientRecyclerView.adapter = adapter
     }
 
-    private fun checkEmptyClientList(){
+    private fun checkEmptyClientList() {
         if (listNotConfirmedClients.isEmpty()) {
-            emptyActiveClientListTextView.visibility = View.VISIBLE
-            emptyActiveClientListImageView.visibility = View.VISIBLE
+            emptyNotConfirmedClientListTextView.visibility = View.VISIBLE
+            emptyNotConfirmedClientListImageView.visibility = View.VISIBLE
         } else {
-            emptyActiveClientListTextView.visibility = View.GONE
-            emptyActiveClientListImageView.visibility = View.GONE
+            emptyNotConfirmedClientListTextView.visibility = View.GONE
+            emptyNotConfirmedClientListImageView.visibility = View.GONE
         }
     }
 

@@ -57,12 +57,11 @@ class ClientListTabLayoutFragment: BaseFragment<ClientListTabLayoutPresenterImpl
                 materialDialog.dismiss()
                 sharedPreferences.adminMode = false
                 sharedPreferences.pinCode = null
+                sharedPreferences.userName = null
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                sharedPreferences.adminMode = false
-                sharedPreferences.pinCode = null
             }.show()
     }
 
