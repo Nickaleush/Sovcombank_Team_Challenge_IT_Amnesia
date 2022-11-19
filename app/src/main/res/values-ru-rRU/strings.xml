@@ -69,7 +69,6 @@
     <string name="Clients">Клиенты</string>
     <string name="Active">Активные</string>
     <string name="Blocked">Заблокированные</string>
-    <string name="LogOut">Выход</string>
     <string name="Cancel">Отменить</string>
     <string name="EmptyActiveClientList">Список активных клиентов пуст</string>
     <string name="EmptyBlockedClientList">Список заблокированных клиентов пуст</string>
