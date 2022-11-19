@@ -11,11 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Currency
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.HomeButtonType
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemButton
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
+import com.faltenreich.skeletonlayout.Skeleton
+import com.faltenreich.skeletonlayout.applySkeleton
 import kotlinx.android.synthetic.main.home_fragment.*
 import javax.inject.Inject
 
@@ -24,9 +28,18 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
+    private lateinit var skeleton: Skeleton
+
     private var homeButtonItems: ArrayList<ListItemButton> = ArrayList()
 
     private lateinit var homeButtonsAdapter: HomeButtonsAdapter
+
+    override fun createComponent() {
+        App.instance
+            .getAppComponent()
+            .createHomeFragment()
+            .inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.home_fragment, container, false)
@@ -40,9 +53,25 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         homeButtonsAdapter = HomeButtonsAdapter(homeButtonItems, this@HomeFragment,requireContext())
         recyclerViewHomeButtons.adapter = homeButtonsAdapter
         initializeData()
+        skeleton = recyclerViewCurrency.applySkeleton(R.layout.item_home_currency)
+        skeleton.maskCornerRadius = 30F
+        skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
+        skeleton.showSkeleton()
+        presenter.getAllCurrencies()
     }
 
-    private fun initializeData(){
+    override fun initCurrenciesRecyclerView(currencyList: ArrayList<Quotation>) {
+        recyclerViewCurrency.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        val adapter = HomeCurrencyAdapter(currencyList)
+        recyclerViewCurrency.adapter = adapter
+    }
+
+    override fun hideSkeleton() {
+        //skeleton.showOriginal()
+    }
+
+
+    private fun initializeData() {
         homeButtonItems.clear()
         homeButtonItems.add(ListItemButton(HomeButtonType.Deposit))
         homeButtonItems.add(ListItemButton(HomeButtonType.Buy))
@@ -90,13 +119,5 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             }.show()
     }
 
-    override fun createComponent() {
-        App.instance
-            .getAppComponent()
-            .createHomeFragment()
-            .inject(this)
-    }
-
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-
 }

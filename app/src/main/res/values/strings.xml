@@ -82,7 +82,11 @@
     <string name="NotConfirmed">Not confirmed</string>
     <string name="Wait">Wait</string>
     <string name="Default4Digits">2707</string>
+    <string name="DefaultShortName">RUB</string>
+    <string name="DefaultCost">62,44</string>
+    <string name="DefaultCurrency">Рубль</string>
     <string name="Dollar">$</string>
+    <string name="Ruble">₽</string>
     <string name="RubleBill">ruble bill</string>
     <string name="EmptyActiveClientList"> The list of active clients is empty</string>
     <string name="EmptyNotConfirmedClientList"> The waiting client list is empty</string>

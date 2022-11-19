@@ -22,6 +22,12 @@ interface MainApi {
     @GET("api/admin/user/clients/unconfirmed")
     fun getNotConfirmedClients(): Single<ArrayList<ClientDTO>>
 
+    @GET("api/account")
+    fun getAllUserAccounts(): Single<ArrayList<Account>>
+
+    @GET("api/currency")
+    fun getAllCurrencies(): Single<ArrayList<Quotation>>
+
     @GET("api/admin/user/{userId}/confirm")
     fun confirmClient(@Path(value = "userId", encoded = true) userId: String): Single<Unit>
 
