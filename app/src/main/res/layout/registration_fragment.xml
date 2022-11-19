@@ -5,14 +5,12 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:id="@+id/scroll_view_registration"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/constraint_registration_Layout"
-        >
+        android:id="@+id/constraint_registration_Layout">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRegistration"

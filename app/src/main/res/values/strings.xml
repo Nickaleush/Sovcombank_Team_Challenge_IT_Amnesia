@@ -72,8 +72,17 @@
     <string name="BlockUser">Block</string>
     <string name="EnterPicode">Enter Pin Code</string>
     <string name="Cancel">Cancel</string>
+    <string name="Currency">Currency</string>
+    <string name="Deposit">Deposit</string>
+    <string name="Buy">Buy</string>
+    <string name="WithDraw">WithDraw</string>
+    <string name="Sell">Sell</string>
+    <string name="Statistics">Statistics</string>
     <string name="NotConfirmed">Not confirmed</string>
     <string name="Wait">Wait</string>
+    <string name="Default4Digits">2707</string>
+    <string name="Dollar">$</string>
+    <string name="RubleBill">ruble bill</string>
     <string name="EmptyActiveClientList"> The list of active clients is empty</string>
     <string name="EmptyBlockedClientList">The list of blocked clients is empty</string>
     <string name="QuestionBlockedMessage">Are you sure that you want to block the client?</string>

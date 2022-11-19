@@ -75,7 +75,15 @@
     <string name="EnterPicode">Введите код доступа</string>
     <string name="NotConfirmed">Не подтверждённые</string>
     <string name="Wait">Ожидание</string>
-
+    <string name="Currency">Валюта</string>
+    <string name="Deposit">Пополнить</string>
+    <string name="Buy">Купить</string>
+    <string name="WithDraw">Вывести</string>
+    <string name="Sell">Продать</string>
+    <string name="Statistics">Статистика</string>
+    <string name="Default4Digits">2707</string>
+    <string name="Dollar">$</string>
+    <string name="RubleBill">рублевый счет</string>
     <string name="EmptyActiveClientList">Список активных клиентов пуст</string>
     <string name="EmptyBlockedClientList">Список заблокированных клиентов пуст</string>
     <string name="QuestionBlockedMessage">Вы уверены что хотите заблокировать клиента?</string>
