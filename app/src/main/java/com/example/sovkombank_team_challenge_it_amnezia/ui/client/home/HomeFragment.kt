@@ -17,7 +17,6 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemBu
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import kotlinx.android.synthetic.main.home_fragment.*

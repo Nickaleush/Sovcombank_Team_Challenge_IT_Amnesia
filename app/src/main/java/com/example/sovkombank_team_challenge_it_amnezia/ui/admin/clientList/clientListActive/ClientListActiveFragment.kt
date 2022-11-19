@@ -47,17 +47,21 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
 
     override fun initRecyclerViewActiveClient(activeClientsList: MutableList<ClientDTO>) {
         listActiveClients = activeClientsList
-        if (activeClientsList.isEmpty()) {
+        checkEmptyClientList()
+        activeClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        val adapter = ClientListActiveAdapter(listActiveClients)
+        activeClientRecyclerView.adapter = adapter
+        setupItemSwipe()
+    }
+
+    private fun checkEmptyClientList(){
+        if (listActiveClients.isEmpty()) {
             emptyActiveClientListTextView.visibility = View.VISIBLE
             emptyActiveClientListImageView.visibility = View.VISIBLE
         } else {
             emptyActiveClientListTextView.visibility = View.GONE
             emptyActiveClientListImageView.visibility = View.GONE
         }
-        activeClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClientListActiveAdapter(listActiveClients)
-        activeClientRecyclerView.adapter = adapter
-        setupItemSwipe()
     }
 
     override fun onResume() {
@@ -76,6 +80,7 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
                         val position = viewHolder.adapterPosition
                         presenter.setDisableClient(listActiveClients[position].id)
                         listActiveClients.removeAt(position)
+                        checkEmptyClientList()
                         activeClientRecyclerView.adapter?.notifyItemRemoved(position) }
                     .negativeText(R.string.Cancel)
                     .negativeColorRes(R.color.blue)
