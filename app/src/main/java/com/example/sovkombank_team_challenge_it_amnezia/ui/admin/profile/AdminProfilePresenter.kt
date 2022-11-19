@@ -6,4 +6,6 @@ import com.example.sovkombank_team_challenge_it_amnezia.ui.admin.clientList.clie
 interface AdminProfilePresenter : BasePresenter {
 
     var view: AdminProfileView
+
+    fun getUserInfo()
 }

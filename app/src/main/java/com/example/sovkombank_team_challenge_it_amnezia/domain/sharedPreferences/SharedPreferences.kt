@@ -34,6 +34,6 @@ class SharedPreferences @Inject constructor(
     companion object {
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
         const val PIN_CODE = "PIN_CODE"
-        const val USER_NAME = "PIN_CODE"
+        const val USER_NAME = "USER_NAME"
     }
 }

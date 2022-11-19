@@ -60,6 +60,11 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
         setupItemSwipe()
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.getActiveClients()
+    }
+
     private fun setupItemSwipe(){
         val swipeCallback = object : SwipeRightCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

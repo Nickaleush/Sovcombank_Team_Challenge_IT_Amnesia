@@ -45,6 +45,10 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
         presenter.getBlockedClients()
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.getBlockedClients()
+    }
     override fun initRecyclerViewBlockedClient(blockedClientsList: MutableList<ClientDTO>) {
         listBlockedClients = blockedClientsList
         if (blockedClientsList.isEmpty()) {
@@ -64,9 +68,9 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
         val swipeCallback = object : SwipeLeftCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 MaterialDialog.Builder(requireContext())
-                    .content(R.string.QuestionBlockedMessage)
-                    .positiveText(R.string.Blocked)
-                    .positiveColorRes(R.color.red)
+                    .content(R.string.QuestionUnlockMessage)
+                    .positiveText(R.string.Unlock)
+                    .positiveColorRes(R.color.green)
                     .onPositive { _, _ ->
                         val position = viewHolder.adapterPosition
                         presenter.setEnableClient(listBlockedClients[position].id)
@@ -91,7 +95,7 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
                 isCurrentlyActive: Boolean
             ) {
                 RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
                     .addSwipeLeftLabel(getString(R.string.BlockUser))
                     .setSwipeLeftLabelColor(resources.getColor(R.color.white, null))
                     .create()

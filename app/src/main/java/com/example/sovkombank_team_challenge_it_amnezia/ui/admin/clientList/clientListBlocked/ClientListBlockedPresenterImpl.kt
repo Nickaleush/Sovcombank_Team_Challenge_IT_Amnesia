@@ -21,7 +21,7 @@ class ClientListBlockedPresenterImpl @Inject constructor(private val mainApi: Ma
 
     @SuppressLint("CheckResult")
     override fun getBlockedClients() {
-        mainApi.getActiveClients()
+        mainApi.getBlockedClients()
             .subscribeOn(Schedulers.io())
             .observeOn(
                 AndroidSchedulers.mainThread()

@@ -69,6 +69,7 @@
     <string name="Clients">Clients</string>
     <string name="Active">Active</string>
     <string name="Blocked">Blocked</string>
+    <string name="Unlock">Unlock</string>
     <string name="BlockUser">Block</string>
     <string name="EnterPicode">Enter Pin Code</string>
     <string name="Cancel">Cancel</string>
@@ -84,6 +85,8 @@
     <string name="Dollar">$</string>
     <string name="RubleBill">ruble bill</string>
     <string name="EmptyActiveClientList"> The list of active clients is empty</string>
+    <string name="EmptyNotConfirmedClientList"> The waiting client list is empty</string>
+    <string name="QuestionUnlockMessage">Are you sure that you want to unlock the client?</string>
     <string name="EmptyBlockedClientList">The list of blocked clients is empty</string>
     <string name="QuestionBlockedMessage">Are you sure that you want to block the client?</string>
 </resources>
