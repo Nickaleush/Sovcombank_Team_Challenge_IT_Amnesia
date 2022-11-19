@@ -17,9 +17,11 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemBu
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
+import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaService.Companion.accessDenied
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
@@ -56,9 +58,14 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.maskCornerRadius = 30F
         skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
         skeleton.showSkeleton()
-        presenter.getAllCurrencies()
+        if(accessDenied) waitAccess()
+
+
     }
 
+    private fun getData(){
+        presenter.getAllCurrencies()
+    }
     override fun initCurrenciesRecyclerView(currencyList: ArrayList<Quotation>) {
         recyclerViewCurrency.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         val adapter = HomeCurrencyAdapter(currencyList)
@@ -111,13 +118,30 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
                 materialDialog.dismiss()
                 sharedPreferences.adminMode = false
                 sharedPreferences.pinCode = null
+                accessDenied = false
                 requireActivity().finish()
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
-                sharedPreferences.adminMode = false
-                sharedPreferences.pinCode = null
             }.show()
+    }
+
+    private fun waitAccess() {
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(5000)
+            CoroutineScope(Dispatchers.Main).launch {
+                if(accessDenied){
+                    waitAccess()
+                    // добавить заглушку
+                }
+                else {
+                    getData()
+                    accessDenied = false
+                    // убрать заглушку
+                    coroutineContext.cancel()
+                }
+            }
+        }
     }
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

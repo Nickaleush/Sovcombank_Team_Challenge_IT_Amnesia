@@ -19,7 +19,13 @@ import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.utils.SwipeRightCallback
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.client_list_active_fragment.*
-import java.util.ArrayList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
     ClientListActiveView {
@@ -41,10 +47,12 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
         presenter.view = this
-        presenter.getActiveClients()
+        getActiveClients()
     }
 
-
+    private fun getActiveClients(){
+        presenter.getActiveClients()
+    }
     override fun initRecyclerViewActiveClient(activeClientsList: MutableList<ClientDTO>) {
         listActiveClients = activeClientsList
         checkEmptyClientList()

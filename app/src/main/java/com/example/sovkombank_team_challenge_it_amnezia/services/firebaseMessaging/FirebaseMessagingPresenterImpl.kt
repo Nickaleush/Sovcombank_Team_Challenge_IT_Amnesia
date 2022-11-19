@@ -6,8 +6,10 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.mainApi.MainApi
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BasePresenterImpl
+import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaService.Companion.accessDenied
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 import javax.inject.Inject
 
 class FirebaseMessagingItAmnesiaPresenterImpl @Inject constructor(private val authorizationApi: AuthorizationApi): BasePresenterImpl<FirebaseMessagingItAmnesiaView>(), FirebaseMessagingItAmnesiaPresenter {
@@ -28,10 +30,12 @@ class FirebaseMessagingItAmnesiaPresenterImpl @Inject constructor(private val au
             )
             .subscribe({
                 sharedPreferences.accessToken = it.accessToken
+                accessDenied = false
                 // Log.d("01333", it.toString())
             },{
 
             })
     }
+
 
 }
