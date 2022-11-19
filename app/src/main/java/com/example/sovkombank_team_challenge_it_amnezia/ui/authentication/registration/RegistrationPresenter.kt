@@ -8,6 +8,7 @@ import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcom
 interface RegistrationPresenter: BasePresenter {
     var view: RegistrationView
     fun signUpClient(userToSignUp: UserToSignUp)
-    fun confirmAccount(code: Code)
-//    fun signUpAdmin(userToSignUp: UserToSignUp)
+    fun confirmClientAccount(code: Code)
+    fun confirmAdminAccount(code: Code)
+    fun signUpAdmin(userToSignUp: UserToSignUp)
 }

@@ -11,14 +11,19 @@ import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.utils.navigateTo
 import com.multidots.fingerprintauth.FingerPrintAuthCallback
 import com.multidots.fingerprintauth.FingerPrintAuthHelper
 import kotlinx.android.synthetic.main.auth_flow.*
 import kotlinx.android.synthetic.main.auth_fragment.*
+import javax.inject.Inject
 
 class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuthCallback {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     lateinit var fingerprintHelper: FingerPrintAuthHelper
 
@@ -42,8 +47,17 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
     }
 
     private fun setUpClickListeners() {
-        fingerprintImageView.setOnClickListener {
-            fingerprintHelper.startAuth()
+        pinView.setOnPinKeyClickListener = { keyPressed ->
+            if (keyPressed == "fingerprint") fingerprintHelper.startAuth()
+        }
+        pinView.setOnCompletedListener = { pinCode ->
+
+            if(pinCode == sharedPreferences.pinCode) findNavController().navigateTo(findNavController(),
+                R.id.action_authFragment_to_profileFragment, true)
+            else
+                pinView.showError(true)
+
+            pinView.clearPin()
         }
     }
 

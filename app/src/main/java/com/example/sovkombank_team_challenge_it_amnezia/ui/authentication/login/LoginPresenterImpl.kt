@@ -35,6 +35,21 @@ class LoginPresenterImpl @Inject constructor(private val authorizationApi: Autho
             })
     }
 
+    @SuppressLint("CheckResult")
+    override fun loginAdmin(userToLogin: UserToLogin) {
+        authorizationApi.loginAdmin(userToLogin)
+            .subscribeOn(Schedulers.io())
+            .observeOn(
+                AndroidSchedulers.mainThread()
+            )
+            .subscribe({
+                sharedPreferences.accessToken = it.accessToken
+                view.navToMainFlow()
+            }, {
+                view.showError(it.message)
+            })
+    }
+
     override fun start() = Unit
 
 }

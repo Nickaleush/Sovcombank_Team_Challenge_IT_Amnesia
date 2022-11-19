@@ -53,4 +53,6 @@ interface AppComponent {
     fun createAdminProfileFragment(): AdminProfileComponent
 
     fun createClientListNotConfirmedFragment(): ClientListNotConfirmedComponent
+
+    fun createHomeFragment(): HomeComponent
 }

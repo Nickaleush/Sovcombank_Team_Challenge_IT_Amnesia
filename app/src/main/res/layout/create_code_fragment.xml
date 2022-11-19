@@ -57,7 +57,7 @@
             android:layout_marginTop="72dp"
             app:activeBarColor="@color/white"
             app:filledPinIcon="@drawable/pincode_filled"
-            app:hidePin="true"
+            app:hidePin="false"
             android:visibility="visible"
             app:inactiveBarColor="@color/white"
             app:inputBackground="@color/transparent"

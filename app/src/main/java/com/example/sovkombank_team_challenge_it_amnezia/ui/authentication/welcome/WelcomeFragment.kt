@@ -71,10 +71,12 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         logInView = sheetView.findViewById(R.id.liner_enter_bank)
         registrationView = sheetView.findViewById(R.id.linear_register)
         logInView.setOnClickListener {
+            AUTH_AS_ADMIN = false
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
         registrationView.setOnClickListener {
+            AUTH_AS_ADMIN = false
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_registrationFragment)
         }

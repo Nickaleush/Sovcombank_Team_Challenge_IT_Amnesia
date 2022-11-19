@@ -41,13 +41,19 @@ class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
                 R.id.welcomeFragment -> hideBotNav()
                 R.id.logoFragment -> hideBotNav()
                 R.id.clientListTabLayoutFragment -> {
-                    setUpAdminBottomNav()
+                    bottomNavigationView =  findViewById(R.id.adminBottomNavigationView)
+                    adminBottomNavigationView.visibility = View.VISIBLE
+                    clientBottomNavigationView.visibility = View.GONE
                     bottomNavigationView.setupWithNavController(navController)
+                    showBotNav()
                 }
                 R.id.authFragment -> hideBotNav()
                 R.id.profileFragment -> {
-                    setUpClientBottomNav()
+                    bottomNavigationView = findViewById(R.id.clientBottomNavigationView)
+                    adminBottomNavigationView.visibility = View.GONE
+                    clientBottomNavigationView.visibility = View.VISIBLE
                     bottomNavigationView.setupWithNavController(navController)
+                    showBotNav()
                 }
                 R.id.loginFragment -> hideBotNav()
                 R.id.createCodeFragment -> hideBotNav()

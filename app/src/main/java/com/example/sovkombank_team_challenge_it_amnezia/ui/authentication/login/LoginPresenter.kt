@@ -6,4 +6,5 @@ import com.example.sovkombank_team_challenge_it_amnezia.mvp.BasePresenter
 interface LoginPresenter: BasePresenter {
     var view: LoginView
     fun loginClient(userToLogin: UserToLogin)
+    fun loginAdmin(userToLogin: UserToLogin)
 }
