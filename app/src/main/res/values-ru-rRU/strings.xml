@@ -75,8 +75,10 @@
     <string name="EnterPicode">Введите код доступа</string>
     <string name="NotConfirmed">Не подтверждённые</string>
     <string name="Wait">Ожидание</string>
-
+    <string name="Unlock">Разблокировать</string>
+    <string name="EmptyNotConfirmedClientList">Список ожидающих клиентов пуст</string>
     <string name="EmptyActiveClientList">Список активных клиентов пуст</string>
     <string name="EmptyBlockedClientList">Список заблокированных клиентов пуст</string>
     <string name="QuestionBlockedMessage">Вы уверены что хотите заблокировать клиента?</string>
+    <string name="QuestionUnlockMessage">Вы уверены что хотите разблокировать клиента?</string>
 </resources>

@@ -1,10 +1,7 @@
 package com.example.sovkombank_team_challenge_it_amnezia.domain.mainApi
 
 import com.example.sovkombank_team_challenge_it_amnezia.di.modules.AccessToken
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Code
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.PushTokenModel
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserToSignUp
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.*
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -37,5 +34,6 @@ interface MainApi {
     @PATCH("api/user/pushToken")
     fun setPushToken(@Body pushToken: PushTokenModel): Single<UserToSignUp>
 
-
+    @GET("api/user/info")
+    fun getUserInfo(): Single<UserDTO>
 }

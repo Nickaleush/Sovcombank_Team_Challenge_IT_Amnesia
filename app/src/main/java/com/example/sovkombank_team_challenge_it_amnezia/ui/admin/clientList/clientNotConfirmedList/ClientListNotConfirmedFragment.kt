@@ -56,6 +56,11 @@ class ClientListNotConfirmedFragment: BaseFragment<ClientListNotConfirmedPresent
         notConfirmedClientRecyclerView.adapter = adapter
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.getNotConfirmedClients()
+    }
+
     override fun endConfirmClient() {
         listNotConfirmedClients.removeAt(clickedItemPosition)
         notConfirmedClientRecyclerView.adapter?.notifyItemRemoved(clickedItemPosition)
