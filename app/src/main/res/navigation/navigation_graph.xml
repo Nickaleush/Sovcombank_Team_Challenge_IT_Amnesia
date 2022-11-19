@@ -6,13 +6,13 @@
     app:startDestination="@id/logoFragment">
 
     <fragment
-        android:id="@+id/profileFragment2"
+        android:id="@+id/profileFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/profile_fragment"
         >
         <action
-            android:id="@+id/action_profileFragment2_to_welcomeFragment"
+            android:id="@+id/action_profileFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
     </fragment>
 
@@ -23,8 +23,8 @@
         tools:layout="@layout/auth_fragment"
         >
         <action
-            android:id="@+id/action_authFragment_to_profileFragment2"
-            app:destination="@id/profileFragment2" />
+            android:id="@+id/action_authFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/logoFragment"
@@ -78,8 +78,8 @@
         tools:layout="@layout/login_fragment"
         >
         <action
-            android:id="@+id/action_loginFragment_to_profileFragment2"
-            app:destination="@id/profileFragment2" />
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_loginFragment_to_clientListTabLayoutFragment"
             app:destination="@id/clientListTabLayoutFragment" />
@@ -91,8 +91,8 @@
         tools:layout="@layout/create_code_fragment"
         >
         <action
-            android:id="@+id/action_createCodeFragment_to_profileFragment2"
-            app:destination="@id/profileFragment2" />
+            android:id="@+id/action_createCodeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_createCodeFragment_to_clientListTabLayoutFragment"
             app:destination="@id/clientListTabLayoutFragment" />
@@ -100,5 +100,17 @@
     <fragment
         android:id="@+id/clientListTabLayoutFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.admin.clientList.clientListTabLayout.ClientListTabLayoutFragment"
-        android:label="ClientListTabLayoutFragment" />
+        android:label="ClientListTabLayoutFragment"
+        tools:layout="@layout/client_list_tablayout_fragment"
+        >
+        <action
+            android:id="@+id/action_clientListTabLayoutFragment_to_adminProfileFragment"
+            app:destination="@id/adminProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminProfileFragment"
+        android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.admin.profile.AdminProfileFragment"
+        android:label="AdminProfileFragment"
+        tools:layout="@layout/admin_profile_fragment"
+        />
 </navigation>

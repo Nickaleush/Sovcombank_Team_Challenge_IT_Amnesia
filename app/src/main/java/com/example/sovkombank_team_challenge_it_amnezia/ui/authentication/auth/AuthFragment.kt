@@ -2,7 +2,6 @@ package com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.auth
 
 import android.annotation.SuppressLint
 import android.hardware.fingerprint.FingerprintManager
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -79,7 +78,7 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
 
     override fun onAuthSuccess(cryptoObject: FingerprintManager.CryptoObject?) {
         Toast.makeText(requireContext(), "Authentication Success!", Toast.LENGTH_SHORT).show()
-        findNavController().navigateTo(findNavController(), R.id.action_authFragment_to_profileFragment2, true)
+        findNavController().navigateTo(findNavController(), R.id.action_authFragment_to_profileFragment, true)
     }
 
     override fun onBackPressed() {

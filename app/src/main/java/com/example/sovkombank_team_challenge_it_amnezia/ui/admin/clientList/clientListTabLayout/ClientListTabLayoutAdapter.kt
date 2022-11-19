@@ -13,7 +13,7 @@ class ClientListTabLayoutAdapter (
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> ClientListActiveFragment()
-            else -> ClientListBlockedFragment()
+            else -> ClientListActiveFragment()
         }
     }
 

@@ -93,9 +93,11 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
         if (phone.isEmpty()) {
             Toast.makeText(requireContext(), resources.getText(R.string.EnterName), Toast.LENGTH_LONG).show()
         }
+
         if (name.isEmpty()) {
             Toast.makeText(requireContext(), resources.getText(R.string.EnterName), Toast.LENGTH_LONG).show()
         }
+
         if (surname.isEmpty()) {
             Toast.makeText(requireContext(), resources.getText(R.string.EnterSurname), Toast.LENGTH_LONG).show()
         }

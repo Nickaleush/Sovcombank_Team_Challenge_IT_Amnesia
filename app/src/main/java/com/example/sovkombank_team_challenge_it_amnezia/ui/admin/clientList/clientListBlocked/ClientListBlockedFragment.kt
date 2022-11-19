@@ -34,6 +34,6 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
 
     }
     override fun onBackPressed() {
-        TODO("Not yet implemented")
+
     }
 }

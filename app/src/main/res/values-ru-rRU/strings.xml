@@ -70,6 +70,7 @@
     <string name="Active">Активные</string>
     <string name="Blocked">Заблокированные</string>
     <string name="Cancel">Отменить</string>
+    <string name="BlockUser">Заблокировать</string>
     <string name="EmptyActiveClientList">Список активных клиентов пуст</string>
     <string name="EmptyBlockedClientList">Список заблокированных клиентов пуст</string>
     <string name="QuestionBlockedMessage">Вы уверены что хотите заблокировать клиента?</string>

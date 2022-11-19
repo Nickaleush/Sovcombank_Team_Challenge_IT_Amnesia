@@ -30,7 +30,7 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
         buttonLogOut.setOnClickListener {
             sharedPreferences.accessToken = null
             sharedPreferences.pinCode = null
-            findNavController().navigateTo(findNavController(),R.id.action_profileFragment2_to_welcomeFragment, true)
+            findNavController().navigateTo(findNavController(),R.id.action_profileFragment_to_welcomeFragment, true)
         }
     }
 

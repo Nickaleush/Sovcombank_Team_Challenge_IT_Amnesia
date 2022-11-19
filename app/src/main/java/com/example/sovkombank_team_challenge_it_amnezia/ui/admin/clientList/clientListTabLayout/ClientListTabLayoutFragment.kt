@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.client_list_tablayout_fragment.*
 
@@ -41,7 +44,22 @@ class ClientListTabLayoutFragment: BaseFragment<ClientListTabLayoutPresenterImpl
     }
 
     override fun onBackPressed() {
-        TODO("Not yet implemented")
+        MaterialDialog.Builder(requireContext())
+            .content(getString(R.string.ExitConfirm))
+            .positiveText(R.string.Yes)
+            .negativeText(R.string.No)
+            .contentColor(resources.getColor(R.color.black, null))
+            .positiveColor(resources.getColor(R.color.blue, null))
+            .negativeColor(resources.getColor(R.color.red, null))
+            .onPositive { materialDialog, _ ->
+                materialDialog.dismiss()
+                AUTH_AS_ADMIN = false
+                requireActivity().finish()
+            }
+            .onNegative { materialDialog, _ ->
+                materialDialog.dismiss()
+                AUTH_AS_ADMIN = false
+            }.show()
     }
 
 }

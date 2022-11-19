@@ -12,7 +12,10 @@ import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseActivity
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.welcome.WelcomeFragment.Companion.AUTH_AS_ADMIN
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
 
@@ -30,14 +33,22 @@ class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
         val navController = navHostFragment.navController
         val mainGraph = navController.navInflater.inflate(R.navigation.navigation_graph)
         navController.graph = mainGraph
-        bottomNavigationView = findViewById(R.id.mainBottomNavigationView)
+        bottomNavigationView = findViewById(R.id.clientBottomNavigationView)
         bottomNavigationView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.welcomeFragment -> hideBotNav()
                 R.id.logoFragment -> hideBotNav()
+                R.id.clientListTabLayoutFragment -> {
+                    setUpAdminBottomNav()
+                    bottomNavigationView.setupWithNavController(navController)
+                }
                 R.id.authFragment -> hideBotNav()
+                R.id.profileFragment -> {
+                    setUpClientBottomNav()
+                    bottomNavigationView.setupWithNavController(navController)
+                }
                 R.id.loginFragment -> hideBotNav()
                 R.id.createCodeFragment -> hideBotNav()
                 R.id.registrationFragment -> hideBotNav()
@@ -45,6 +56,19 @@ class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
             }
         }
     }
+
+    private fun setUpAdminBottomNav() {
+        bottomNavigationView =  findViewById(R.id.adminBottomNavigationView)
+        adminBottomNavigationView.visibility = View.VISIBLE
+        clientBottomNavigationView.visibility = View.GONE
+    }
+
+    private fun setUpClientBottomNav() {
+        bottomNavigationView = findViewById(R.id.clientBottomNavigationView)
+        adminBottomNavigationView.visibility = View.GONE
+        clientBottomNavigationView.visibility = View.VISIBLE
+    }
+
 
     override fun onBackPressed() {
         if (BaseFragment.backPressedListener != null) {

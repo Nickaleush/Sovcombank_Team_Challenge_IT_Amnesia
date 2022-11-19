@@ -19,6 +19,10 @@
         <item name="android:textColor">#000</item>
     </style>
 
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/gteestiprotext_regular</item>
+    </style>
+
     <style name="CustomProgressBarTheme">
 
         <item name="android:windowTranslucentStatus">true</item>

@@ -79,12 +79,12 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
                     .content(R.string.QuestionBlockedMessage)
                     .positiveText(R.string.Blocked)
                     .positiveColorRes(R.color.red)
-                    .onPositive { dialog, which ->
+                    .onPositive { _, _ ->
                         val position = viewHolder.adapterPosition
                         activeClientRecyclerView.adapter?.notifyItemRemoved(position) }
                     .negativeText(R.string.Cancel)
                     .negativeColorRes(R.color.blue)
-                    .onNegative { dialog, which ->
+                    .onNegative { dialog, _ ->
                         dialog.dismiss()
                         val position = viewHolder.adapterPosition
                         activeClientRecyclerView.adapter?.notifyItemChanged(position)
@@ -101,10 +101,11 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
                 isCurrentlyActive: Boolean
             ) {
                 RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
-                    .addActionIcon(R.drawable.ic_block_client_foreground)
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
+                    .addSwipeRightLabel(getString(R.string.BlockUser))
+                    .setSwipeRightLabelColor(resources.getColor(R.color.white, null))
                     .create()
-                    .decorate();
+                    .decorate()
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
         }
@@ -112,7 +113,6 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
         itemTouchHelperForDelete.attachToRecyclerView(activeClientRecyclerView)
     }
     override fun onBackPressed() {
-        TODO("Not yet implemented")
     }
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

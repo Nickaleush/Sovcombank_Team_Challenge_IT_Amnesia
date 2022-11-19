@@ -84,7 +84,8 @@ class LoginFragment: BaseFragment<LoginPresenterImpl>(), LoginView {
             getString(R.string.AuthenticationSuccess),
             Toast.LENGTH_SHORT
         ).show()
-        findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+//        findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+        findNavController().navigate(R.id.action_loginFragment_to_clientListTabLayoutFragment)
     }
 
 }

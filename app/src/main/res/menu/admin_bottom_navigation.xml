@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     >
-<!--    <item-->
-<!--        android:id="@+id/"-->
-<!--        android:title="@string/Clients"-->
-<!--        android:icon="@drawable/fingerprint"-->
-<!--        />-->
-<!--    <item-->
-<!--        android:id="@+id/"-->
-<!--        android:title="@string/Profile"-->
-<!--        android:icon="@drawable/person_foreground"-->
-<!--        />-->
+    <item
+        android:id="@+id/clientListTabLayoutFragment"
+        android:title="@string/Clients"
+        android:icon="@drawable/admin_auth_foreground"
+        />
+    <item
+        android:id="@+id/adminProfileFragment"
+        android:title="@string/Profile"
+        android:icon="@drawable/person_foreground"
+        />
 </menu>

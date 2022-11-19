@@ -9,7 +9,7 @@ abstract class SwipeCallback: ItemTouchHelper.Callback() {
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
-        val swipeFlag = ItemTouchHelper.LEFT
+        val swipeFlag = ItemTouchHelper.RIGHT
         return makeMovementFlags(0, swipeFlag)
     }
 

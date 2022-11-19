@@ -56,6 +56,11 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        AUTH_AS_ADMIN = false
+    }
+
     private fun showRedirectDialogUser() {
         sheetView = requireActivity().layoutInflater.inflate(R.layout.redirection_bottomsheet, null)
         mBottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
@@ -76,7 +81,6 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
     }
 
     private fun showRedirectDialogAdmin() {
-        AUTH_AS_ADMIN = true
         sheetView = requireActivity().layoutInflater.inflate(R.layout.redirection_bottomsheet_admin, null)
         mBottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
         mBottomSheetDialog.setContentView(sheetView)
@@ -87,11 +91,13 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
         registrationView = sheetView.findViewById(R.id.linear_register_admin)
 
         logInView.setOnClickListener {
+            AUTH_AS_ADMIN = true
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
 
         registrationView.setOnClickListener {
+            AUTH_AS_ADMIN = true
             mBottomSheetDialog.dismiss()
             findNavController().navigate(R.id.action_welcomeFragment_to_registrationFragment)
         }
@@ -112,6 +118,7 @@ class WelcomeFragment: BaseFragment<WelcomePresenterImpl>(), WelcomeView {
             }
             .onNegative { materialDialog, _ ->
                 materialDialog.dismiss()
+                AUTH_AS_ADMIN = false
             }.show()
     }
 
