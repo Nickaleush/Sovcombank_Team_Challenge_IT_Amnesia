@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/create_code_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarLogin"
+        android:id="@+id/toolbarCreateCode"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -14,7 +16,7 @@
         app:navigationIcon="@drawable/arrow_back">
 
         <TextView
-            android:id="@+id/supportTextViewCreateCode"
+            android:id="@+id/supportTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -28,8 +30,9 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+
     <TextView
-        android:id="@+id/welcomeTextView"
+        android:id="@+id/createCodeTextView"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -37,12 +40,58 @@
         android:layout_marginEnd="91dp"
         android:fontFamily="@font/gteestiprotext_regular"
         android:lines="2"
+        android:alpha="1"
+        android:visibility="visible"
         android:text="@string/CreateCode"
         android:textAlignment="textStart"
         android:textColor="@color/red"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarCreateCode" />
+
+        <com.example.sovkombank_team_challenge_it_amnezia.widgets.pincodeLayout.PinCodeLayout
+            android:id="@+id/pincodeLayout_first"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="72dp"
+            app:activeBarColor="@color/white"
+            app:filledPinIcon="@drawable/pincode_filled"
+            app:hidePin="true"
+            android:visibility="visible"
+            app:inactiveBarColor="@color/white"
+            app:inputBackground="@color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createCodeTextView"
+            app:pinLength="4"
+            app:pinType="digits"
+            app:unfilledPinIcon="@drawable/pincode_empty" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/buttonNextCreateCode"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createCodeTextView">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:gravity="center"
+            android:text="@string/Next"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -94,8 +94,7 @@ class PinCodeLayout @JvmOverloads constructor(
 	private var inactiveBarColor = 0
 	private var activeBarColor = 0
 
-	private var attributeArray =
-		context.obtainStyledAttributes(attrs, R.styleable.PinCodeLayout, 0, 0)
+	private var attributeArray = context.obtainStyledAttributes(attrs, R.styleable.PinCodeLayout, 0, 0)
 
 	private val actionCallback = object : ActionMode.Callback {
 		override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
@@ -151,7 +150,7 @@ class PinCodeLayout @JvmOverloads constructor(
 		}
 	}
 
-	private val textWatcher = object : TextWatcher {
+	 val textWatcher = object : TextWatcher {
 		var textLengthBefore = 0
 		var textBeforeChange = ""
 		var textResetManually = false
@@ -238,11 +237,12 @@ class PinCodeLayout @JvmOverloads constructor(
 		bottomBar.setBackgroundColor(inactiveBarColor)
 	}
 
-	private fun setupEditText() {
+	 fun setupEditText() {
 		invisibleTextInput.apply {
 			filters = arrayOf(InputFilter.LengthFilter(pinLength), InputFilter.AllCaps())
 			text?.clear()
 			addTextChangedListener(textWatcher)
+			text?.clear()
 			customSelectionActionModeCallback = actionCallback
 			onFocusChangeListener = focusChangeListener
 			background = ContextCompat.getDrawable(context, inputBackground)
@@ -341,7 +341,7 @@ class PinCodeLayout @JvmOverloads constructor(
 		}
 	}
 
-	private fun clearPin(index: Int) {
+	 fun clearPin(index: Int) {
 		val pin: ViewGroup = pinLinearLayout[index] as ViewGroup
 		val currentPin: ViewSwitcher = pin[0] as ViewSwitcher
 		if (!pinIsHidden && currentPin[1].isShown) {
@@ -354,8 +354,7 @@ class PinCodeLayout @JvmOverloads constructor(
 	}
 
 	private fun animatePin(mCircle: View) {
-		objAnimator =
-			ObjectAnimator.ofFloat(mCircle, alphaPropertyName, alphaValueStart, alphaValueEnd)
+		objAnimator = ObjectAnimator.ofFloat(mCircle, alphaPropertyName, alphaValueStart, alphaValueEnd)
 		objAnimator?.run {
 			duration = animationDuration
 			repeatMode = ValueAnimator.REVERSE
@@ -364,7 +363,7 @@ class PinCodeLayout @JvmOverloads constructor(
 		}
 	}
 
-	private fun endAnimatePin() {
+	fun endAnimatePin() {
 		objAnimator?.end()
 		objAnimator?.cancel()
 	}

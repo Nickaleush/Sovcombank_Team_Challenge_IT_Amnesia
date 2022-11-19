@@ -19,6 +19,7 @@
         <activity
             android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.activity.MainActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.SovkombankTeamChallengeITamnezia"
             >
             <intent-filter>
