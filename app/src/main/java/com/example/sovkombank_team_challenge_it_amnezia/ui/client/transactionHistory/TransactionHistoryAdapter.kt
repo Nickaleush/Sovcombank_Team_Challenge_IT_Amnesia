@@ -8,8 +8,12 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.TransactionDTO
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.chipSelected
+import kotlinx.android.synthetic.main.item_home_account.view.*
 import kotlinx.android.synthetic.main.transaction_history_item.view.*
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<TransactionDTO>) :
     RecyclerView.Adapter<TransactionHistoryAdapter.ViewHolder>(), Filterable {
@@ -31,19 +35,39 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
         val shortAccountSrcNumber = v.context.getString(R.string.From) + accountSrcNumber.substring(14)
         val accountDstNumber = item.dstAccount?.accountNumber
         val shortAccountDstNumber = v.context.getString(R.string.To) + accountDstNumber?.substring(14)
-        if(item.dstAccount!=null){
+        if(item.dstAccount!=null) {
             v.accountDestTextview.visibility = View.VISIBLE
             v.rubleTextView.visibility = View.VISIBLE
+            when (item.dstAccount?.currency?.name) {
+                "RUB" -> v.rubleTextView.text = v.context.getText(R.string.Ruble)
+                "EUR" -> v.rubleTextView.text = v.context.getText(R.string.Euro)
+                "USD" -> v.rubleTextView.text = v.context.getText(R.string.Dollar)
+                "CNY" -> v.rubleTextView.text = v.context.getText(R.string.Yuan)
+                "GBP" -> v.rubleTextView.text = v.context.getText(R.string.Sterling)
+                else -> v.rubleTextView.text = null
+            }
             v.accountSrcTextview.text = shortAccountSrcNumber
             v.accountDestTextview.text = shortAccountDstNumber
             v.shortСurrencyNameTextView.text = item.dstAccount?.currency?.name
-            item.amount.toString().also { v.currencyCostTextView.text = it }
+            val amount = item.amount
+            val balance = amount.divide(BigDecimal(100.0), 2,  RoundingMode.FLOOR)
+            v.currencyCostTextView.text = balance.toString()
         } else {
             v.accountDestTextview.visibility = View.GONE
             v.rubleTextView.visibility = View.VISIBLE
+            when (item.dstAccount?.currency?.name) {
+                "RUB" -> v.rubleTextView.text = v.context.getText(R.string.Ruble)
+                "EUR" -> v.rubleTextView.text = v.context.getText(R.string.Euro)
+                "USD" -> v.rubleTextView.text = v.context.getText(R.string.Dollar)
+                "CNY" -> v.rubleTextView.text = v.context.getText(R.string.Yuan)
+                "GBP" -> v.rubleTextView.text = v.context.getText(R.string.Sterling)
+                else -> v.rubleTextView.text = null
+            }
             v.shortСurrencyNameTextView.text = item.srcAccount.currency.name
             v.accountSrcTextview.text = item.srcAccount.accountNumber.substring(14)
-            item.amount.toString().also { v.currencyCostTextView.text = it }
+            val amount = item.amount
+            val balance = amount.divide(BigDecimal(100.0), 2,  RoundingMode.FLOOR)
+            v.currencyCostTextView.text = balance.toString()
         }
         when (item.type) {
             "RECHARGE" -> v.typeTransactionTextview.setText(R.string.Recharge)

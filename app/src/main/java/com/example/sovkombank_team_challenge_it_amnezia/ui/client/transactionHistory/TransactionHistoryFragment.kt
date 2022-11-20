@@ -1,9 +1,12 @@
 package com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,14 +17,19 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Transactio
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaService.Companion.accessDenied
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment.Companion.dateTime
 import com.google.android.material.chip.Chip
+import kotlinx.android.synthetic.main.registration_fragment.*
 import kotlinx.android.synthetic.main.transaction_history_fragment.*
 import kotlinx.android.synthetic.main.transaction_history_item.view.*
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>(),
-    TransactionHistoryView {
+    TransactionHistoryView, DatePickerDialog.OnDateSetListener {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -59,6 +67,27 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
                 filterList(chipSelected)
             } ?: kotlin.run {
             }
+        }
+
+//        chip_group_choice.setOnCheckedChangeListener {
+//                group, checkedId ->
+//            val chip: Chip? = group.findViewById(checkedId)
+//            chip?.let { chipView ->
+//
+//            } ?: kotlin.run {
+//            }
+//        }
+
+        chipFrom.setOnClickListener {
+            getDateTimeCalendar()
+            DatePickerDialog(requireContext(), this, yearHistory, monthHistory, dayHistory).show()
+            DATE_FROM_SELECTED = true
+        }
+
+        chipTill.setOnClickListener {
+            getDateTimeCalendar()
+            DatePickerDialog(requireContext(), this, yearHistory, monthHistory, dayHistory).show()
+            DATE_FROM_SELECTED = false
         }
     }
 
@@ -126,10 +155,55 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private fun getDateTimeCalendar() {
+        val cal: Calendar = Calendar.getInstance()
+        dayHistory = cal.get(Calendar.DAY_OF_MONTH)
+        monthHistory = cal.get(Calendar.MONTH)
+        yearHistory = cal.get(Calendar.YEAR)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDayHistory = dayOfMonth
+        savedMonthHistory = month+1
+        savedYearHistory = year
+        getDateTimeCalendar()
+        resultMonthHistory = if (savedMonthHistory <10) "0${savedMonthHistory}" else "${savedMonthHistory}"
+        resultDayHistory = if(savedDayHistory <10) "0${savedDayHistory}" else "$savedDayHistory"
+        dateTimeHistory = "${savedYearHistory}-${savedMonthHistory}-${savedDayHistory}"
+        val outputFormat= SimpleDateFormat("dd MMMM yyyy")
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd")
+        val date = inputFormat.parse(dateTimeHistory)
+        val formattedDate = outputFormat.format(date)
+        if (DATE_FROM_SELECTED) {
+            chipFrom.text = formattedDate
+            SEND_FROM_DATE_FORMAT = inputFormat.format(date)
+            DATE_FROM_SELECTED = false
+        }
+        else {
+            chipTill.text = formattedDate
+            SEND_TO_DATE_FORMAT = inputFormat.format(date)
+            DATE_FROM_SELECTED = false
+        }
+    }
+
     override fun showError(message: String?): Unit =
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
     companion object {
         var chipSelected = ""
+        var DATE_FROM_SELECTED = false
+        var yearHistory = 0
+        var monthHistory = 0
+        var dayHistory = 0
+        var savedYearHistory = 0
+        var savedMonthHistory = 0
+        var savedDayHistory = 0
+        var resultMonthHistory = ""
+        var resultDayHistory = ""
+        var dateTimeHistory = ""
+        var SEND_FROM_DATE_FORMAT = ""
+        var SEND_TO_DATE_FORMAT = ""
     }
 }

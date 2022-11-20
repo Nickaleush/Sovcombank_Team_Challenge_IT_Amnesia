@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -25,6 +26,100 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        app:checkedChip="@+id/chipAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarTransactionHistoryTabLayout">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipFrom"
+        style="@style/chip_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:text="@string/From"
+         />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipTill"
+        style="@style/chip_style"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="@string/TillTime"
+        />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_choice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        app:checkedChip="@+id/chipAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_group_date"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipAll"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/All"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:textColor="@color/chip_color"
+            app:chipBackgroundColor="@color/chip_background" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTransaction"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:text="@string/Transaction"
+            android:textColor="@color/chip_color"
+            app:chipBackgroundColor="@color/chip_background" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipRecharge"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:text="@string/Recharge"
+            android:textColor="@color/chip_color"
+            app:chipBackgroundColor="@color/chip_background" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipWithdrawal"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:text="@string/Withdrawal"
+            android:textColor="@color/chip_color"
+            app:chipBackgroundColor="@color/chip_background" />
+    </com.google.android.material.chip.ChipGroup>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/transactionHistoryRecyclerView"
@@ -69,58 +164,4 @@
         app:layout_constraintStart_toStartOf="@+id/transactionHistoryRecyclerView"
         app:layout_constraintTop_toTopOf="@+id/transactionHistoryRecyclerView" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group_choice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarTransactionHistoryTabLayout"
-        app:singleSelection="true"
-        app:checkedChip="@+id/chipAll">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipAll"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/All"
-            android:textColor="@color/chip_color"
-            app:chipBackgroundColor="@color/chip_background" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipTransaction"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/Transaction"
-            android:textColor="@color/chip_color"
-            app:chipBackgroundColor="@color/chip_background" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipRecharge"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/Recharge"
-            android:textColor="@color/chip_color"
-            app:chipBackgroundColor="@color/chip_background" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipWithdrawal"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/Withdrawal"
-            android:textColor="@color/chip_color"
-            app:chipBackgroundColor="@color/chip_background" />
-    </com.google.android.material.chip.ChipGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

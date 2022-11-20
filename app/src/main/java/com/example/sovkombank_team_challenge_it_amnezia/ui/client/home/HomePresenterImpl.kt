@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.example.sovkombank_team_challenge_it_amnezia.domain.mainApi.MainApi
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.AccountOperation
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.CurrencyName
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Transaction
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BasePresenterImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -74,6 +75,20 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
     @SuppressLint("CheckResult")
     override fun deleteMoneyFromAccount(accountToDelete: AccountOperation) {
         mainApi.deleteMoneyFromAccount(accountToDelete)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view.dismissBottomSheet()
+                getAllUserAccount()
+            }, {
+                view.dismissBottomSheet()
+                view.showError(it.message)
+            })
+    }
+
+    @SuppressLint("CheckResult")
+    override fun createNewTransaction(transaction: Transaction) {
+        mainApi.createNewTransaction(transaction)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
