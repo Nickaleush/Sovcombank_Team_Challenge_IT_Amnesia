@@ -6,4 +6,5 @@ import com.example.sovkombank_team_challenge_it_amnezia.mvp.BasePresenter
 interface StatisticsPresenter: BasePresenter {
     var view: StatisticsView
     fun getStatistics(statistic: Statistics)
+    fun getAllCurrencies()
 }

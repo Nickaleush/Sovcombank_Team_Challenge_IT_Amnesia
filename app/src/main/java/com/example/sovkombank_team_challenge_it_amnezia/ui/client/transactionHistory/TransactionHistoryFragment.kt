@@ -153,10 +153,6 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
     @SuppressLint("SimpleDateFormat")
     private fun getDateTimeCalendar() {
         val cal: Calendar = Calendar.getInstance()

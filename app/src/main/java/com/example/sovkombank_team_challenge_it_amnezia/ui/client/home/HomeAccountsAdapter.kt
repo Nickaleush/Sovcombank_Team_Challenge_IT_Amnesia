@@ -8,7 +8,6 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Account
-import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment.Companion.ACCOUNT_ID
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment.Companion.ACCOUNT_ID_RUB
 import kotlinx.android.synthetic.main.item_home_account.view.*
 import java.math.BigDecimal

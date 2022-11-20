@@ -32,5 +32,4 @@ class TransactionHistoryPresenterImpl @Inject constructor(private val mainApi: M
                 view.showError(it.message)
             })
     }
-
 }

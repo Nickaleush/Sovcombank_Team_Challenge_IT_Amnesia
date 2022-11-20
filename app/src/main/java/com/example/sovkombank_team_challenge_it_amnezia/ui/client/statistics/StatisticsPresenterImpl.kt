@@ -34,4 +34,16 @@ class StatisticsPresenterImpl @Inject constructor(private val mainApi: MainApi) 
             })
     }
 
+    @SuppressLint("CheckResult")
+    override fun getAllCurrencies() {
+        mainApi.getAllCurrencies()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view.initCurrencyList(it)
+            }, {
+                view.showError(it.message)
+            })
+    }
+
 }

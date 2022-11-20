@@ -7,12 +7,13 @@
     android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarClientListTabLayout"
+        android:id="@+id/toolbarStatistics"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/arrow_back"
         >
         <TextView
             android:id="@+id/registrationTextView"
@@ -27,17 +28,68 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.appcompat.widget.Toolbar>
 
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_date_stats"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        app:checkedChip="@+id/chipAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarStatistics">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFromStats"
+            style="@style/chip_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:text="@string/From"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTillStats"
+            style="@style/chip_style"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/gteestiprotext_regular"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/TillTime"
+            />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <Spinner
+        android:id="@+id/selectCurrencySpinnerStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:imeOptions="actionDone"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_group_date_stats" />
+
     <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
         android:id="@+id/aa_chart_view"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/selectCurrencySpinnerStats">
 
     </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
 

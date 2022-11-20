@@ -93,6 +93,9 @@
     <string name="DeleteMoneySuccess">Деньги успешно выведены со счета!</string>
     <string name="SellMoneySuccess">Вы успешно продали валюту!</string>
     <string name="BuyMoneySuccess">Вы успешно купили валюту!</string>
+    <string name="GraphicsQuotations">График изменения котировок</string>
+    <string name="OperationSuccess">Операция проведена успешно!</string>
+    <string name="SomethingWentWrong">Что-то пошло не так…</string>
     <string name="WithDraw">Вывести</string>
     <string name="Sell">Продать</string>
     <string name="Statistics">Статистика</string>

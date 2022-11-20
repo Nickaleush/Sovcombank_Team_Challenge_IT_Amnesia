@@ -55,6 +55,7 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
             .subscribe({
                 view.dismissBottomSheet()
                 getAllUserAccount()
+                view.showToastSuccess()
             }, {
                 view.dismissBottomSheet()
                 view.showError(it.message)
@@ -69,6 +70,7 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
             .subscribe({
                 view.dismissBottomSheet()
                 getAllUserAccount()
+                view.showToastSuccess()
             }, {
                 view.dismissBottomSheet()
                 view.showError(it.message)
@@ -83,6 +85,7 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
             .subscribe({
                 view.dismissBottomSheet()
                 getAllUserAccount()
+                view.showToastSuccess()
             }, {
                 view.dismissBottomSheet()
                 view.showError(it.message)
@@ -97,6 +100,7 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
             .subscribe({
                 view.dismissBottomSheet()
                 getAllUserAccount()
+                view.showToastSuccess()
             }, {
                 view.dismissBottomSheet()
                 view.showError(it.message)
@@ -111,6 +115,7 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
             .subscribe({
                 view.dismissBottomSheet()
                 getAllUserAccount()
+                view.showToastSuccess()
             }, {
                 view.dismissBottomSheet()
                 view.showError(it.message)

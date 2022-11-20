@@ -55,6 +55,7 @@
     <string name="resend_two_min">Resend confirmation code in:</string>
     <string name="ConfirmCodeAccountSent">Enter the code that was sent to your phone number to confirm your account</string>
     <string name="CheckCredentials">Please, check your credentials</string>
+    <string name="SomethingWentWrong">Something went wrong…</string>
     <string name="Confirm">Confirm</string>
     <string name="CreateCurrencyAccount">Create new currency account</string>
     <string name="CreateAccount">Create new account</string>
@@ -68,6 +69,7 @@
     <string name="GoodMorning">Good morning, %1$s!</string>
     <string name="ExitConfirm">Do you want to exit the app?</string>
     <string name="Next">Next</string>
+    <string name="GraphicsQuotations">Graph of changes in quotations</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="Home">Home</string>
@@ -100,6 +102,7 @@
     <string name="Yuan">¥</string>
     <string name="RubleBill">ruble bill</string>
     <string name="Account">Account</string>
+    <string name="OperationSuccess">Operation completed successfully!</string>
     <string name="DeleteMoneySuccess">Money has been successfully withdrawn from the account!</string>
     <string name="SellMoneySuccess">You have successfully sold the currency!</string>
     <string name="BuyMoneySuccess">You have successfully purchased a currency!</string>

@@ -204,7 +204,6 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             val bigDecimalAmount = amount.toBigDecimal()
             val sendAmount = bigDecimalAmount.multiply(BigDecimal(100))
             presenter.addMoneyToAccount(AccountOperation(ACCOUNT_ID_RUB, sendAmount))
-            Toast.makeText(requireContext(),getText(R.string.AddMoneySuccess), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -222,7 +221,6 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             val bigDecimalAmount = amount.toBigDecimal()
             val deleteAmount = bigDecimalAmount.multiply(BigDecimal(100))
             presenter.deleteMoneyFromAccount(AccountOperation(ACCOUNT_ID_RUB, deleteAmount))
-            Toast.makeText(requireContext(),getText(R.string.DeleteMoneySuccess), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -243,11 +241,14 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             val bigDecimalAmount = amount.toBigDecimal()
             val sellAmount = bigDecimalAmount.multiply(BigDecimal(100))
             presenter.createSellTransaction(Transaction(sellAmount, ACCOUNT_ID_RUB, selected.id))
-            Toast.makeText(requireContext(),getText(R.string.SellMoneySuccess), Toast.LENGTH_SHORT).show()
             SELL_OPENED = false
         }
     }
-    
+
+    override fun showToastSuccess() {
+        Toast.makeText(requireContext(),getText(R.string.OperationSuccess), Toast.LENGTH_SHORT).show()
+    }
+
     fun openBuyCurrencySheet(id: UUID) {
         sheetView = requireActivity().layoutInflater.inflate(R.layout.bottomsheet_buy_currency, null)
         bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
@@ -258,11 +259,10 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         amountBuyCurrencyEditText = sheetView.findViewById(R.id.amountBuyCurrencyEditText)
         buttonBuyCurrency = sheetView.findViewById(R.id.buttonBuyCurrency)
         buttonBuyCurrency.setOnClickListener {
-            val amount = amountBuyCurrencyEditText.text.toString()
-            val bigDecimalAmount = amount.toBigDecimal()
-            val sellAmount = bigDecimalAmount.multiply(BigDecimal(100))
-            presenter.createBuyTransaction(Transaction(sellAmount, id, ACCOUNT_ID_RUB))
-            Toast.makeText(requireContext(),getText(R.string.BuyMoneySuccess), Toast.LENGTH_SHORT).show()
+        val amount = amountBuyCurrencyEditText.text.toString()
+        val bigDecimalAmount = amount.toBigDecimal()
+        val sellAmount = bigDecimalAmount.multiply(BigDecimal(100))
+        presenter.createBuyTransaction(Transaction(sellAmount, id, ACCOUNT_ID_RUB))
         }
     }
 
@@ -307,10 +307,9 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         }
     }
 
-    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), getString(R.string.CheckCredentials), Toast.LENGTH_SHORT).show()
+    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), getString(R.string.SomethingWentWrong), Toast.LENGTH_SHORT).show()
 
     companion object {
-        var ACCOUNT_ID: UUID = randomUUID()
         var ACCOUNT_ID_RUB: UUID = randomUUID()
         var ACCOUNT_OPENED = false
         var ACCOUNT_OPENED_POSITION = 0

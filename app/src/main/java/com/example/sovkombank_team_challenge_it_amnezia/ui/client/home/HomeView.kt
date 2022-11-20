@@ -12,4 +12,5 @@ interface HomeView : BaseView {
     fun initCurrencyList(currencyList:ArrayList<Quotation>)
     fun dismissBottomSheet()
     fun showSellBottomSheet()
+    fun showToastSuccess()
 }
