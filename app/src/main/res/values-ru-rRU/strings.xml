@@ -99,6 +99,10 @@
     <string name="Transaction">Перевод</string>
     <string name="Recharge">Пополнение</string>
     <string name="Withdrawal">Снятие</string>
+    <string name="FingerprintNotSupported">Функция отпечатков пальцев недоступна на этом устройстве</string>
+    <string name="AuthFailed">Ошибка авторизации</string>
+    <string name="NoFingerprintRegistered">Отпечаток пальца не зарегистрирован</string>
+    <string name="FingerprintNotAvailableOnThisOS">Функция отпечатков пальцев недоступна для данной версии Android</string>
     <string name="HistoryOfOperations">История операций</string>
     <string name="EmptyActiveClientList">Список активных клиентов пуст</string>
     <string name="EmptyBlockedClientList">Список заблокированных клиентов пуст</string>

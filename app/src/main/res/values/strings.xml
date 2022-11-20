@@ -96,6 +96,10 @@
     <string name="Recharge">Recharge</string>
     <string name="Withdrawal">Withdrawal</string>
     <string name="History">History</string>
+    <string name="FingerprintNotSupported">Fingerprint authentication not supported on the device</string>
+    <string name="AuthFailed">Authentication Failed</string>
+    <string name="NoFingerprintRegistered">No Fingerprint registered</string>
+    <string name="FingerprintNotAvailableOnThisOS">Fingerprint feature is not available on this OS</string>
     <string name="All">All</string>
     <string name="HistoryOfOperations">History of operations</string>
     <string name="EmptyActiveClientList"> The list of active clients is empty</string>
