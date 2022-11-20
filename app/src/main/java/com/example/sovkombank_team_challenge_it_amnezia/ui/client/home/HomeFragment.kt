@@ -50,6 +50,8 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
 
     private lateinit var sellCurrencyEditText: EditText
 
+    private lateinit var amountBuyCurrencyEditText: EditText
+
     private lateinit var spinnerCurrency: Spinner
 
     private lateinit var selectAccountSpinner: Spinner
@@ -61,6 +63,8 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     private lateinit var buttonDeleteMoneyFromAccount: Button
 
     private lateinit var buttonSellMoney: Button
+
+    private lateinit var  buttonBuyCurrency: Button
 
     private lateinit var homeAccountsAdapter: HomeAccountsAdapter
 
@@ -108,9 +112,25 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         recyclerViewCurrency.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         val adapter = HomeCurrencyAdapter(currencyList)
         recyclerViewCurrency.adapter = adapter
+        adapter.setOnClickRecyclerListener(object : HomeCurrencyAdapter.OnClickListener {
+            @SuppressLint("SimpleDateFormat")
+            override fun onClick(position: Int) {
+                for (i in 0 until accountsSpinnerList.size ) {
+                        ACCOUNT_OPENED = accountsSpinnerList[i].currency.name == currencyList[position].currencyDto.name
+                        ACCOUNT_OPENED_POSITION = i
+                        if (ACCOUNT_OPENED) break
+                }
+                if (ACCOUNT_OPENED) openBuyCurrencySheet(accountsSpinnerList[ACCOUNT_OPENED_POSITION].id)
+                else {
+                    Toast.makeText(requireContext(), getText(R.string.CreateAccountFirst), Toast.LENGTH_SHORT).show()
+                    openCreateAccountSheet()
+                }
+            }
+        })
     }
 
     override fun initAccountsRecyclerView(accountsList: ArrayList<Account>) {
+        accountsSpinnerList.clear()
         val sortedList = accountsList.sortedWith(compareBy({ it.currency.name == "RUB" }, { it.currency.name }))
         for (i in 0 until sortedList.size -1 ) accountsSpinnerList.add(sortedList[i])
         val reversedSortedList = sortedList.reversed()
@@ -183,7 +203,8 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             val amount = amountAddMoneyEditText.text.toString()
             val bigDecimalAmount = amount.toBigDecimal()
             val sendAmount = bigDecimalAmount.multiply(BigDecimal(100))
-            presenter.addMoneyToAccount(AccountOperation(ACCOUNT_ID, sendAmount))
+            presenter.addMoneyToAccount(AccountOperation(ACCOUNT_ID_RUB, sendAmount))
+            Toast.makeText(requireContext(),getText(R.string.AddMoneySuccess), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -201,10 +222,11 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             val bigDecimalAmount = amount.toBigDecimal()
             val deleteAmount = bigDecimalAmount.multiply(BigDecimal(100))
             presenter.deleteMoneyFromAccount(AccountOperation(ACCOUNT_ID_RUB, deleteAmount))
+            Toast.makeText(requireContext(),getText(R.string.DeleteMoneySuccess), Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun openSellSheet() {
+   override fun showSellBottomSheet() {
         sheetView = requireActivity().layoutInflater.inflate(R.layout.bottomsheet_sell_money_from_account, null)
         bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
         bottomSheetDialog.setContentView(sheetView)
@@ -220,12 +242,32 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             val amount = sellCurrencyEditText.text.toString()
             val bigDecimalAmount = amount.toBigDecimal()
             val sellAmount = bigDecimalAmount.multiply(BigDecimal(100))
-            presenter.createNewTransaction(Transaction(sellAmount, ACCOUNT_ID_RUB, selected.id))
+            presenter.createSellTransaction(Transaction(sellAmount, ACCOUNT_ID_RUB, selected.id))
+            Toast.makeText(requireContext(),getText(R.string.SellMoneySuccess), Toast.LENGTH_SHORT).show()
+            SELL_OPENED = false
+        }
+    }
+    
+    fun openBuyCurrencySheet(id: UUID) {
+        sheetView = requireActivity().layoutInflater.inflate(R.layout.bottomsheet_buy_currency, null)
+        bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
+        bottomSheetDialog.setContentView(sheetView)
+        bottomSheetDialog.show()
+        val mBehavior = BottomSheetBehavior.from(sheetView.parent as View)
+        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        amountBuyCurrencyEditText = sheetView.findViewById(R.id.amountBuyCurrencyEditText)
+        buttonBuyCurrency = sheetView.findViewById(R.id.buttonBuyCurrency)
+        buttonBuyCurrency.setOnClickListener {
+            val amount = amountBuyCurrencyEditText.text.toString()
+            val bigDecimalAmount = amount.toBigDecimal()
+            val sellAmount = bigDecimalAmount.multiply(BigDecimal(100))
+            presenter.createBuyTransaction(Transaction(sellAmount, id, ACCOUNT_ID_RUB))
+            Toast.makeText(requireContext(),getText(R.string.BuyMoneySuccess), Toast.LENGTH_SHORT).show()
         }
     }
 
     fun openStatisticsFragment() {
-
+        findNavController().navigate(R.id.action_homeFragment_to_statisticsFragment)
     }
 
     override fun onBackPressed() {
@@ -259,17 +301,19 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
                 else {
                     getData()
                     accessDenied = false
-
                     coroutineContext.cancel()
                 }
             }
         }
     }
 
-    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), getString(R.string.CheckCredentials), Toast.LENGTH_SHORT).show()
 
     companion object {
         var ACCOUNT_ID: UUID = randomUUID()
         var ACCOUNT_ID_RUB: UUID = randomUUID()
+        var ACCOUNT_OPENED = false
+        var ACCOUNT_OPENED_POSITION = 0
+        var SELL_OPENED = false
     }
 }

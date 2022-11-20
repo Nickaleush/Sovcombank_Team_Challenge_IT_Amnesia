@@ -62,7 +62,7 @@
         android:layout_gravity="center_vertical"
         >
         <TextView
-            android:id="@+id/buyCurrencyTextView"
+            android:id="@+id/buyCurrencyTextViewBlue"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:background="@drawable/rounded_button_shape"

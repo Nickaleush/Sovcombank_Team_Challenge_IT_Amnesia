@@ -35,7 +35,7 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
         presenter.start()
         presenter.view = this
         getData()
-        buttonLogOut.setOnClickListener {
+        buttonClientLogOut.setOnClickListener {
             sharedPreferences.accessToken = null
             sharedPreferences.pinCode = null
             findNavController().navigateTo(findNavController(),R.id.action_profileFragment_to_welcomeFragment, true)

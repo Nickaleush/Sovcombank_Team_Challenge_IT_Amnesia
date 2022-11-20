@@ -29,8 +29,11 @@ interface MainApi {
     @GET("api/currency")
     fun getAllCurrencies(): Single<ArrayList<Quotation>>
 
-    @POST("api/account/transaction")
-    fun createNewTransaction(@Body transaction: Transaction): Single<ArrayList<Unit>>
+    @POST("api/account/transaction/buy")
+    fun createBuyTransaction(@Body transaction: Transaction): Single<Unit>
+
+    @POST("api/account/transaction/sell")
+    fun createSellTransaction(@Body transaction: Transaction): Single<Unit>
 
     @POST("api/account")
     fun createNewAccount(@Body currencyName: CurrencyName): Single<Account>

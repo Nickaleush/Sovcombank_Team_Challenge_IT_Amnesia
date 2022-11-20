@@ -7,6 +7,7 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.CurrencyNa
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Transaction
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BasePresenterImpl
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment.Companion.SELL_OPENED
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -39,6 +40,8 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 view.initAccountsRecyclerView(it)
+                if (SELL_OPENED) view.showSellBottomSheet()
+                SELL_OPENED = false
             }, {
                 view.showError(it.message)
             })
@@ -87,8 +90,8 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
     }
 
     @SuppressLint("CheckResult")
-    override fun createNewTransaction(transaction: Transaction) {
-        mainApi.createNewTransaction(transaction)
+    override fun createBuyTransaction(transaction: Transaction) {
+        mainApi.createBuyTransaction(transaction)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -99,6 +102,21 @@ class HomePresenterImpl @Inject constructor(private val mainApi: MainApi) : Base
                 view.showError(it.message)
             })
     }
+
+    @SuppressLint("CheckResult")
+    override fun createSellTransaction(transaction: Transaction) {
+        mainApi.createSellTransaction(transaction)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view.dismissBottomSheet()
+                getAllUserAccount()
+            }, {
+                view.dismissBottomSheet()
+                view.showError(it.message)
+            })
+    }
+
 
     override fun start() = Unit
 

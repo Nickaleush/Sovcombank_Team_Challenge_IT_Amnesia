@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.HomeButtonType
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemButton
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment.Companion.SELL_OPENED
 import kotlinx.android.synthetic.main.item_home_button.view.*
 
 
@@ -49,12 +50,15 @@ class HomeButtonsAdapter(private val items: ArrayList<ListItemButton> = ArrayLis
                 holder.itemView.setOnClickListener { fragment.openDeleteMoneySheet() }
             }
 
-            HomeButtonType.Sell ->    {
+            HomeButtonType.Sell -> {
                 holder.itemView.holderButton.setCardBackgroundColor(holder.itemView.context.getColor(R.color.white))
                 holder.itemView.buttonName.setTextColor(holder.itemView.context.getColor(R.color.blue))
                 holder.itemView.buttonImage.setImageResource(R.drawable.sell_icon_foreground)
                 holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.Sell)
-                holder.itemView.setOnClickListener { fragment.openSellSheet() }
+                holder.itemView.setOnClickListener {
+                    SELL_OPENED = true
+                    fragment.presenter.getAllUserAccount()
+                }
             }
 
             HomeButtonType.Statistics ->    {

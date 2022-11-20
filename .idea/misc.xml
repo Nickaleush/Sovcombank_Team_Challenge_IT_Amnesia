@@ -42,7 +42,9 @@
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/drawable/withdraw_icon_foreground.xml" value="0.2388888888888889" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/auth_flow.xml" value="0.33" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_add_money_to_account.xml" value="0.22" />
-        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_create_new_account.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_buy_currency.xml" value="0.25" />
+        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_buy_money.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_create_new_account.xml" value="0.22" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_delete_money_from_account.xml" value="0.22" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_sell_money_from_account.xml" value="0.25" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/country_code_picker.xml" value="0.20520833333333333" />

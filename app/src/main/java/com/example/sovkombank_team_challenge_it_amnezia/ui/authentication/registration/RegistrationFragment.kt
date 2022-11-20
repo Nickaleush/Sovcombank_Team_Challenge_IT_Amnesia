@@ -87,9 +87,7 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
     }
 
     private fun signUp(phone: String, birthDay:String, name: String, surname:String, lastName:String, password: String) {
-        USER_PHONE = phone
         sharedPreferences.userName = name
-
         val confirmPassword = editTextConfirmPassword.text.toString().trim()
         val user = UserToSignUp(birthDay, phone,name, surname , lastName, password)
 
@@ -354,11 +352,9 @@ class RegistrationFragment : BaseFragment<RegistrationPresenterImpl>(), Registra
         }
     }
 
-    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), getString(R.string.CheckCredentials), Toast.LENGTH_SHORT).show()
 
     companion object {
-        var USER_PHONE = "null"
-        var USER_NAME = "null"
         private var remainSeconds = 120
         private var timerConfirmAccount: Timer? = null
         var confirmCodeAccount = ""

@@ -11,4 +11,5 @@ interface HomeView : BaseView {
     fun hideSkeleton()
     fun initCurrencyList(currencyList:ArrayList<Quotation>)
     fun dismissBottomSheet()
+    fun showSellBottomSheet()
 }

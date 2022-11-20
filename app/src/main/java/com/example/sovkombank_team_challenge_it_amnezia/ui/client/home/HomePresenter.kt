@@ -12,5 +12,6 @@ interface HomePresenter: BasePresenter {
     fun createNewAccount(currencyName: CurrencyName)
     fun addMoneyToAccount(accountToAdd: AccountOperation)
     fun deleteMoneyFromAccount(accountToDelete: AccountOperation)
-    fun createNewTransaction(transaction: Transaction)
+    fun createBuyTransaction(transaction: Transaction)
+    fun createSellTransaction(transaction: Transaction)
 }
