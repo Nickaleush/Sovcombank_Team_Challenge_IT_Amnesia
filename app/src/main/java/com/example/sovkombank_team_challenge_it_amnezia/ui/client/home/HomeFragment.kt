@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +35,9 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
-    private lateinit var skeleton: Skeleton
+    private lateinit var skeletonCurrency: Skeleton
+
+    private lateinit var skeletonAccounts: Skeleton
 
     private var homeButtonItems: ArrayList<ListItemButton> = ArrayList()
 
@@ -95,12 +98,19 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         linearLayout_profile_from_home.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
-        skeleton = recyclerViewCurrency.applySkeleton(R.layout.item_home_currency)
-        skeleton.maskCornerRadius = 30F
-        skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
-        skeleton.showSkeleton()
+        skeletonCurrency = recyclerViewCurrency.applySkeleton(R.layout.item_home_currency)
+        skeletonCurrency.maskCornerRadius = 30F
+        skeletonCurrency.shimmerColor = requireActivity().getColor(R.color.blue)
+        skeletonCurrency.showSkeleton()
+
+        skeletonAccounts = recyclerViewHomeAccounts.applySkeleton(R.layout.item_home_account)
+        skeletonAccounts.maskCornerRadius = 30F
+        skeletonAccounts.shimmerColor = requireActivity().getColor(R.color.blue)
+        skeletonAccounts.showSkeleton()
+
         getData()
         if (accessDenied) {
+            hideMain()
             waitAccess()
         }
     }
@@ -142,7 +152,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     override fun hideSkeleton() {
-        skeleton.showOriginal()
+        skeletonCurrency.showOriginal()
     }
 
     override fun initCurrencyList(currencyList: ArrayList<Quotation>) {
@@ -248,6 +258,10 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         }
     }
 
+    fun openPredictionFragment() {
+
+    }
+
     override fun showToastSuccess() {
         Toast.makeText(requireContext(),getText(R.string.OperationSuccess), Toast.LENGTH_SHORT).show()
     }
@@ -273,8 +287,25 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         findNavController().navigate(R.id.action_homeFragment_to_statisticsFragment)
     }
 
-    fun openPredictionFragment() {
+    private fun hideMain() {
+        yourAccountsTextView.visibility = View.GONE
+        waitUntilPermissionImageView.visibility = View.VISIBLE
+        waitUntilConfirmTextView.visibility = View.VISIBLE
+        linearLayout_profile_from_home.visibility = View.GONE
+        recyclerViewHomeButtons.visibility = View.GONE
+        recyclerViewHomeAccounts.visibility = View.GONE
+        currencyTextView.visibility = View.GONE
+        recyclerViewCurrency.visibility = View.GONE
+    }
 
+    private fun showMain() {
+        waitUntilPermissionImageView.visibility = View.GONE
+        waitUntilConfirmTextView.visibility = View.GONE
+        linearLayout_profile_from_home.visibility = View.VISIBLE
+        recyclerViewHomeButtons.visibility = View.VISIBLE
+        recyclerViewHomeAccounts.visibility = View.VISIBLE
+        currencyTextView.visibility = View.VISIBLE
+        recyclerViewCurrency.visibility = View.VISIBLE
     }
 
     override fun onBackPressed() {
@@ -307,6 +338,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
                 else {
                     getData()
                     accessDenied = false
+                    showMain()
                     coroutineContext.cancel()
                 }
             }

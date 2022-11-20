@@ -82,6 +82,7 @@
     <string name="EnterPicode">Enter Pin Code</string>
     <string name="Cancel">Cancel</string>
     <string name="Currency">Currency</string>
+    <string name="MyAccounts">My accounts</string>
     <string name="Deposit">Deposit</string>
     <string name="MakeDeposit">Make a deposit to the main account </string>
     <string name="Buy">Buy</string>

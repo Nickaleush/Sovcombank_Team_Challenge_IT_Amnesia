@@ -22,6 +22,7 @@ import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessagi
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment.Companion.dateTime
 import com.google.android.material.chip.Chip
+import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.registration_fragment.*
 import kotlinx.android.synthetic.main.transaction_history_fragment.*
 import kotlinx.android.synthetic.main.transaction_history_item.view.*
@@ -65,7 +66,10 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         getData()
         DATA_FROM_FILTER_SELECTED = false
         DATA_TO_FILTER_SELECTED = false
-        if (accessDenied) waitAccess()
+        if (accessDenied){
+            waitAccess()
+            hideMain()
+        }
         chip_group_choice.setOnCheckedChangeListener { group, checkedId ->
             val chip: Chip? = group.findViewById(checkedId)
             chip?.let { chipView ->
@@ -111,6 +115,28 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
 
     }
 
+    private fun hideMain(){
+        waitUntilAccessImageView.visibility = View.VISIBLE
+        waitUntilConfirmationTextView.visibility = View.VISIBLE
+        toolbarTransactionHistoryTabLayout.visibility = View.GONE
+        chip_group_date.visibility = View.GONE
+        chip_group_choice.visibility = View.GONE
+        transactionHistoryRecyclerView.visibility = View.GONE
+        transactionHistoryListTextView.visibility = View.GONE
+        transactionHistoryListImageView.visibility = View.GONE
+    }
+
+    private fun showMain(){
+        waitUntilAccessImageView.visibility = View.GONE
+        waitUntilConfirmationTextView.visibility = View.GONE
+        toolbarTransactionHistoryTabLayout.visibility = View.VISIBLE
+        chip_group_date.visibility = View.VISIBLE
+        chip_group_choice.visibility = View.VISIBLE
+        transactionHistoryRecyclerView.visibility = View.VISIBLE
+        transactionHistoryListTextView.visibility = View.VISIBLE
+        transactionHistoryListImageView.visibility = View.VISIBLE
+    }
+
     override fun initTransactionHistoryResycler(listTransactionHistory: MutableList<TransactionDTO>) {
         transactionHistoryList = listTransactionHistory
         initialTransactionHistoryList = listTransactionHistory
@@ -141,16 +167,17 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
             }.show()
     }
 
+
     private fun waitAccess() {
         CoroutineScope(Dispatchers.IO).launch {
             delay(5000)
             CoroutineScope(Dispatchers.Main).launch {
                 if (accessDenied) {
                     waitAccess()
-                    // добавить заглушку
                 } else {
                     getData()
-                    //убрать заглушку
+                    showMain()
+                    accessDenied = false
                     coroutineContext.cancel()
                 }
             }

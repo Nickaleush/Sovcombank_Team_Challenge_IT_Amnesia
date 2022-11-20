@@ -30,8 +30,6 @@ interface AppComponent {
 
     fun createAuthFragment(): AuthComponent
 
-    fun createAuthPagerFragment():AuthPagerComponent
-
     fun createProfileFragment(): ProfileComponent
 
     fun createLogoFragment(): LogoComponent

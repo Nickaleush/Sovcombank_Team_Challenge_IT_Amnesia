@@ -28,6 +28,8 @@ class HomeAccountsAdapter(private val accountsList: List<Account>, val fragment:
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val v = holder.itemView
         val item = accountsList[position]
+        v.currencySymbolTextView.visibility = View.VISIBLE
+        v.accountTypeTextview.visibility = View.VISIBLE
         if (item.currency.name == "RUB" ) ACCOUNT_ID_RUB = item.id
         val accountNumber = item.accountNumber
         val shortAccountNumber = accountNumber.substring(14)

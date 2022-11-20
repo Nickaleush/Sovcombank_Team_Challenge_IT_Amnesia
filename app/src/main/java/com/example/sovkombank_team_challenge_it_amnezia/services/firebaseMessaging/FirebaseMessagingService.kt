@@ -52,7 +52,7 @@ class FirebaseMessagingItAmnesiaService: FirebaseMessagingItAmnesiaView, Firebas
         }
     }
     companion object{
-        var accessDenied = true
+        var accessDenied = false
         private const val MYFCM = "MyFirebaseMessagingService"
     }
 }
