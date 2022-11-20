@@ -22,20 +22,19 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val v = holder.itemView
         val item = transactionHistoryList[position]
-        if((item.dstAccount.id).toString()!=""){
+        if((item.dstAccount?.id).toString()!=""){
             v.accountDestTextview.visibility = View.VISIBLE
             v.rubleTextView.visibility = View.VISIBLE
             v.accountSrcTextview.text = item.srcAccount.id.toString()
-            v.accountDestTextview.text = item.dstAccount.id.toString()
-            v.shortСurrencyNameTextView.text = item.dstAccount.currency.name
+            v.accountDestTextview.text = item.dstAccount?.id.toString()
+            v.shortСurrencyNameTextView.text = item.dstAccount?.currency?.name
             item.srcAccount.amount.toString().also { v.currencyCostTextView.text = it }
-        }else{
+        } else {
             v.accountDestTextview.visibility = View.GONE
             v.rubleTextView.visibility = View.VISIBLE
             v.shortСurrencyNameTextView.text = item.srcAccount.currency.name
             v.accountSrcTextview.text = item.srcAccount.id.toString()
             item.srcAccount.amount.toString().also { v.currencyCostTextView.text = it }
-
         }
         when (item.type) {
             "RECHARGE" -> v.typeTransactionTextview.setText(R.string.Recharge)

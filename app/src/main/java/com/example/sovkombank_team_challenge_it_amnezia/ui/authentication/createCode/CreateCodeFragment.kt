@@ -49,7 +49,7 @@ class CreateCodeFragment: BaseFragment<CreateCodePresenterImpl>(), CreateCodeVie
             buttonNextCreateCode.setOnClickListener {
                 sharedPreferences.pinCode = pin
                 if (sharedPreferences.adminMode) findNavController().navigate(R.id.action_createCodeFragment_to_clientListTabLayoutFragment)
-                else findNavController().navigate(R.id.action_createCodeFragment_to_profileFragment)
+                else findNavController().navigate(R.id.action_createCodeFragment_to_homeFragment)
             }
         }
 

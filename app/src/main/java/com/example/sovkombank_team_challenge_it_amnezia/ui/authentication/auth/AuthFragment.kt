@@ -67,7 +67,7 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
                 (pinCode == sharedPreferences.pinCode && !sharedPreferences.adminMode) -> {
                     isNavigating = true
                 findNavController().navigateTo(findNavController(),
-                    R.id.action_authFragment_to_profileFragment, true)
+                    R.id.action_authFragment_to_homeFragment, true)
                 }
                 else ->   pinView.showError(true)
             }
@@ -114,7 +114,7 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
         else{
             isNavigating = true
             findNavController().navigateTo(findNavController(),
-                R.id.action_authFragment_to_profileFragment, true)
+                R.id.action_authFragment_to_homeFragment, true)
         }
     }
 

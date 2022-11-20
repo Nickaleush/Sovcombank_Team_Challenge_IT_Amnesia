@@ -73,13 +73,13 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
 
     }
 
-    override fun initTransactionHistoryResycler(listTransactionHistory: MutableList<TransactionDTO>){
+    override fun initTransactionHistoryResycler(listTransactionHistory: MutableList<TransactionDTO>) {
         transactionHistoryList = listTransactionHistory
         transactionHistoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-
         val adapter = TransactionHistoryAdapter(transactionHistoryList)
         transactionHistoryRecyclerView.adapter = adapter
     }
+
     override fun onBackPressed() {
         MaterialDialog.Builder(requireContext())
             .content(getString(R.string.ExitConfirm))
@@ -116,6 +116,7 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
             }
         }
     }
+
     companion object{
         var chipSelected = ""
     }
