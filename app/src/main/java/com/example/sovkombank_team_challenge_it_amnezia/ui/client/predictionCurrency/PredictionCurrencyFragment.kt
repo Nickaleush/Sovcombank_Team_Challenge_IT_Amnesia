@@ -11,14 +11,11 @@ import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.GetStatistics
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Prediction
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Statistics
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.client.statistics.StatisticsFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import kotlinx.android.synthetic.main.prediction_currency_fragment.*
-import kotlinx.android.synthetic.main.statistics_fragment.*
 
 class PredictionCurrencyFragment: BaseFragment<PredictionCurrencyPresenterImpl>(), PredictionCurrencyView {
 
@@ -44,11 +41,11 @@ class PredictionCurrencyFragment: BaseFragment<PredictionCurrencyPresenterImpl>(
         toolbarPrediction.setNavigationOnClickListener { onBackPressed() }
         presenter.getAllCurrencies()
         generateGraphImageView.setOnClickListener {
-            val selectedItem =  selectCurrencySpinnerStats.selectedItem.toString()
+            val selectedItem =  currencySpinnerStats.selectedItem.toString()
             currencyShortName = selectedItem.split("-")[0]
             currencyFullName = selectedItem.split("-")[1]
             presenter.getPrediction(
-                Prediction(StatisticsFragment.currencyShortName)
+                Prediction(currencyShortName)
             )
         }
     }
@@ -59,7 +56,7 @@ class PredictionCurrencyFragment: BaseFragment<PredictionCurrencyPresenterImpl>(
             listPrices.add(it.value)
         }
         val aaChartModel : AAChartModel = AAChartModel()
-            .chartType(AAChartType.Columnrange)
+            .chartType(AAChartType.Line)
             .title(resources.getString(R.string.Prediction))
             .subtitle(currencyFullName)
             .backgroundColor(resources.getColor(R.color.white,null))
@@ -69,7 +66,7 @@ class PredictionCurrencyFragment: BaseFragment<PredictionCurrencyPresenterImpl>(
                     .name(currencyFullName)
                     .data(listPrices.toTypedArray()),)
             )
-        aa_chart_view.aa_drawChartWithChartModel(aaChartModel)
+        prediction_chart_view.aa_drawChartWithChartModel(aaChartModel)
     }
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), getText(R.string.CheckCredentials), Toast.LENGTH_SHORT).show()
@@ -80,7 +77,7 @@ class PredictionCurrencyFragment: BaseFragment<PredictionCurrencyPresenterImpl>(
         }
         val dataAdapter = ArrayAdapter(requireContext(), R.layout.item_custom_currency_spinner, currenciesList)
         dataAdapter.setDropDownViewResource(R.layout.dropdown_currency_spinner_item)
-        selectCurrencySpinnerStats.adapter = dataAdapter
+        currencySpinnerStats.adapter = dataAdapter
     }
 
     override fun onBackPressed() {

@@ -259,7 +259,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     fun openPredictionFragment() {
-
+        findNavController().navigate(R.id.action_homeFragment_to_predictionCurrencyFragment)
     }
 
     override fun showToastSuccess() {
