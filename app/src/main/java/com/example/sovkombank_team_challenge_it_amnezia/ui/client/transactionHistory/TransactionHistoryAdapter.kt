@@ -8,11 +8,13 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.TransactionDTO
+import com.example.sovkombank_team_challenge_it_amnezia.ui.authentication.registration.RegistrationFragment
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.DATA_FROM_FILTER_SELECTED
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.DATA_TO_FILTER_SELECTED
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.SEND_FROM_DATE_FORMAT
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.SEND_TO_DATE_FORMAT
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.chipSelected
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.dateTimeNow
 import kotlinx.android.synthetic.main.transaction_history_item.view.*
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -112,7 +114,8 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
                                     val time = format.parse(row.time)
                                     val userFromDate = format.parse((SEND_FROM_DATE_FORMAT))
                                     val userToDate = format.parse((SEND_TO_DATE_FORMAT))
-                                    if(time.after(userFromDate)&&time.before(userToDate)){
+                                    val dateNow = format.parse((dateTimeNow))
+                                    if(time.after(userFromDate) && time.before(userToDate)|| userFromDate==dateNow||userToDate==dateNow){
                                         resultList.add(row)
                                     }
                                 }
@@ -120,7 +123,8 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
                                     val format = SimpleDateFormat("yyyy-MM-dd")
                                     val time = format.parse(row.time)
                                     val userDate = format.parse((SEND_FROM_DATE_FORMAT))
-                                    if(time.after(userDate)){
+                                    val dateNow = format.parse((dateTimeNow))
+                                    if(time.after(userDate)|| userDate==dateNow){
                                         resultList.add(row)
                                     }
                                 }
@@ -128,7 +132,8 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
                                     val format = SimpleDateFormat("yyyy-MM-dd")
                                     val time = format.parse(row.time)
                                     val userDate = format.parse((SEND_TO_DATE_FORMAT))
-                                    if(time.before(userDate)){
+                                    val dateNow = format.parse((dateTimeNow))
+                                    if(time.before(userDate)|| userDate==dateNow){
                                         resultList.add(row)
                                     }
                                 }
@@ -143,7 +148,8 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
                                     val time = format.parse(row.time)
                                     val userFromDate = format.parse((SEND_FROM_DATE_FORMAT))
                                     val userToDate = format.parse((SEND_TO_DATE_FORMAT))
-                                    if(time.after(userFromDate)&&time.before(userToDate)){
+                                    val dateNow = format.parse((dateTimeNow))
+                                    if(time.after(userFromDate)&&time.before(userToDate)|| userFromDate==dateNow||userToDate==dateNow){
                                         resultList.add(row)
                                     }
                                 }
@@ -151,7 +157,8 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
                                     val format = SimpleDateFormat("yyyy-MM-dd")
                                     val time = format.parse(row.time)
                                     val userDate = format.parse((SEND_FROM_DATE_FORMAT))
-                                    if(time.after(userDate)){
+                                    val dateNow = format.parse((dateTimeNow))
+                                    if(time.after(userDate)|| userDate==dateNow){
                                         resultList.add(row)
                                     }
                                 }
@@ -159,7 +166,8 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
                                     val format = SimpleDateFormat("yyyy-MM-dd")
                                     val time = format.parse(row.time)
                                     val userDate = format.parse((SEND_TO_DATE_FORMAT))
-                                    if(time.before(userDate)){
+                                    val dateNow = format.parse((dateTimeNow))
+                                    if(time.before(userDate)|| userDate==dateNow){
                                         resultList.add(row)
                                     }
                                 }

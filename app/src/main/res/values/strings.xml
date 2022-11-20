@@ -40,6 +40,7 @@
     <string name="EnterCredentials">Enter your credentials</string>
     <string name="ConfirmPassword">Confirm Password</string>
     <string name="EnterBirthDay">Choose Birthday</string>
+    <string name="Date">Date</string>
     <string name="Surname">Surname</string>
     <string name="Amount">Amount</string>
     <string name="Name">Name</string>
@@ -91,6 +92,7 @@
     <string name="Statistics">Statistics</string>
     <string name="NotConfirmed">Not confirmed</string>
     <string name="Wait">Wait</string>
+    <string name="WaitUntilConfirmation">Please, wait until admin confirms your registration</string>
     <string name="Default4Digits">2707</string>
     <string name="DefaultShortName">RUB</string>
     <string name="DefaultCost">62,44</string>

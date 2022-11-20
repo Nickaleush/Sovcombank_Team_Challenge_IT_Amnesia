@@ -100,7 +100,11 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
         skeleton.showSkeleton()
         getData()
-        if(accessDenied) waitAccess()
+        if(accessDenied) {
+            waitUntilPermissionImageView.visibility = View.VISIBLE
+            waitUntilConfirmTextView.visibility = View.VISIBLE
+            waitAccess()
+        }
     }
 
     private fun getData() {
@@ -296,7 +300,6 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
             CoroutineScope(Dispatchers.Main).launch {
                 if(accessDenied) {
                     waitAccess()
-                    // добавить заглушку
                 }
                 else {
                     getData()

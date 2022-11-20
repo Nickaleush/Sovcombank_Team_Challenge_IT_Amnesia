@@ -57,6 +57,7 @@
     <string name="ConfirmPasswordEmpty">Подтвердите пароль</string>
     <string name="PasswordsDontMatch">Пароли не совпадают!</string>
     <string name="CheckCredentials">Пожалуйста, проверьте данные</string>
+    <string name="WaitUntilConfirmation">Пожалуйста, подождите пока администратор подтвердит вашу регистрацию</string>
     <string name="resend_two_min">Отправить код через:</string>
     <string name="ConfirmCodeAccountSent">Для подтверждения аккаунта введите код подтверждения, отправленный на ваш номер телефона</string>
     <string name="EnterPhone">Введите телефон</string>
@@ -96,6 +97,7 @@
     <string name="GraphicsQuotations">График изменения котировок</string>
     <string name="OperationSuccess">Операция проведена успешно!</string>
     <string name="SomethingWentWrong">Что-то пошло не так…</string>
+    <string name="Date">Дата</string>
     <string name="WithDraw">Вывести</string>
     <string name="Sell">Продать</string>
     <string name="Statistics">Статистика</string>

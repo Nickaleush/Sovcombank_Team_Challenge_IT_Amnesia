@@ -12,10 +12,10 @@ import android.widget.Toast
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.GetStatistics
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Statistics
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
-import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
@@ -23,7 +23,6 @@ import com.github.aachartmodel.aainfographics.*
 import kotlinx.android.synthetic.main.statistics_fragment.*
 import kotlinx.android.synthetic.main.transaction_history_fragment.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 class StatisticsFragment : BaseFragment<StatisticsPresenterImpl>(), StatisticsView, DatePickerDialog.OnDateSetListener  {
@@ -53,7 +52,14 @@ class StatisticsFragment : BaseFragment<StatisticsPresenterImpl>(), StatisticsVi
         presenter.start()
         presenter.view = this
         toolbarStatistics.setNavigationOnClickListener { onBackPressed() }
-        presenter.getStatistics(Statistics("2022-11-12","2022-11-28","RUB"))
+        presenter.getAllCurrencies()
+
+        generateGraphicsImageView.setOnClickListener {
+            val selectedItem =  selectCurrencySpinnerStats.selectedItem.toString()
+            currencyShortName = selectedItem.split("-")[0]
+            currencyFullName = selectedItem.split("-")[1]
+            presenter.getStatistics(Statistics(currencyShortName, SEND_TO_DATE_FORMAT_STATS,SEND_FROM_DATE_FORMAT_STATS))
+        }
 
         chipFromStats.setOnClickListener {
             getDateTimeCalendar()
@@ -71,40 +77,34 @@ class StatisticsFragment : BaseFragment<StatisticsPresenterImpl>(), StatisticsVi
 
     override fun initCurrencyList(currencyList: ArrayList<Quotation>) {
         for (i in 0 until currencyList.size) {
-            currenciesList.add(currencyList[i].currencyDto.name + "-" + currencyList[i].currencyDto.fullName )
+            currenciesList.add(currencyList[i].currencyId + "-" + currencyList[i].currencyDto.fullName )
         }
-        chooseCurrency()
-    }
-
-    private fun chooseCurrency() {
         val dataAdapter = ArrayAdapter(requireContext(), R.layout.item_custom_currency_spinner, currenciesList)
         dataAdapter.setDropDownViewResource(R.layout.dropdown_currency_spinner_item)
         selectCurrencySpinnerStats.adapter = dataAdapter
     }
 
-    override fun setupColumnGraph(statistic: Map<String, Double>){
+    override fun setupColumnGraph(statistic: MutableList<GetStatistics>){
         listPrices.clear()
         listDate.clear()
-        statistic.forEach { entry ->
-            listDate.add(entry.key)
-            listPrices.add(entry.value)
+        statistic.forEach {
+            listDate.add(it.date)
+            listPrices.add(it.value)
         }
         val aaChartModel : AAChartModel = AAChartModel()
             .chartType(AAChartType.Line)
             .title(resources.getString(R.string.GraphicsQuotations))
-            .subtitle(resources.getString(R.string.GraphicsQuotations))
+            .subtitle(currencyFullName)
             .backgroundColor(resources.getColor(R.color.white,null))
             .dataLabelsEnabled(true)
             .series(arrayOf(
                 AASeriesElement()
-                    .name("Tokyo")
-                    .data(listDate.toTypedArray()),
-                AASeriesElement()
-                    .name("NewYork")
+                    .name(currencyFullName)
                     .data(listPrices.toTypedArray()),)
             )
         aa_chart_view.aa_drawChartWithChartModel(aaChartModel)
     }
+
 
     @SuppressLint("SimpleDateFormat")
     private fun getDateTimeCalendar() {
@@ -143,10 +143,11 @@ class StatisticsFragment : BaseFragment<StatisticsPresenterImpl>(), StatisticsVi
         requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
-    override fun showError(message: String?): Unit =
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    override fun showError(message: String?): Unit = Toast.makeText(requireContext(), getText(R.string.CheckCredentials), Toast.LENGTH_SHORT).show()
 
     companion object {
+        var currencyShortName = ""
+        var currencyFullName = ""
         var DATE_FROM_SELECTED_STATS = false
         var yearStats = 0
         var monthStats = 0
