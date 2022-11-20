@@ -2,12 +2,14 @@ package com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHi
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
@@ -25,6 +27,8 @@ import kotlinx.android.synthetic.main.transaction_history_fragment.*
 import kotlinx.android.synthetic.main.transaction_history_item.view.*
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 
@@ -165,8 +169,10 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         yearHistory = cal.get(Calendar.YEAR)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SimpleDateFormat")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        dateTimeNow = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         savedDayHistory = dayOfMonth
         savedMonthHistory = month+1
         savedYearHistory = year
@@ -211,6 +217,7 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         var resultMonthHistory = ""
         var resultDayHistory = ""
         var dateTimeHistory = ""
+        var dateTimeNow = ""
         var SEND_FROM_DATE_FORMAT = ""
         var SEND_TO_DATE_FORMAT = ""
     }
