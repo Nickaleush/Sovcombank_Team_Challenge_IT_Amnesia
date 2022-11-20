@@ -92,6 +92,12 @@
     <string name="TypeTransaction">Transaction type</string>
     <string name="From">From</string>
     <string name="To">To</string>
+    <string name="Transaction">Transaction</string>
+    <string name="Recharge">Recharge</string>
+    <string name="Withdrawal">Withdrawal</string>
+    <string name="History">History</string>
+    <string name="All">All</string>
+    <string name="HistoryOfOperations">History of operations</string>
     <string name="EmptyActiveClientList"> The list of active clients is empty</string>
     <string name="EmptyNotConfirmedClientList"> The waiting client list is empty</string>
     <string name="QuestionUnlockMessage">Are you sure that you want to unlock the client?</string>
