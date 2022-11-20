@@ -100,9 +100,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
         skeleton.showSkeleton()
         getData()
-        if(accessDenied) {
-            waitUntilPermissionImageView.visibility = View.VISIBLE
-            waitUntilConfirmTextView.visibility = View.VISIBLE
+        if (accessDenied) {
             waitAccess()
         }
     }
@@ -175,6 +173,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         homeButtonItems.add(ListItemButton(HomeButtonType.Withdraw))
         homeButtonItems.add(ListItemButton(HomeButtonType.Sell))
         homeButtonItems.add(ListItemButton(HomeButtonType.Statistics))
+        homeButtonItems.add(ListItemButton(HomeButtonType.Prediction))
     }
 
     fun openCreateAccountSheet() {
@@ -272,6 +271,10 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
 
     fun openStatisticsFragment() {
         findNavController().navigate(R.id.action_homeFragment_to_statisticsFragment)
+    }
+
+    fun openPredictionFragment() {
+
     }
 
     override fun onBackPressed() {

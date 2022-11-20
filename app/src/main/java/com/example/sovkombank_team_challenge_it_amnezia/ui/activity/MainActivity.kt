@@ -46,7 +46,7 @@ class MainActivity : BaseActivity<MainPresenterImpl>(), MainView {
                     showBotNav()
                 }
                 R.id.authFragment -> hideBotNav()
-                R.id.profileFragment -> {
+                R.id.homeFragment -> {
                     bottomNavigationView = findViewById(R.id.clientBottomNavigationView)
                     adminBottomNavigationView.visibility = View.GONE
                     clientBottomNavigationView.visibility = View.VISIBLE

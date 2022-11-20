@@ -9,4 +9,5 @@ enum class HomeButtonType(@LayoutRes val layoutRes: Int) {
     Withdraw(R.layout.item_home_button),
     Sell(R.layout.item_home_button),
     Statistics(R.layout.item_home_button),
+    Prediction(R.layout.item_home_button)
 }

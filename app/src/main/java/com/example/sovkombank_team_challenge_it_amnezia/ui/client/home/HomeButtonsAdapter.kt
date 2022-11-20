@@ -68,6 +68,14 @@ class HomeButtonsAdapter(private val items: ArrayList<ListItemButton> = ArrayLis
                 holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.Statistics)
                 holder.itemView.setOnClickListener { fragment.openStatisticsFragment() }
             }
+
+            HomeButtonType.Prediction -> {
+                holder.itemView.holderButton.setCardBackgroundColor(holder.itemView.context.getColor(R.color.white))
+                holder.itemView.buttonName.setTextColor(holder.itemView.context.getColor(R.color.blue))
+                holder.itemView.buttonImage.setImageResource(R.drawable.prediction_icon_foreground)
+                holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.Prediction)
+                holder.itemView.setOnClickListener { fragment.openPredictionFragment() }
+            }
         }
     }
 
