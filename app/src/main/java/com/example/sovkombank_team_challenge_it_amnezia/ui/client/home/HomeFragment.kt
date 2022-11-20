@@ -121,34 +121,48 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     override fun initCurrenciesRecyclerView(currencyList: ArrayList<Quotation>) {
-        recyclerViewCurrency.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = HomeCurrencyAdapter(currencyList)
-        recyclerViewCurrency.adapter = adapter
-        adapter.setOnClickRecyclerListener(object : HomeCurrencyAdapter.OnClickListener {
-            @SuppressLint("SimpleDateFormat")
-            override fun onClick(position: Int) {
-                for (i in 0 until accountsSpinnerList.size ) {
-                        ACCOUNT_OPENED = accountsSpinnerList[i].currency.name == currencyList[position].currencyDto.name
+        if (this.isVisible) {
+            recyclerViewCurrency.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            val adapter = HomeCurrencyAdapter(currencyList)
+            recyclerViewCurrency.adapter = adapter
+            adapter.setOnClickRecyclerListener(object : HomeCurrencyAdapter.OnClickListener {
+                @SuppressLint("SimpleDateFormat")
+                override fun onClick(position: Int) {
+                    for (i in 0 until accountsSpinnerList.size) {
+                        ACCOUNT_OPENED =
+                            accountsSpinnerList[i].currency.name == currencyList[position].currencyDto.name
                         ACCOUNT_OPENED_POSITION = i
                         if (ACCOUNT_OPENED) break
+                    }
+                    if (ACCOUNT_OPENED) openBuyCurrencySheet(accountsSpinnerList[ACCOUNT_OPENED_POSITION].id)
+                    else {
+                        Toast.makeText(
+                            requireContext(),
+                            getText(R.string.CreateAccountFirst),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        openCreateAccountSheet()
+                    }
                 }
-                if (ACCOUNT_OPENED) openBuyCurrencySheet(accountsSpinnerList[ACCOUNT_OPENED_POSITION].id)
-                else {
-                    Toast.makeText(requireContext(), getText(R.string.CreateAccountFirst), Toast.LENGTH_SHORT).show()
-                    openCreateAccountSheet()
-                }
-            }
-        })
+            })
+        }
     }
 
     override fun initAccountsRecyclerView(accountsList: ArrayList<Account>) {
-        accountsSpinnerList.clear()
-        val sortedList = accountsList.sortedWith(compareBy({ it.currency.name == "RUB" }, { it.currency.name }))
-        for (i in 0 until sortedList.size -1 ) accountsSpinnerList.add(sortedList[i])
-        val reversedSortedList = sortedList.reversed()
-        recyclerViewHomeAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        homeAccountsAdapter = HomeAccountsAdapter(reversedSortedList, this)
-        recyclerViewHomeAccounts.adapter = homeAccountsAdapter
+        if (this.isVisible) {
+            accountsSpinnerList.clear()
+            val sortedList = accountsList.sortedWith(
+                compareBy({ it.currency.name == "RUB" },
+                    { it.currency.name })
+            )
+            for (i in 0 until sortedList.size - 1) accountsSpinnerList.add(sortedList[i])
+            val reversedSortedList = sortedList.reversed()
+            recyclerViewHomeAccounts.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            homeAccountsAdapter = HomeAccountsAdapter(reversedSortedList, this)
+            recyclerViewHomeAccounts.adapter = homeAccountsAdapter
+        }
     }
 
     override fun hideSkeleton() {
@@ -156,8 +170,10 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     override fun initCurrencyList(currencyList: ArrayList<Quotation>) {
-        for (i in 0 until currencyList.size) {
-            currenciesList.add(currencyList[i].currencyDto.name + "-" + currencyList[i].currencyDto.fullName )
+        if (this.isVisible) {
+            for (i in 0 until currencyList.size) {
+                currenciesList.add(currencyList[i].currencyDto.name + "-" + currencyList[i].currencyDto.fullName)
+            }
         }
     }
 

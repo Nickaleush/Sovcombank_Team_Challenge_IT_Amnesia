@@ -56,9 +56,12 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
     override fun initUserInfo(user: UserDTO) {
-        clientCredentialsTextView.text = user.credentials
-        (user.firstName + " " + user.middleName + " " + user.lastName).also { clientFullNameTextView.text = it }
+        if (this.isVisible) {
+            clientCredentialsTextView.text = user.credentials
+            (user.firstName + " " + user.middleName + " " + user.lastName).also {
+                clientFullNameTextView.text = it
+            }
+            clientBirthDayTextView.text = user.birthDate
+        }
     }
-
-
 }

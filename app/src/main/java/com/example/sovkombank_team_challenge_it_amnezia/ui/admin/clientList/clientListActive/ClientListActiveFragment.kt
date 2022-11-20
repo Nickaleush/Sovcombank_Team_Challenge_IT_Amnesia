@@ -54,12 +54,15 @@ class ClientListActiveFragment : BaseFragment<ClientListActivePresenterImpl>(),
         presenter.getActiveClients()
     }
     override fun initRecyclerViewActiveClient(activeClientsList: MutableList<ClientDTO>) {
-        listActiveClients = activeClientsList
-        checkEmptyClientList()
-        activeClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClientListActiveAdapter(listActiveClients)
-        activeClientRecyclerView.adapter = adapter
-        setupItemSwipe()
+        if (this.isVisible) {
+            listActiveClients = activeClientsList
+            checkEmptyClientList()
+            activeClientRecyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            val adapter = ClientListActiveAdapter(listActiveClients)
+            activeClientRecyclerView.adapter = adapter
+            setupItemSwipe()
+        }
     }
 
     private fun checkEmptyClientList(){

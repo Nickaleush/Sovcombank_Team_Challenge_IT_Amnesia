@@ -66,8 +66,13 @@ class AdminProfileFragment: BaseFragment<AdminProfilePresenterImpl>(),
     }
 
     override fun initUserInfo(user: UserDTO) {
-        adminCredentialsTextView.text = user.credentials
-        (user.firstName + " " + user.middleName + " " + user.lastName).also { adminFullNameTextView.text = it }
+        if (this.isVisible) {
+            adminCredentialsTextView.text = user.credentials
+            (user.firstName + " " + user.middleName + " " + user.lastName).also {
+                adminFullNameTextView.text = it
+            }
+            adminBirthDayTextView.text = user.birthDate
+        }
     }
 
 }

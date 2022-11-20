@@ -51,12 +51,15 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
     }
 
     override fun initRecyclerViewBlockedClient(blockedClientsList: MutableList<ClientDTO>) {
-        listBlockedClients = blockedClientsList
-        checkEmptyClientList()
-        blockedClientRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClientListBlockedAdapter(listBlockedClients)
-        blockedClientRecyclerView.adapter = adapter
-        setupItemSwipe()
+        if (this.isVisible) {
+            listBlockedClients = blockedClientsList
+            checkEmptyClientList()
+            blockedClientRecyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            val adapter = ClientListBlockedAdapter(listBlockedClients)
+            blockedClientRecyclerView.adapter = adapter
+            setupItemSwipe()
+        }
     }
 
     private fun checkEmptyClientList(){
@@ -69,7 +72,7 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
         }
     }
 
-    private fun setupItemSwipe(){
+    private fun setupItemSwipe() {
         val swipeCallback = object : SwipeLeftCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 MaterialDialog.Builder(requireContext())
