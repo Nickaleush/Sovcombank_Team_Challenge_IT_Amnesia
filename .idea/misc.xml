@@ -46,6 +46,9 @@
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_delete_money_from_account.xml" value="0.22" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/bottomsheet_sell_money_from_account.xml" value="0.25" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/country_code_picker.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/dropdown_account_spinner_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/item_custom_account_spinner.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/item_custom_currency_spinner.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/item_custom_spinner.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/item_home_button.xml" value="1.0" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout-v24/item_home_nav_buttons_list.xml" value="0.9" />
@@ -68,6 +71,7 @@
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout/confirmation_create_account.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout/create_code.xml" value="0.1" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout/create_code_fragment.xml" value="0.18" />
+        <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout/dropdown_currency_spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout/dropdown_spinner_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout/home_fragment.xml" value="0.2" />
         <entry key="..\:/Users/Nickaleush/Desktop/SovkombankTeamChallengeITamnezia/app/src/main/res/layout/item_home_account.xml" value="0.25" />

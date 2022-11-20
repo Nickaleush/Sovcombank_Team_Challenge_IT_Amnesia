@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
@@ -47,7 +48,11 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
 
     private lateinit var amountDeleteMoneyEditText: EditText
 
+    private lateinit var sellCurrencyEditText: EditText
+
     private lateinit var spinnerCurrency: Spinner
+
+    private lateinit var selectAccountSpinner: Spinner
 
     private lateinit var buttonSaveNewAccount: Button
 
@@ -55,10 +60,13 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
 
     private lateinit var buttonDeleteMoneyFromAccount: Button
 
+    private lateinit var buttonSellMoney: Button
 
     private lateinit var homeAccountsAdapter: HomeAccountsAdapter
 
     private var currenciesList: ArrayList<String> = arrayListOf()
+
+    private var accountsSpinnerList: ArrayList<Account> = arrayListOf()
 
     override fun createComponent() {
         App.instance
@@ -80,6 +88,9 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         homeButtonsAdapter = HomeButtonsAdapter(homeButtonItems, this@HomeFragment,requireContext())
         recyclerViewHomeButtons.adapter = homeButtonsAdapter
         initializeData()
+        linearLayout_profile_from_home.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
         skeleton = recyclerViewCurrency.applySkeleton(R.layout.item_home_currency)
         skeleton.maskCornerRadius = 30F
         skeleton.shimmerColor = requireActivity().getColor(R.color.blue)
@@ -100,9 +111,11 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     override fun initAccountsRecyclerView(accountsList: ArrayList<Account>) {
-        val sortedList = accountsList.sortedWith(compareBy({ it.currency.name == "RUB" }, { it.currency.name })).reversed()
+        val sortedList = accountsList.sortedWith(compareBy({ it.currency.name == "RUB" }, { it.currency.name }))
+        for (i in 0 until sortedList.size -1 ) accountsSpinnerList.add(sortedList[i])
+        val reversedSortedList = sortedList.reversed()
         recyclerViewHomeAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        homeAccountsAdapter = HomeAccountsAdapter(sortedList, this)
+        homeAccountsAdapter = HomeAccountsAdapter(reversedSortedList, this)
         recyclerViewHomeAccounts.adapter = homeAccountsAdapter
     }
 
@@ -120,11 +133,15 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         bottomSheetDialog.dismiss()
     }
 
-    @SuppressLint("ResourceType")
     private fun chooseCurrency() {
         val dataAdapter = ArrayAdapter(requireContext(), R.layout.item_custom_currency_spinner, currenciesList)
         dataAdapter.setDropDownViewResource(R.layout.dropdown_currency_spinner_item)
         spinnerCurrency.adapter = dataAdapter
+    }
+
+    private fun chooseAccount() {
+        val dataAdapter = CustomSpinnerAdapter(requireContext(), accountsSpinnerList)
+        selectAccountSpinner.adapter = dataAdapter
     }
 
     private fun initializeData() {
@@ -188,7 +205,23 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     fun openSellSheet() {
-
+        sheetView = requireActivity().layoutInflater.inflate(R.layout.bottomsheet_sell_money_from_account, null)
+        bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
+        bottomSheetDialog.setContentView(sheetView)
+        bottomSheetDialog.show()
+        val mBehavior = BottomSheetBehavior.from(sheetView.parent as View)
+        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        selectAccountSpinner = sheetView.findViewById(R.id.selectAccountSpinner)
+        sellCurrencyEditText = sheetView.findViewById(R.id.sellCurrencyEditText)
+        buttonSellMoney = sheetView.findViewById(R.id.buttonSellMoney)
+        chooseAccount()
+        buttonSellMoney.setOnClickListener {
+            val selected: Account = selectAccountSpinner.selectedItem as Account
+            val amount = sellCurrencyEditText.text.toString()
+            val bigDecimalAmount = amount.toBigDecimal()
+            val sellAmount = bigDecimalAmount.multiply(BigDecimal(100))
+            presenter.createNewTransaction(Transaction(sellAmount, ACCOUNT_ID_RUB, selected.id))
+        }
     }
 
     fun openStatisticsFragment() {
