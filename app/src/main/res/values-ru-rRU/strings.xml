@@ -102,6 +102,8 @@
     <string name="RubleBill">рублевый счет</string>
     <string name="Account">Счёт</string>
     <string name="TypeTransaction">Тип транзакции</string>
+    <string name="FromTime">От: </string>
+    <string name="TillTime">До: </string>
     <string name="From">Откуда: </string>
     <string name="To">Куда: </string>
     <string name="Transaction">Перевод</string>

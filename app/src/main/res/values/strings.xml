@@ -98,6 +98,8 @@
     <string name="RubleBill">ruble bill</string>
     <string name="Account">Account</string>
     <string name="TypeTransaction">Transaction type</string>
+    <string name="FromTime">From: </string>
+    <string name="TillTime">Till: </string>
     <string name="From">From: </string>
     <string name="To">To: </string>
     <string name="Transaction">Transaction</string>
