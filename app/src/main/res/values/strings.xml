@@ -90,6 +90,7 @@
     <string name="SellCurrency">Select the account from which you want to sell the currency. The sale amount will be credited to the main account</string>
     <string name="Sell">Sell</string>
     <string name="Statistics">Statistics</string>
+    <string name="Prediction">Prediction</string>
     <string name="NotConfirmed">Not confirmed</string>
     <string name="Wait">Wait</string>
     <string name="WaitUntilConfirmation">Please, wait until admin confirms your registration</string>

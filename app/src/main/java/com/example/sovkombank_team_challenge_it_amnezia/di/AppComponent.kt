@@ -62,4 +62,6 @@ interface AppComponent {
 
     fun createStatisticsFragment(): StatisticsComponent
 
+    fun createPredictionCurrencyFragment(): PredictionCurrencyComponent
+
 }

@@ -107,14 +107,6 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         adapter.filter.filter(chipSelected)
     }
 
-    private fun timeFilterList() {
-        transactionHistoryList = initialTransactionHistoryList
-        if (DATA_FROM_FILTER_SELECTED) {
-            adapter.filter.filter(SEND_FROM_DATE_FORMAT)
-        } else adapter.filter.filter(SEND_TO_DATE_FORMAT)
-
-    }
-
     private fun hideMain(){
         waitUntilAccessImageView.visibility = View.VISIBLE
         waitUntilConfirmationTextView.visibility = View.VISIBLE
