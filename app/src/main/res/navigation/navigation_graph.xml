@@ -135,6 +135,9 @@
         <action
             android:id="@+id/action_homeFragment_to_statisticsFragment"
             app:destination="@id/statisticsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_predictionCurrencyFragment"
+            app:destination="@id/predictionCurrencyFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionHistoryFragment"
@@ -144,4 +147,8 @@
         android:id="@+id/statisticsFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.statistics.StatisticsFragment"
         android:label="StatisticsFragment" />
+    <fragment
+        android:id="@+id/predictionCurrencyFragment"
+        android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.predictionCurrency.PredictionCurrencyFragment"
+        android:label="PredictionCurrencyFragment" />
 </navigation>

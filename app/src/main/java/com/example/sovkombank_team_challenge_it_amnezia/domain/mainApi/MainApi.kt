@@ -65,4 +65,7 @@ interface MainApi {
     @POST("api/stat")
     fun getStatistics(@Body statistics: Statistics): Single<MutableList<GetStatistics>>
 
+    @POST("api/prediction")
+    fun getPrediction(@Body prediction: Prediction): Single<MutableList<GetStatistics>>
+
 }
