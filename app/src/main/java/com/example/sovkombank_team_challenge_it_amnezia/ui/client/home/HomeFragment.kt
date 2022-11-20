@@ -101,8 +101,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         skeleton.showSkeleton()
         getData()
         if(accessDenied) {
-            waitUntilPermissionImageView.visibility = View.VISIBLE
-            waitUntilConfirmTextView.visibility = View.VISIBLE
+            hideMain()
             waitAccess()
         }
     }
@@ -274,6 +273,25 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         findNavController().navigate(R.id.action_homeFragment_to_statisticsFragment)
     }
 
+    private fun hideMain(){
+        waitUntilPermissionImageView.visibility = View.VISIBLE
+        waitUntilConfirmTextView.visibility = View.VISIBLE
+        linearLayout_profile_from_home.visibility = View.GONE
+        recyclerViewHomeButtons.visibility = View.GONE
+        recyclerViewHomeAccounts.visibility = View.GONE
+        currencyTextView.visibility = View.GONE
+        recyclerViewCurrency.visibility = View.GONE
+    }
+
+    private fun showMain(){
+        waitUntilPermissionImageView.visibility = View.GONE
+        waitUntilConfirmTextView.visibility = View.GONE
+        linearLayout_profile_from_home.visibility = View.VISIBLE
+        recyclerViewHomeButtons.visibility = View.VISIBLE
+        recyclerViewHomeAccounts.visibility = View.VISIBLE
+        currencyTextView.visibility = View.VISIBLE
+        recyclerViewCurrency.visibility = View.VISIBLE
+    }
     override fun onBackPressed() {
         MaterialDialog.Builder(requireContext())
             .content(getString(R.string.ExitConfirm))
@@ -304,6 +322,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
                 else {
                     getData()
                     accessDenied = false
+                    showMain()
                     coroutineContext.cancel()
                 }
             }
