@@ -26,11 +26,10 @@ class ProfilePresenterImpl @Inject constructor(private val mainApi: MainApi) : B
                 AndroidSchedulers.mainThread()
             )
             .subscribe({
-                //view.initUserInfo(it)
+                view.initUserInfo(it)
                 sharedPreferences.userName = it.firstName
-                // Log.d("01333", it.toString())
             },{
-                //view.showError(it.message)
+                view.showError(it.message)
             })
     }
 

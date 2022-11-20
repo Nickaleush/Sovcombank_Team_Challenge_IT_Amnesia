@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.UserDTO
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.utils.navigateTo
+import kotlinx.android.synthetic.main.admin_profile_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.*
 import javax.inject.Inject
 
@@ -53,6 +55,10 @@ class ProfileFragment: BaseFragment<ProfilePresenterImpl>(), ProfileView {
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
+    override fun initUserInfo(user: UserDTO) {
+        clientCredentialsTextView.text = user.credentials
+        (user.firstName + " " + user.middleName + " " + user.lastName).also { clientFullNameTextView.text = it }
+    }
 
 
 }

@@ -61,6 +61,8 @@
     <string name="resend_two_min">Отправить код через:</string>
     <string name="ConfirmCodeAccountSent">Для подтверждения аккаунта введите код подтверждения, отправленный на ваш номер телефона</string>
     <string name="EnterPhone">Введите телефон</string>
+    <string name="Prediction">Прогноз</string>
+    <string name="MyAccounts">Мои счета</string>
     <string name="Confirm">Подтвердить</string>
     <string name="LogOut">Выйти из аккаунта</string>
     <string name="RegistrationSuccess">Регистрация успешно завершена!</string>
