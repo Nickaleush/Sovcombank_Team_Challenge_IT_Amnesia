@@ -225,6 +225,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     fun openStatisticsFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_statisticsFragment)
 
     }
 

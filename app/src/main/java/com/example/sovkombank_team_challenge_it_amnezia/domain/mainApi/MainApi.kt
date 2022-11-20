@@ -60,6 +60,6 @@ interface MainApi {
     fun getTransactionHistory(): Single<MutableList<TransactionDTO>>
 
     @POST("api/stat")
-    fun getStatistics(@Body statistics: Statistics): Single<Map<LocalDate, Double>>
+    fun getStatistics(@Body statistics: Statistics): Single<Map<String, Double>>
 
 }

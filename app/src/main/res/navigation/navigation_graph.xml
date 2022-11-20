@@ -132,9 +132,16 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionHistoryFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment"
         android:label="TransactionHistoryFragment" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.statistics.StatisticsFragment"
+        android:label="StatisticsFragment" />
 </navigation>
