@@ -4,6 +4,7 @@ import java.math.BigDecimal
 
 data class Quotation(
     var currencyDto: Currency,
+    var currencyId: String,
     var nominal: BigDecimal,
     var value: String
 )

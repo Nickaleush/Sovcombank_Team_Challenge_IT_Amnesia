@@ -1,27 +1,32 @@
 package com.example.sovkombank_team_challenge_it_amnezia.ui.client.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Account
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.HomeButtonType
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ListItemButton
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Quotation
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.*
 import com.example.sovkombank_team_challenge_it_amnezia.domain.sharedPreferences.SharedPreferences
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.example.sovkombank_team_challenge_it_amnezia.services.firebaseMessaging.FirebaseMessagingItAmnesiaService.Companion.accessDenied
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.bottomsheet_create_new_account.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.coroutines.*
+import java.math.BigDecimal
+import java.util.*
+import java.util.UUID.randomUUID
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
 
@@ -33,6 +38,27 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     private var homeButtonItems: ArrayList<ListItemButton> = ArrayList()
 
     private lateinit var homeButtonsAdapter: HomeButtonsAdapter
+
+    private lateinit var sheetView: View
+
+    private lateinit var bottomSheetDialog: BottomSheetDialog
+
+    private lateinit var amountAddMoneyEditText: EditText
+
+    private lateinit var amountDeleteMoneyEditText: EditText
+
+    private lateinit var spinnerCurrency: Spinner
+
+    private lateinit var buttonSaveNewAccount: Button
+
+    private lateinit var buttonAddMoney: Button
+
+    private lateinit var buttonDeleteMoneyFromAccount: Button
+
+
+    private lateinit var homeAccountsAdapter: HomeAccountsAdapter
+
+    private var currenciesList: ArrayList<String> = arrayListOf()
 
     override fun createComponent() {
         App.instance
@@ -63,6 +89,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     private fun getData() {
+        presenter.getAllUserAccount()
         presenter.getAllCurrencies()
     }
 
@@ -72,36 +99,92 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
         recyclerViewCurrency.adapter = adapter
     }
 
-    override fun initAccountsRecyclerView(currencyList: ArrayList<Account>) {
+    override fun initAccountsRecyclerView(accountsList: ArrayList<Account>) {
+        val sortedList = accountsList.sortedWith(compareBy({ it.currency.name == "RUB" }, { it.currency.name })).reversed()
         recyclerViewHomeAccounts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = HomeAccountsAdapter(currencyList)
-        recyclerViewHomeAccounts.adapter = adapter
+        homeAccountsAdapter = HomeAccountsAdapter(sortedList, this)
+        recyclerViewHomeAccounts.adapter = homeAccountsAdapter
     }
 
     override fun hideSkeleton() {
         skeleton.showOriginal()
     }
 
+    override fun initCurrencyList(currencyList: ArrayList<Quotation>) {
+        for (i in 0 until currencyList.size) {
+            currenciesList.add(currencyList[i].currencyDto.name + "-" + currencyList[i].currencyDto.fullName )
+        }
+    }
+
+    override fun dismissBottomSheet() {
+        bottomSheetDialog.dismiss()
+    }
+
+    @SuppressLint("ResourceType")
+    private fun chooseCurrency() {
+        val dataAdapter = ArrayAdapter(requireContext(), R.layout.item_custom_currency_spinner, currenciesList)
+        dataAdapter.setDropDownViewResource(R.layout.dropdown_currency_spinner_item)
+        spinnerCurrency.adapter = dataAdapter
+    }
 
     private fun initializeData() {
         homeButtonItems.clear()
-        homeButtonItems.add(ListItemButton(HomeButtonType.Deposit))
-        homeButtonItems.add(ListItemButton(HomeButtonType.Buy))
+        homeButtonItems.add(ListItemButton(HomeButtonType.CreateAccount))
+        homeButtonItems.add(ListItemButton(HomeButtonType.AddMoney))
         homeButtonItems.add(ListItemButton(HomeButtonType.Withdraw))
         homeButtonItems.add(ListItemButton(HomeButtonType.Sell))
         homeButtonItems.add(ListItemButton(HomeButtonType.Statistics))
     }
 
-    fun openDepositSheet() {
-
+    fun openCreateAccountSheet() {
+        sheetView = requireActivity().layoutInflater.inflate(R.layout.bottomsheet_create_new_account, null)
+        bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
+        bottomSheetDialog.setContentView(sheetView)
+        bottomSheetDialog.show()
+        val mBehavior = BottomSheetBehavior.from(sheetView.parent as View)
+        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        spinnerCurrency = sheetView.findViewById(R.id.selectCurrencySpinner)
+        buttonSaveNewAccount = sheetView.findViewById(R.id.buttonSaveNewAccount)
+        chooseCurrency()
+        buttonSaveNewAccount.setOnClickListener {
+           val selectedItem =  spinnerCurrency.selectedItem.toString()
+           val currencyShortName = selectedItem.split("-")[0]
+            presenter.createNewAccount(CurrencyName(currencyShortName))
+        }
     }
 
-    fun openBuySheet() {
-
+    fun openAddMoneySheet() {
+        sheetView = requireActivity().layoutInflater.inflate(R.layout.bottomsheet_add_money_to_account, null)
+        bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
+        bottomSheetDialog.setContentView(sheetView)
+        bottomSheetDialog.show()
+        val mBehavior = BottomSheetBehavior.from(sheetView.parent as View)
+        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        amountAddMoneyEditText = sheetView.findViewById(R.id.amountAddMoneyEditText)
+        buttonAddMoney = sheetView.findViewById(R.id.buttonAddMoney)
+        buttonAddMoney.setOnClickListener {
+            val amount = amountAddMoneyEditText.text.toString()
+            val bigDecimalAmount = amount.toBigDecimal()
+            val sendAmount = bigDecimalAmount.multiply(BigDecimal(100))
+            presenter.addMoneyToAccount(AccountOperation(ACCOUNT_ID, sendAmount))
+        }
     }
 
-    fun openWithDrawSheet() {
-
+    fun openDeleteMoneySheet() {
+        sheetView = requireActivity().layoutInflater.inflate(R.layout.bottomsheet_delete_money_from_account, null)
+        bottomSheetDialog = BottomSheetDialog(requireActivity(), R.style.CustomBottomSheetDialogTheme)
+        bottomSheetDialog.setContentView(sheetView)
+        bottomSheetDialog.show()
+        val mBehavior = BottomSheetBehavior.from(sheetView.parent as View)
+        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        amountDeleteMoneyEditText = sheetView.findViewById(R.id.amountDeleteMoneyEditText)
+        buttonDeleteMoneyFromAccount = sheetView.findViewById(R.id.buttonDeleteMoneyFromAccount)
+        buttonDeleteMoneyFromAccount.setOnClickListener {
+            val amount = amountDeleteMoneyEditText.text.toString()
+            val bigDecimalAmount = amount.toBigDecimal()
+            val deleteAmount = bigDecimalAmount.multiply(BigDecimal(100))
+            presenter.deleteMoneyFromAccount(AccountOperation(ACCOUNT_ID_RUB, deleteAmount))
+        }
     }
 
     fun openSellSheet() {
@@ -143,7 +226,7 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
                 else {
                     getData()
                     accessDenied = false
-                    // убрать заглушку
+
                     coroutineContext.cancel()
                 }
             }
@@ -151,4 +234,9 @@ class HomeFragment: BaseFragment<HomePresenterImpl>(), HomeView {
     }
 
     override fun showError(message: String?): Unit = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+    companion object {
+        var ACCOUNT_ID: UUID = randomUUID()
+        var ACCOUNT_ID_RUB: UUID = randomUUID()
+    }
 }

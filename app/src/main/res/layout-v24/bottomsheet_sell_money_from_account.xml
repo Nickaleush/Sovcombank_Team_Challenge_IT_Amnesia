@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_round_corners_top_white">
+
+    <TextView
+        android:id="@+id/deleteFromRubleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:lineSpacingExtra="6sp"
+        android:lines="3"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:text="@string/SellCurrency"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/selectAccountSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:imeOptions="actionDone"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteFromRubleTextView"
+        tools:ignore="SpeakableTextPresentCheck">
+
+    </Spinner>
+
+    <EditText
+        android:id="@+id/sellCurrencyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:hint="@string/Amount"
+        android:imeOptions="actionDone"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectAccountSpinner" />
+
+    <Button
+        android:id="@+id/buttonDeleteMoneyFromAccount"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="100dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_button_shape"
+        android:text="@string/WithDraw"
+        android:fontFamily="@font/gteestiprotext_regular"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellCurrencyEditText">
+
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

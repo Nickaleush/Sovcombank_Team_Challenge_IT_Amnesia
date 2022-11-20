@@ -44,6 +44,10 @@
     <string name="Surname">Фамилия</string>
     <string name="Name">Имя</string>
     <string name="LastName">Отчество</string>
+    <string name="Amount">Введите сумму</string>
+    <string name="MakeDeposit">Пополнить счет</string>
+    <string name="WithDrawFromRuble">Вывести деньги с рублевого счета</string>
+    <string name="CreateAccount">Создать счет</string>
     <string name="EnterBirthDay">Выберите дату рождения</string>
     <string name="EnterName">Введите имя</string>
     <string name="EnterSurname">Введите фамилию</string>
@@ -77,6 +81,7 @@
     <string name="Wait">Ожидание</string>
     <string name="Unlock">Разблокировать</string>
     <string name="EmptyNotConfirmedClientList">Список ожидающих клиентов пуст</string>
+    <string name="SellCurrency"> Выберите счет, с которого вы хотите продать валюту. Сумма продажи будет зачислена на основной счет по текущему курсу</string>
     <string name="Currency">Валюта</string>
     <string name="Deposit">Пополнить</string>
     <string name="Buy">Купить</string>
@@ -88,6 +93,9 @@
     <string name="DefaultCost">62,44</string>
     <string name="Dollar">$</string>
     <string name="Ruble">₽</string>
+    <string name="Euro">€</string>
+    <string name="Sterling">£</string>
+    <string name="Yuan">¥</string>
     <string name="DefaultShortName">RUB</string>
     <string name="RubleBill">рублевый счет</string>
     <string name="Account">Счёт</string>

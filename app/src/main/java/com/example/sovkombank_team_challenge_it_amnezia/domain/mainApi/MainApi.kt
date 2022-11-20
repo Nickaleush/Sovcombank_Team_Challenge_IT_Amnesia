@@ -28,6 +28,15 @@ interface MainApi {
     @GET("api/currency")
     fun getAllCurrencies(): Single<ArrayList<Quotation>>
 
+    @POST("api/account")
+    fun createNewAccount(@Body currencyName: CurrencyName): Single<Account>
+
+    @POST("api/account/money/add")
+    fun addMoneyToAccount(@Body accountToAdd: AccountOperation): Single<Unit>
+
+    @POST("api/account/money/delete")
+    fun deleteMoneyFromAccount(@Body accountToDelete: AccountOperation): Single<Unit>
+
     @GET("api/admin/user/{userId}/confirm")
     fun confirmClient(@Path(value = "userId", encoded = true) userId: String): Single<Unit>
 

@@ -40,6 +40,7 @@
     <string name="ConfirmPassword">Confirm Password</string>
     <string name="EnterBirthDay">Choose Birthday</string>
     <string name="Surname">Surname</string>
+    <string name="Amount">Amount</string>
     <string name="Name">Name</string>
     <string name="EnterName">Name is empty!</string>
     <string name="EnterPhone">Phone is empty!</string>
@@ -54,6 +55,7 @@
     <string name="ConfirmCodeAccountSent">Enter the code that was sent to your phone number to confirm your account</string>
     <string name="CheckCredentials">Please, check your credentials</string>
     <string name="Confirm">Confirm</string>
+    <string name="CreateAccount">Create account</string>
     <string name="INVALID_CODE">Wrong code</string>
     <string name="RESEND_CODE">Resend sms-code</string>
     <string name="LogOut">Log out</string>
@@ -75,8 +77,11 @@
     <string name="Cancel">Cancel</string>
     <string name="Currency">Currency</string>
     <string name="Deposit">Deposit</string>
+    <string name="MakeDeposit">Make a deposit</string>
     <string name="Buy">Buy</string>
     <string name="WithDraw">WithDraw</string>
+    <string name="WithDrawFromRuble">WithDraw money from ruble account</string>
+    <string name="SellCurrency">Select the account from which you want to sell the currency. The sale amount will be credited to the main account at the current exchange rate</string>
     <string name="Sell">Sell</string>
     <string name="Statistics">Statistics</string>
     <string name="NotConfirmed">Not confirmed</string>
@@ -86,7 +91,10 @@
     <string name="DefaultCost">62,44</string>
     <string name="DefaultCurrency">Рубль</string>
     <string name="Dollar">$</string>
+    <string name="Euro">€</string>
     <string name="Ruble">₽</string>
+    <string name="Sterling">£</string>
+    <string name="Yuan">¥</string>
     <string name="RubleBill">ruble bill</string>
     <string name="Account">Account</string>
     <string name="TypeTransaction">Transaction type</string>

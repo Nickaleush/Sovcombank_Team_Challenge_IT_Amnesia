@@ -1,52 +1,53 @@
 package com.example.sovkombank_team_challenge_it_amnezia.ui.client.home
 
 import android.os.Build
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Account
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment.Companion.ACCOUNT_ID
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment.Companion.ACCOUNT_ID_RUB
 import kotlinx.android.synthetic.main.item_home_account.view.*
+import java.math.BigDecimal
+import java.math.RoundingMode
 
-class HomeAccountsAdapter(private val accountsList: ArrayList<Account> ) : RecyclerView.Adapter<HomeAccountsAdapter.ViewHolder>() {
+class HomeAccountsAdapter(private val accountsList: List<Account>, val fragment:HomeFragment ) : RecyclerView.Adapter<HomeAccountsAdapter.ViewHolder>() {
 
-    private lateinit var mListener: OnClickListener
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    class ViewHolder(itemView: View, listener: OnClickListener) : RecyclerView.ViewHolder(itemView) {
-
-        init {
-
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_home_account, parent, false)
-        return ViewHolder(view, mListener)
+        return ViewHolder(view)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val v = holder.itemView
         val item = accountsList[position]
+        if (item.currency.name == "RUB" ) ACCOUNT_ID_RUB = item.id
         val accountNumber = item.accountNumber
         val shortAccountNumber = accountNumber.substring(14)
-        v.accountBalanceTextView.text = item.amount.toString()
+        val amount = item.amount
+        val balance = amount.divide(BigDecimal(100.0), 2,  RoundingMode.FLOOR)
+        v.accountBalanceTextView.text = balance.toString()
+        when (item.currency.name) {
+            "RUB" -> {
+                ACCOUNT_ID_RUB = item.id
+                v.currencySymbolTextView.text = v.context.getText(R.string.Ruble)
+            }
+            "EUR" -> v.currencySymbolTextView.text = v.context.getText(R.string.Euro)
+            "USD" -> v.currencySymbolTextView.text = v.context.getText(R.string.Dollar)
+            "CNY" -> v.currencySymbolTextView.text = v.context.getText(R.string.Yuan)
+            "GBP" -> v.currencySymbolTextView.text = v.context.getText(R.string.Sterling)
+            else -> v.currencySymbolTextView.text = null
+        }
         v.accountTypeTextview.text = item.currency.name
         v.billLast4digits.text = shortAccountNumber
-    }
-
-    interface OnClickListener {
-        fun onClick(position: Int)
-    }
-
-    fun setOnClickRecyclerListener(listener: OnClickListener){
-        mListener = listener
     }
 
     override fun getItemCount() = accountsList.size

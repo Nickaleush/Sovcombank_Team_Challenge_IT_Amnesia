@@ -25,20 +25,20 @@ class HomeButtonsAdapter(private val items: ArrayList<ListItemButton> = ArrayLis
 
         when (HomeButtonType.values()[items[position].type.ordinal]) {
 
-            HomeButtonType.Deposit  ->  {
+            HomeButtonType.CreateAccount  ->  {
                 holder.itemView.holderButton.setCardBackgroundColor(holder.itemView.context.getColor(R.color.red))
                 holder.itemView.buttonName.setTextColor(holder.itemView.context.getColor(R.color.red))
-                holder.itemView.buttonImage.setImageResource(R.drawable.plus_icon_foreground)
-                holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.Deposit)
-                holder.itemView.setOnClickListener { fragment.openDepositSheet() }
+                holder.itemView.buttonImage.setImageResource(R.drawable.create_new_account_icon_foreground)
+                holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.CreateAccount)
+                holder.itemView.setOnClickListener { fragment.openCreateAccountSheet() }
             }
 
-            HomeButtonType.Buy ->  {
+            HomeButtonType.AddMoney  ->  {
                 holder.itemView.holderButton.setCardBackgroundColor(holder.itemView.context.getColor(R.color.white))
                 holder.itemView.buttonName.setTextColor(holder.itemView.context.getColor(R.color.blue))
-                holder.itemView.buttonImage.setImageResource(R.drawable.buy_icon_foreground)
-                holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.Buy)
-                holder.itemView.setOnClickListener { fragment.openBuySheet() }
+                holder.itemView.buttonImage.setImageResource(R.drawable.plus_icon_foreground)
+                holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.Deposit)
+                holder.itemView.setOnClickListener { fragment.openAddMoneySheet() }
             }
 
             HomeButtonType.Withdraw -> {
@@ -46,7 +46,7 @@ class HomeButtonsAdapter(private val items: ArrayList<ListItemButton> = ArrayLis
                 holder.itemView.buttonName.setTextColor(holder.itemView.context.getColor(R.color.blue))
                 holder.itemView.buttonImage.setImageResource(R.drawable.withdraw_icon_foreground)
                 holder.itemView.buttonName.text = holder.itemView.context.getString(R.string.WithDraw)
-                holder.itemView.setOnClickListener { fragment.openWithDrawSheet() }
+                holder.itemView.setOnClickListener { fragment.openDeleteMoneySheet() }
             }
 
             HomeButtonType.Sell ->    {

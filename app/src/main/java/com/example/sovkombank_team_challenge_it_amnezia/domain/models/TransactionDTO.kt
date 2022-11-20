@@ -6,7 +6,7 @@ import java.util.*
 
 data class TransactionDTO(
     var amount: BigDecimal,
-    var dstAccount: Account,
+    var dstAccount: Account?,
     val id: UUID,
     var srcAccount: Account,
     var time: OffsetDateTime,
