@@ -102,7 +102,7 @@ class ClientListBlockedFragment: BaseFragment<ClientListBlockedPresenterImpl>(),
             ) {
                 RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                     .addSwipeLeftBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
-                    .addSwipeLeftLabel(getString(R.string.BlockUser))
+                    .addSwipeLeftLabel(getString(R.string.Unlock))
                     .setSwipeLeftLabelColor(resources.getColor(R.color.white, null))
                     .create()
                     .decorate()

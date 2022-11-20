@@ -59,24 +59,17 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         presenter.start()
         presenter.view = this
         getData()
+        DATA_FROM_FILTER_SELECTED = false
+        DATA_TO_FILTER_SELECTED = false
         if (accessDenied) waitAccess()
         chip_group_choice.setOnCheckedChangeListener { group, checkedId ->
             val chip: Chip? = group.findViewById(checkedId)
             chip?.let { chipView ->
                 chipSelected = chip.text as String
-                filterList(chipSelected)
+                filterList()
             } ?: kotlin.run {
             }
         }
-
-//        chip_group_choice.setOnCheckedChangeListener {
-//                group, checkedId ->
-//            val chip: Chip? = group.findViewById(checkedId)
-//            chip?.let { chipView ->
-//
-//            } ?: kotlin.run {
-//            }
-//        }
 
         chipFrom.setOnClickListener {
             getDateTimeCalendar()
@@ -95,17 +88,22 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         presenter.getTransactionHistory()
     }
 
-    private fun filterList(type: String) {
+    private fun filterList() {
         transactionHistoryList = initialTransactionHistoryList
-        if (type != "All") {
-            when (type) {
-                getString(R.string.Recharge) -> chipSelected = "RECHARGE"
-                getString(R.string.Transaction) -> chipSelected = "TRANSACTION"
-                getString(R.string.Withdrawal) -> chipSelected = "WITHDRAWAL"
-                else -> {chipSelected= "ALL"}
-            }
-            adapter.filter.filter(chipSelected)
-        } else chipSelected= "ALL"
+        when (chipSelected) {
+            getString(R.string.Recharge) -> chipSelected = "RECHARGE"
+            getString(R.string.Transaction) -> chipSelected = "TRANSACTION"
+            getString(R.string.Withdrawal) -> chipSelected = "WITHDRAWAL"
+            else -> {chipSelected= "ALL"}
+        }
+        adapter.filter.filter(chipSelected)
+    }
+
+    private fun timeFilterList() {
+        transactionHistoryList = initialTransactionHistoryList
+        if (DATA_FROM_FILTER_SELECTED) {
+            adapter.filter.filter(SEND_FROM_DATE_FORMAT)
+        } else adapter.filter.filter(SEND_TO_DATE_FORMAT)
 
     }
 
@@ -116,7 +114,7 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         adapter = TransactionHistoryAdapter(transactionHistoryList)
         transactionHistoryRecyclerView.adapter = adapter
-        filterList("All")
+        filterList()
     }
 
     override fun onBackPressed() {
@@ -155,6 +153,10 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
     @SuppressLint("SimpleDateFormat")
     private fun getDateTimeCalendar() {
         val cal: Calendar = Calendar.getInstance()
@@ -180,11 +182,15 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
             chipFrom.text = formattedDate
             SEND_FROM_DATE_FORMAT = inputFormat.format(date)
             DATE_FROM_SELECTED = false
+            DATA_FROM_FILTER_SELECTED = true
+            filterList()
         }
         else {
             chipTill.text = formattedDate
             SEND_TO_DATE_FORMAT = inputFormat.format(date)
             DATE_FROM_SELECTED = false
+            DATA_TO_FILTER_SELECTED = true
+            filterList()
         }
     }
 
@@ -194,6 +200,8 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
     companion object {
         var chipSelected = ""
         var DATE_FROM_SELECTED = false
+        var DATA_FROM_FILTER_SELECTED = false
+        var DATA_TO_FILTER_SELECTED = false
         var yearHistory = 0
         var monthHistory = 0
         var dayHistory = 0

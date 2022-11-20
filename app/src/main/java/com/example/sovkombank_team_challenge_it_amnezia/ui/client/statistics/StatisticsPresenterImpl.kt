@@ -27,10 +27,10 @@ class StatisticsPresenterImpl @Inject constructor(private val mainApi: MainApi) 
                 AndroidSchedulers.mainThread()
             )
             .subscribe({
-                //view.initTransactionHistoryResycler(it)
+                view.setupColumnGraph(it)
                 // Log.d("01333", it.toString())
             },{
-                //view.showError(it.message)
+                view.showError(it.message)
             })
     }
 

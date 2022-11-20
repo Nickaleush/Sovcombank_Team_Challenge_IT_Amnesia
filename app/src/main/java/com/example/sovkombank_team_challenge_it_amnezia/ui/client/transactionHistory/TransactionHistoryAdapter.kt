@@ -8,12 +8,15 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.TransactionDTO
-import com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.DATA_FROM_FILTER_SELECTED
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.DATA_TO_FILTER_SELECTED
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.SEND_FROM_DATE_FORMAT
+import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.SEND_TO_DATE_FORMAT
 import com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment.Companion.chipSelected
-import kotlinx.android.synthetic.main.item_home_account.view.*
 import kotlinx.android.synthetic.main.transaction_history_item.view.*
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.SimpleDateFormat
 
 class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<TransactionDTO>) :
     RecyclerView.Adapter<TransactionHistoryAdapter.ViewHolder>(), Filterable {
@@ -103,10 +106,65 @@ class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<
                     val resultList = ArrayList<TransactionDTO>()
                     for (row in transactionHistoryList) {
                         if(chipSelected=="ALL"){
-                            resultList.add(row)
+                            when{
+                                (DATA_FROM_FILTER_SELECTED&& DATA_TO_FILTER_SELECTED)->{
+                                    val format = SimpleDateFormat("yyyy-MM-dd")
+                                    val time = format.parse(row.time)
+                                    val userFromDate = format.parse((SEND_FROM_DATE_FORMAT))
+                                    val userToDate = format.parse((SEND_TO_DATE_FORMAT))
+                                    if(time.after(userFromDate)&&time.before(userToDate)){
+                                        resultList.add(row)
+                                    }
+                                }
+                                (DATA_FROM_FILTER_SELECTED)->{
+                                    val format = SimpleDateFormat("yyyy-MM-dd")
+                                    val time = format.parse(row.time)
+                                    val userDate = format.parse((SEND_FROM_DATE_FORMAT))
+                                    if(time.after(userDate)){
+                                        resultList.add(row)
+                                    }
+                                }
+                                (DATA_TO_FILTER_SELECTED)->{
+                                    val format = SimpleDateFormat("yyyy-MM-dd")
+                                    val time = format.parse(row.time)
+                                    val userDate = format.parse((SEND_TO_DATE_FORMAT))
+                                    if(time.before(userDate)){
+                                        resultList.add(row)
+                                    }
+                                }
+                                else->{ resultList.add(row)}
+                            }
+
                         }
                         else if(row.type==chipSelected) {
-                            resultList.add(row)
+                            when{
+                                (DATA_FROM_FILTER_SELECTED&& DATA_TO_FILTER_SELECTED)->{
+                                    val format = SimpleDateFormat("yyyy-MM-dd")
+                                    val time = format.parse(row.time)
+                                    val userFromDate = format.parse((SEND_FROM_DATE_FORMAT))
+                                    val userToDate = format.parse((SEND_TO_DATE_FORMAT))
+                                    if(time.after(userFromDate)&&time.before(userToDate)){
+                                        resultList.add(row)
+                                    }
+                                }
+                                (DATA_FROM_FILTER_SELECTED)->{
+                                    val format = SimpleDateFormat("yyyy-MM-dd")
+                                    val time = format.parse(row.time)
+                                    val userDate = format.parse((SEND_FROM_DATE_FORMAT))
+                                    if(time.after(userDate)){
+                                        resultList.add(row)
+                                    }
+                                }
+                                (DATA_TO_FILTER_SELECTED)->{
+                                    val format = SimpleDateFormat("yyyy-MM-dd")
+                                    val time = format.parse(row.time)
+                                    val userDate = format.parse((SEND_TO_DATE_FORMAT))
+                                    if(time.before(userDate)){
+                                        resultList.add(row)
+                                    }
+                                }
+                                else->{ resultList.add(row)}
+                            }
                         }
                     }
                     transactionHistoryFilterList = resultList
