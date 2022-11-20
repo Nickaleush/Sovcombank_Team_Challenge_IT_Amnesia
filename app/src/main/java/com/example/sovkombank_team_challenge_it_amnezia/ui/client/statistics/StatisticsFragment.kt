@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.example.sovkombank_team_challenge_it_amnezia.App
 import com.example.sovkombank_team_challenge_it_amnezia.R
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.GetStatistics
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Statistics
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -44,12 +45,12 @@ class StatisticsFragment : BaseFragment<StatisticsPresenterImpl>(), StatisticsVi
 
     }
 
-    override fun setupColumnGraph(statistic: Map<String, Double>){
+    override fun setupColumnGraph(statistic: MutableList<GetStatistics>){
         listPrices.clear()
         listDate.clear()
-        statistic.forEach { entry ->
-            listDate.add(entry.key)
-            listPrices.add(entry.value)
+        statistic.forEach {
+            listDate.add(it.date)
+            listPrices.add(it.value)
         }
         val aaChartModel : AAChartModel = AAChartModel()
             .chartType(AAChartType.Column)
