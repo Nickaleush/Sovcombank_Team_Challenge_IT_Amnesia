@@ -1,31 +1,49 @@
-package com.example.sovkombank_team_challenge_it_amnezia.ui.admin.clientList.clientNotConfirmedList
+package com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sovkombank_team_challenge_it_amnezia.R
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Client
-import com.example.sovkombank_team_challenge_it_amnezia.domain.models.ClientDTO
-import kotlinx.android.synthetic.main.client_item.view.*
-import kotlinx.android.synthetic.main.client_item.view.firstNameTextview
-import kotlinx.android.synthetic.main.client_not_confirmed_item.view.*
-import java.util.ArrayList
+import com.example.sovkombank_team_challenge_it_amnezia.domain.models.TransactionDTO
+import kotlinx.android.synthetic.main.transaction_history_item.view.*
 
-class TransactionHistoryAdapter(private val notConfirmedClientsList: MutableList<ClientDTO>) : RecyclerView.Adapter<TransactionHistoryAdapter.ViewHolder>() {
+class TransactionHistoryAdapter(private val transactionHistoryList: MutableList<TransactionDTO>) :
+    RecyclerView.Adapter<TransactionHistoryAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.transaction_history_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.transaction_history_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val v = holder.itemView
-        val item = notConfirmedClientsList[position]
-        v.fullNameTextview.text = item.fullName
-        v.phoneNumberTextview.text = item.credentials
+        val item = transactionHistoryList[position]
+        if((item.dstAccount.id).toString()!=""){
+            v.accountDestTextview.visibility = View.VISIBLE
+            v.rubleTextView.visibility = View.VISIBLE
+            v.accountSrcTextview.text = item.srcAccount.id.toString()
+            v.accountDestTextview.text = item.dstAccount.id.toString()
+            v.shortСurrencyNameTextView.text = item.dstAccount.currency.name
+            item.srcAccount.amount.toString().also { v.currencyCostTextView.text = it }
+        }else{
+            v.accountDestTextview.visibility = View.GONE
+            v.rubleTextView.visibility = View.VISIBLE
+            v.shortСurrencyNameTextView.text = item.srcAccount.currency.name
+            v.accountSrcTextview.text = item.srcAccount.id.toString()
+            item.srcAccount.amount.toString().also { v.currencyCostTextView.text = it }
+
+        }
+        when (item.type) {
+            "RECHARGE" -> v.typeTransactionTextview.setText(R.string.Recharge)
+            "TRANSACTION" -> v.typeTransactionTextview.setText(R.string.Transaction)
+            "WITHDRAWAL" -> v.typeTransactionTextview.setText(R.string.Withdrawal)
+        }
+
+
 //        when (item.avatarUrl) {
 //            null -> Glide.with(holder.itemView.context)
 //                .load(R.drawable.rounded_imageview)
@@ -40,5 +58,5 @@ class TransactionHistoryAdapter(private val notConfirmedClientsList: MutableList
 //        }
     }
 
-    override fun getItemCount() = notConfirmedClientsList.size
+    override fun getItemCount() = transactionHistoryList.size
 }

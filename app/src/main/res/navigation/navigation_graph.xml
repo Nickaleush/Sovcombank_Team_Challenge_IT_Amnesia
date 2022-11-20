@@ -127,4 +127,8 @@
         android:id="@+id/homeFragment"
         android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.home.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/transactionHistoryFragment"
+        android:name="com.example.sovkombank_team_challenge_it_amnezia.ui.client.transactionHistory.TransactionHistoryFragment"
+        android:label="TransactionHistoryFragment" />
 </navigation>

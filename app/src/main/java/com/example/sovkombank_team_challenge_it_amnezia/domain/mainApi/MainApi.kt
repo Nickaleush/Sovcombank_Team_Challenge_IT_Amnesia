@@ -51,4 +51,7 @@ interface MainApi {
 
     @GET("api/user/info")
     fun getUserInfo(): Single<UserDTO>
+
+    @GET("api/history")
+    fun getTransactionHistory(): Single<ArrayList<TransactionDTO>>
 }

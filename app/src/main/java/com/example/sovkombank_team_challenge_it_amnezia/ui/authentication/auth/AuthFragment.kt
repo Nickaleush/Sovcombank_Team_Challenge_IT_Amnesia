@@ -87,26 +87,35 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
 
     @SuppressLint("SetTextI18n")
     override fun onNoFingerPrintHardwareFound() {
-        if (!isNavigating) Toast.makeText(requireContext(), "Fingerprint authentication not supported on the device", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), getString(R.string.FingerprintNotSupported), Toast.LENGTH_SHORT).show()
     }
 
     override fun onAuthFailed(errorCode: Int, errorMessage: String?) {
-        if (!isNavigating) Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), getString(R.string.AuthFailed), Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")
     override fun onNoFingerPrintRegistered() {
-        if (!isNavigating) Toast.makeText(requireContext(), "No Fingerprint registered", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), getString(R.string.NoFingerprintRegistered), Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBelowMarshmallow() {
-        if (!isNavigating) Toast.makeText(requireContext(), "Fingerprint feature is not available on this OS", Toast.LENGTH_SHORT).show()
+        if (!isNavigating) Toast.makeText(requireContext(), getString(R.string.FingerprintNotAvailableOnThisOS), Toast.LENGTH_SHORT).show()
     }
 
     override fun onAuthSuccess(cryptoObject: FingerprintManager.CryptoObject?) {
-        Toast.makeText(requireContext(), "Authentication Success!", Toast.LENGTH_SHORT).show()
-        findNavController().navigateTo(findNavController(), R.id.action_authFragment_to_profileFragment, true)
+        Toast.makeText(requireContext(), getString(R.string.AuthenticationSuccess), Toast.LENGTH_SHORT).show()
+        if(sharedPreferences.adminMode){
+            isNavigating = true
+            findNavController().navigateTo(findNavController(),
+                R.id.action_authFragment_to_clientListTabLayoutFragment, true)
+        }
+        else{
+            isNavigating = true
+            findNavController().navigateTo(findNavController(),
+                R.id.action_authFragment_to_profileFragment, true)
+        }
     }
 
     override fun onBackPressed() {
