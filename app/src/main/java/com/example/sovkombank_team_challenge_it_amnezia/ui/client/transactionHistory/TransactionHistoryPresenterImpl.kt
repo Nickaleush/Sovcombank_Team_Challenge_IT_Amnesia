@@ -31,7 +31,7 @@ class TransactionHistoryPresenterImpl @Inject constructor(private val mainApi: M
                 view.initTransactionHistoryResycler(it)
                 // Log.d("01333", it.toString())
             },{
-                //view.showError(it.message)
+                view.showError(it.message)
             })
     }
 

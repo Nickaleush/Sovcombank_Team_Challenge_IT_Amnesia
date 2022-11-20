@@ -98,8 +98,8 @@
     <string name="RubleBill">ruble bill</string>
     <string name="Account">Account</string>
     <string name="TypeTransaction">Transaction type</string>
-    <string name="From">From</string>
-    <string name="To">To</string>
+    <string name="From">From: </string>
+    <string name="To">To: </string>
     <string name="Transaction">Transaction</string>
     <string name="Recharge">Recharge</string>
     <string name="Withdrawal">Withdrawal</string>

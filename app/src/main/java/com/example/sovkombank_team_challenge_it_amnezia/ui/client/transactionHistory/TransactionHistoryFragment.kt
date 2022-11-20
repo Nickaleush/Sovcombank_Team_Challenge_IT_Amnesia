@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
@@ -19,12 +20,16 @@ import kotlinx.android.synthetic.main.transaction_history_item.view.*
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>(), TransactionHistoryView {
+class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>(),
+    TransactionHistoryView {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     var transactionHistoryList: MutableList<TransactionDTO> = mutableListOf()
+    var initialTransactionHistoryList: MutableList<TransactionDTO> = mutableListOf()
+
+    lateinit var adapter: TransactionHistoryAdapter
 
     override fun createComponent() {
         App.instance
@@ -33,7 +38,11 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
             .inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.transaction_history_fragment, container, false)
     }
 
@@ -42,10 +51,10 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         presenter.start()
         presenter.view = this
         getData()
-        if(accessDenied) waitAccess()
+        if (accessDenied) waitAccess()
         chip_group_choice.setOnCheckedChangeListener { group, checkedId ->
             val chip: Chip? = group.findViewById(checkedId)
-            chip?.let {chipView ->
+            chip?.let { chipView ->
                 chipSelected = chip.text as String
                 filterList(chipSelected)
             } ?: kotlin.run {
@@ -53,31 +62,32 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         }
     }
 
-    private fun getData(){
+    private fun getData() {
         presenter.getTransactionHistory()
     }
 
-    private fun filterList(type: String){
-        if(type!="All"){
-            transactionHistoryList.filter {
-                when (it.type) {
-                    "RECHARGE" -> it.type = getString(R.string.Recharge)
-                    "TRANSACTION" -> it.type = getString(R.string.Transaction)
-                    "WITHDRAWAL" ->  it.type = getString(R.string.Withdrawal)
-                    else -> {}
-                }
-                it.type == type
+    private fun filterList(type: String) {
+        transactionHistoryList = initialTransactionHistoryList
+        if (type != "All") {
+            when (type) {
+                getString(R.string.Recharge) -> chipSelected = "RECHARGE"
+                getString(R.string.Transaction) -> chipSelected = "TRANSACTION"
+                getString(R.string.Withdrawal) -> chipSelected = "WITHDRAWAL"
+                else -> {chipSelected= "ALL"}
             }
-            transactionHistoryRecyclerView.adapter?.notifyDataSetChanged()
-        } else getData()
+            adapter.filter.filter(chipSelected)
+        } else chipSelected= "ALL"
 
     }
 
     override fun initTransactionHistoryResycler(listTransactionHistory: MutableList<TransactionDTO>) {
         transactionHistoryList = listTransactionHistory
-        transactionHistoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = TransactionHistoryAdapter(transactionHistoryList)
+        initialTransactionHistoryList = listTransactionHistory
+        transactionHistoryRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        adapter = TransactionHistoryAdapter(transactionHistoryList)
         transactionHistoryRecyclerView.adapter = adapter
+        filterList("All")
     }
 
     override fun onBackPressed() {
@@ -104,11 +114,10 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         CoroutineScope(Dispatchers.IO).launch {
             delay(5000)
             CoroutineScope(Dispatchers.Main).launch {
-                if(accessDenied){
+                if (accessDenied) {
                     waitAccess()
                     // добавить заглушку
-                }
-                else {
+                } else {
                     getData()
                     //убрать заглушку
                     coroutineContext.cancel()
@@ -117,7 +126,10 @@ class TransactionHistoryFragment : BaseFragment<TransactionHistoryPresenterImpl>
         }
     }
 
-    companion object{
+    override fun showError(message: String?): Unit =
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+    companion object {
         var chipSelected = ""
     }
 }

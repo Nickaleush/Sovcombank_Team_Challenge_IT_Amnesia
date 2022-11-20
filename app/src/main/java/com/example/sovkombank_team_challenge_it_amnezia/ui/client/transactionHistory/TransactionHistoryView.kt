@@ -4,5 +4,6 @@ import com.example.sovkombank_team_challenge_it_amnezia.domain.models.Transactio
 import com.example.sovkombank_team_challenge_it_amnezia.mvp.BaseView
 
 interface TransactionHistoryView: BaseView{
+    fun showError(message: String?)
     fun initTransactionHistoryResycler(listTransactionHistory: MutableList<TransactionDTO>)
 }

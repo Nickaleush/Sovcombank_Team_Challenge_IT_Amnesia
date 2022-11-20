@@ -53,5 +53,5 @@ interface MainApi {
     fun getUserInfo(): Single<UserDTO>
 
     @GET("api/history")
-    fun getTransactionHistory(): Single<ArrayList<TransactionDTO>>
+    fun getTransactionHistory(): Single<MutableList<TransactionDTO>>
 }

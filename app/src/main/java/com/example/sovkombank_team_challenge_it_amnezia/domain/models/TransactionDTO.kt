@@ -9,6 +9,6 @@ data class TransactionDTO(
     var dstAccount: Account?,
     val id: UUID,
     var srcAccount: Account,
-    var time: OffsetDateTime,
+    var time: String,
     var type:String
 )
