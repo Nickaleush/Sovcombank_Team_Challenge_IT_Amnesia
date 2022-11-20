@@ -4,6 +4,7 @@ import com.example.sovkombank_team_challenge_it_amnezia.di.modules.AccessToken
 import com.example.sovkombank_team_challenge_it_amnezia.domain.models.*
 import io.reactivex.Single
 import retrofit2.http.*
+import java.time.LocalDate
 
 interface MainApi {
 
@@ -54,4 +55,8 @@ interface MainApi {
 
     @GET("api/history")
     fun getTransactionHistory(): Single<MutableList<TransactionDTO>>
+
+    @POST("api/stat")
+    fun getStatistics(@Body statistics: Statistics): Single<Map<LocalDate, Double>>
+
 }
