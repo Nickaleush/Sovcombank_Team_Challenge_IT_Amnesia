@@ -106,7 +106,16 @@ class AuthFragment: BaseFragment<AuthPresenterImpl>(), AuthView, FingerPrintAuth
 
     override fun onAuthSuccess(cryptoObject: FingerprintManager.CryptoObject?) {
         Toast.makeText(requireContext(), "Authentication Success!", Toast.LENGTH_SHORT).show()
-        findNavController().navigateTo(findNavController(), R.id.action_authFragment_to_profileFragment, true)
+        if(sharedPreferences.adminMode){
+            isNavigating = true
+            findNavController().navigateTo(findNavController(),
+                R.id.action_authFragment_to_clientListTabLayoutFragment, true)
+        }
+        else{
+            isNavigating = true
+            findNavController().navigateTo(findNavController(),
+                R.id.action_authFragment_to_profileFragment, true)
+        }
     }
 
     override fun onBackPressed() {
